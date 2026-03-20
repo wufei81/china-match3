@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "skills": {
+    "product-manager": {
+      "version": "1.0.0",
+      "installedAt": 1773884201679
+    },
+    "firecrawl-search": {
+      "version": "1.0.0",
+      "installedAt": 1773884862556
+    },
+    "phy-prd-writer": {
+      "version": "1.0.0",
+      "installedAt": 1773885392506
+    },
+    "ui-ux-pro-max-plus": {
+      "version": "1.0.0",
+      "installedAt": 1773885729981
+    },
+    "ui-ux-pro-max": {
+      "version": "0.1.0",
+      "installedAt": 1773885731874
+    },
+    "devops": {
+      "version": "1.0.0",
+      "installedAt": 1773886102521
+    },
+    "system-architect": {
+      "version": "1.0.0",
+      "installedAt": 1773886299176
+    },
+    "claude-code-usage": {
+      "version": "1.2.0",
+      "installedAt": 1773886878294
+    },
+    "claude-code-teams": {
+      "version": "1.0.0",
+      "installedAt": 1773887233640
+    },
+    "self-improving-agent": {
+      "version": "3.0.5",
+      "installedAt": 1773887806170
+    },
+    "document-pro": {
+      "version": "1.0.0",
+      "installedAt": 1773895017157
+    },
+    "summarize": {
+      "version": "1.0.0",
+      "installedAt": 1773895414010
+    },
+    "smart-memory": {
+      "version": "2.5.0",
+      "installedAt": 1773895787044
+    },
+    "diagram": {
+      "version": "1.0.0",
+      "installedAt": 1773896089143
+    },
+    "log-analyzer": {
+      "version": "1.0.0",
+      "installedAt": 1773896797945
+    },
+    "memory-tiering": {
+      "version": "1.0.0",
+      "installedAt": 1773899637303
+    }
+  }
+}

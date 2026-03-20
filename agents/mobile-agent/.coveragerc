@@ -1,0 +1,33 @@
+[run]
+source = backend/app
+omit =
+    backend/app/__init__.py
+    backend/app/agents/*
+    backend/app/evaluators/*
+    backend/app/validators/*
+    backend/app/routers/api.py
+    backend/app/api/v1/__init__.py
+    backend/app/models/auth.py
+    backend/app/models/filter_schema.py
+    backend/app/api/filter.py
+    backend/app/services/auth.py
+    backend/main.py
+    */tests/*
+    */__pycache__/*
+
+[report]
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if TYPE_CHECKING:
+    @abstractmethod
+skip_empty = true
+
+[html]
+directory = htmlcov
+
+[xml]
+output = coverage.xml
