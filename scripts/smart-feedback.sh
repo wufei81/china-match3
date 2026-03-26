@@ -58,7 +58,6 @@ generate_suggestions() {
   
   suggestions=()
   
-  # 基于规则的建议
   if [[ $context == *"慢"* ]]; then
     suggestions+=("响应时间较慢，建议优化性能")
   fi
@@ -67,7 +66,6 @@ generate_suggestions() {
     suggestions+=("检测到错误，建议检查日志")
   fi
   
-  # 输出建议
   if [ ${#suggestions[@]} -gt 0 ]; then
     echo "💡 智能建议:"
     for suggestion in "${suggestions[@]}"; do
@@ -80,7 +78,6 @@ generate_suggestions() {
 analyze_sentiment() {
   local text="$1"
   
-  # 简单情感分析 (实际应该用 ML 模型)
   if [[ $text == *"好"* ]] || [[ $text == *"满意"* ]] || [[ $text == *"谢谢"* ]]; then
     echo "情感分析：😊 满意"
   elif [[ $text == *"不好"* ]] || [[ $text == *"失望"* ]] || [[ $text == *"慢"* ]]; then
@@ -95,28 +92,18 @@ demo() {
   echo "演示智能反馈系统..."
   echo ""
   
-  # 进度反馈
   show_progress "任务执行" 8 10
   echo ""
-  
-  # 质量反馈
   show_quality_score 85 100
   echo ""
-  
-  # 智能建议
   generate_suggestions "响应慢，有错误"
   echo ""
-  
-  # 情感分析
   analyze_sentiment "这个功能很好，谢谢"
-  echo ""
 }
 
-# 主程序
 main() {
   log_feedback "智能反馈系统启动"
   demo
 }
 
-# 启动
 main
