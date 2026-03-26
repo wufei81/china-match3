@@ -166,6 +166,17 @@ planning, transparency, risk anticipation
 - **claude-code-teams**: 协调多个 Claude Code agents 并行工作 (多项目并行跟踪、跨团队协调)
 - **firecrawl-search**: PM best practices
 
+**P0 核心能力增强** (2026-03-26 新增):
+
+- **agile-management**: 敏捷管理 (Scrum、看板、迭代规划)
+- **risk-management**: 风险管理 (风险识别、评估、应对)
+- **stakeholder-engagement**: 干系人参与 (干系人分析、沟通计划)
+
+**P1 协作增强** (2026-03-26 新增):
+
+- **cost-budget-management**: 成本与预算管理 (预算编制、成本控制、挣值分析)
+- **team-leadership**: 团队领导 (团队建设、激励、冲突管理)
+
 **辅助工具**:
 
 - **summarize**: URL/文件/YouTube 快速摘要

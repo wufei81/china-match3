@@ -223,6 +223,17 @@ spec | Design covers AC | PRD |
 - **ui-ux-pro-max**: Design system generator
 - **smart-memory**: 持久化认知记忆
 
+**P0 核心能力增强** (2026-03-26 新增):
+
+- **design-system**: 设计系统 (设计令牌、组件库、响应式系统)
+- **user-centered-design**: 以用户为中心的设计 (用户画像、旅程图、可用性测试)
+- **interaction-design**: 交互设计 (交互模式、状态设计、动效规范)
+
+**P1 协作增强** (2026-03-26 新增):
+
+- **design-validation**: 设计验证 (可用性测试、A/B 测试、可访问性审计)
+- **design-handoff**: 设计交付 (设计标注、切图导出、开发文档)
+
 **辅助工具**:
 
 - **claude-code-teams**: 设计审查、多视角评估

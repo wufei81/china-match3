@@ -185,6 +185,17 @@ documented | Can merge to main |
 - **smart-memory**: 持久化认知记忆
 - **self-improving-agent**: 持续学习与改进
 
+**P0 核心能力增强** (2026-03-26 新增):
+
+- **technical-decision**: 技术决策 (技术选型、ADR、权衡分析)
+- **code-quality-system**: 代码质量体系 (质量体系、审查流程、度量)
+- **tech-leadership**: 技术领导力 (团队成长、导师制、技术文化)
+
+**P1 协作增强** (2026-03-26 新增):
+
+- **tech-debt-management**: 技术债务管理 (债务识别、量化、偿还)
+- **innovation-research**: 创新与研究 (技术预研、POC、技术雷达)
+
 **辅助工具**:
 
 - **firecrawl-search**: Industry trends, competitors
