@@ -242,6 +242,12 @@ user-invocable: true
 - **performance-optimization**: 性能优化 (性能分析、优化策略、基准测试、监控)
 - **security-coding**: 安全编码 (安全规范、输入验证、认证授权、数据安全)
 
+**P1 协作增强** (2026-03-26 新增):
+
+- **system-design**: 系统设计 (设计模式、DDD、架构模式、设计原则)
+- **technical-writing**: 技术文档 (RFC、设计文档、API 文档、技术博客)
+- **api-governance**: API 治理 (API 设计、版本管理、评审、治理流程)
+
 **辅助工具**:
 
 - **firecrawl-search**: Web search
