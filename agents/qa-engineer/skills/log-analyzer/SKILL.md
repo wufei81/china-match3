@@ -1,12 +1,24 @@
 ---
 name: log-analyzer
-description: Parse, search, and analyze application logs across formats. Use when debugging from log files, setting up structured logging, analyzing error patterns, correlating events across services, parsing stack traces, or monitoring log output in real time.
-metadata: {"clawdbot":{"emoji":"📋","requires":{"anyBins":["grep","awk","jq","python3"]},"os":["linux","darwin","win32"]}}
+description:
+  Parse, search, and analyze application logs across formats. Use when debugging from log files, setting up structured
+  logging, analyzing error patterns, correlating events across services, parsing stack traces, or monitoring log output
+  in real time.
+metadata:
+  {
+    "clawdbot":
+      {
+        "emoji": "📋",
+        "requires": { "anyBins": ["grep", "awk", "jq", "python3"] },
+        "os": ["linux", "darwin", "win32"],
+      },
+  }
 ---
 
 # Log Analyzer
 
-Parse, search, and debug from application logs. Covers plain text logs, structured JSON logs, stack traces, multi-service correlation, and real-time monitoring.
+Parse, search, and debug from application logs. Covers plain text logs, structured JSON logs, stack traces,
+multi-service correlation, and real-time monitoring.
 
 ## When to Use
 
@@ -264,23 +276,23 @@ with open(sys.argv[1]) as f:
 
 ```javascript
 // npm install pino
-const pino = require('pino');
+const pino = require("pino");
 const logger = pino({
-  level: process.env.LOG_LEVEL || 'info',
+  level: process.env.LOG_LEVEL || "info",
   // Add standard fields to every log line
-  base: { service: 'my-api', version: '1.2.0' },
+  base: { service: "my-api", version: "1.2.0" },
 });
 
 // Usage
-logger.info({ userId: 'u123', action: 'login' }, 'User logged in');
-logger.error({ err, requestId: req.id }, 'Request failed');
+logger.info({ userId: "u123", action: "login" }, "User logged in");
+logger.error({ err, requestId: req.id }, "Request failed");
 
 // Output: {"level":30,"time":1706900000000,"service":"my-api","userId":"u123","action":"login","msg":"User logged in"}
 
 // Child logger with bound context
 const reqLogger = logger.child({ requestId: req.id, userId: req.user?.id });
-reqLogger.info('Processing order');
-reqLogger.error({ err }, 'Order failed');
+reqLogger.info("Processing order");
+reqLogger.error({ err }, "Order failed");
 ```
 
 ### Python (structlog)
@@ -492,10 +504,14 @@ awk 'NR % 100 == 0' huge.log > sample.log
 
 ## Tips
 
-- Always search for a **request ID or correlation ID** first — it narrows the haystack faster than timestamps or error messages.
+- Always search for a **request ID or correlation ID** first — it narrows the haystack faster than timestamps or error
+  messages.
 - Use `--line-buffered` with `grep` when piping from `tail -f` so output isn't delayed by buffering.
-- Normalize IDs and numbers before grouping errors (`sed 's/[0-9a-f]\{8,\}/ID/g'`) to collapse duplicates that differ only by ID.
+- Normalize IDs and numbers before grouping errors (`sed 's/[0-9a-f]\{8,\}/ID/g'`) to collapse duplicates that differ
+  only by ID.
 - For JSON logs, `jq` is indispensable. Install it if it's not available: `apt install jq` / `brew install jq`.
-- Structured logging (JSON) is always worth the setup cost. It makes every analysis task easier: filtering, grouping, correlation, and alerting all become `jq` one-liners.
-- When debugging a production issue: get the **time window** and **affected user/request ID** first, then filter logs to that scope before reading anything.
+- Structured logging (JSON) is always worth the setup cost. It makes every analysis task easier: filtering, grouping,
+  correlation, and alerting all become `jq` one-liners.
+- When debugging a production issue: get the **time window** and **affected user/request ID** first, then filter logs to
+  that scope before reading anything.
 - `awk` is faster than `grep | sort | uniq -c` pipelines for large files. Use it for counting and aggregation.

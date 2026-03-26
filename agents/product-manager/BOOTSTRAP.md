@@ -9,7 +9,7 @@
 1. ✅ 本文件 (快速参考)
 2. ✅ `@workspace/memory/CORE_RULES.md` (核心规则)
 3. ✅ `@workspace/agents/product-manager/AGENTS.md` (角色规范)
-4. ✅ `TASK_TRACKER.md` (项目状态)
+4. ⚠️ `TASK_TRACKER.md` (项目状态 - 如存在)
 
 ---
 
@@ -55,13 +55,16 @@
 
 ---
 
-## 🚨 项目初始化检查
+## 🚨 项目初始化检查（按需）
 
-- [ ] 项目已初始化 (PROJECT_CONFIG.md 存在)
-- [ ] docs/ 目录有所有模板文件
-- [ ] TASK_TRACKER.md 存在
+**完整检查清单**: `@workspace/PROJECT_STARTUP_CHECKLIST.md`
 
-**未初始化** → 通知 ai-orchestrator 执行 `auto-init-if-needed.sh`
+**快速检查**:
+- [ ] PROJECT_CONFIG.md 存在（如有）
+- [ ] TASK_TRACKER.md 存在（如有）
+- [ ] templates/ 目录有 PRD 模板
+
+**未初始化** → 参考 `PROJECT_STARTUP_CHECKLIST.md` 或通知 ai-orchestrator
 
 ---
 

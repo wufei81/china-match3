@@ -6,9 +6,11 @@ Patterns for reducing mental effort and preventing user overwhelm.
 
 ## What is Cognitive Load?
 
-The mental effort required to process information and make decisions. Working memory is limited. Exceed it, and users struggle.
+The mental effort required to process information and make decisions. Working memory is limited. Exceed it, and users
+struggle.
 
 **Three types:**
+
 1. **Intrinsic** — Complexity of the task itself
 2. **Extraneous** — Complexity from poor design
 3. **Germane** — Effort spent learning (good complexity)
@@ -29,27 +31,30 @@ The mental effort required to process information and make decisions. Working me
 
 ### When to Use Each
 
-| Pattern | Best For |
-|---------|----------|
-| **Pagination** | Search results, data tables, e-commerce, SEO-critical pages |
-| **Infinite scroll** | Social feeds, discovery browsing, image galleries |
-| **Load more** | Balanced approach, when users may want more but need control |
+| Pattern             | Best For                                                     |
+| ------------------- | ------------------------------------------------------------ |
+| **Pagination**      | Search results, data tables, e-commerce, SEO-critical pages  |
+| **Infinite scroll** | Social feeds, discovery browsing, image galleries            |
+| **Load more**       | Balanced approach, when users may want more but need control |
 
 ### Implementation Guidelines
 
 **Pagination:**
+
 - 10-50 items per page
 - Show total count
 - Deep linking support
 - Consider "jump to page" for large sets
 
 **Infinite Scroll:**
+
 - Clear loading indicator
 - "Back to top" button
 - Preserve scroll position on return
 - Consider footer accessibility
 
 **Load More:**
+
 - Show count loaded vs. total
 - Consistent batch size
 - Clear button placement
@@ -76,6 +81,7 @@ The mental effort required to process information and make decisions. Working me
 ### Implementation Guidelines
 
 **DO:**
+
 - Show all steps upfront (numbered or named)
 - Indicate current step clearly
 - Allow back navigation (within reason)
@@ -84,6 +90,7 @@ The mental effort required to process information and make decisions. Working me
 - Show summary/review before final submission
 
 **DON'T:**
+
 - Use for < 3 logical steps (overkill)
 - Use for > 7 steps (too daunting)
 - Hide step count (anxiety-inducing)
@@ -92,13 +99,13 @@ The mental effort required to process information and make decisions. Working me
 
 ### Step Design
 
-| Element | Guideline |
-|---------|-----------|
-| Step count | 3-7 steps ideal |
+| Element    | Guideline                               |
+| ---------- | --------------------------------------- |
+| Step count | 3-7 steps ideal                         |
 | Step names | Action-oriented ("Review" not "Step 3") |
-| Progress | Visual indicator (bar, dots, numbers) |
-| Validation | Per-step before allowing next |
-| Summary | Final review before commit |
+| Progress   | Visual indicator (bar, dots, numbers)   |
+| Validation | Per-step before allowing next           |
+| Summary    | Final review before commit              |
 
 ---
 
@@ -122,18 +129,21 @@ The mental effort required to process information and make decisions. Working me
 ### Implementation Guidelines
 
 **Primary Navigation:**
+
 - 5-7 items maximum
 - Most important items visible
 - Group secondary items in "More" or submenus
 - Use icons + labels (not just icons)
 
 **Strategies:**
+
 - Priority+ navigation (show what fits, collapse rest)
 - Hamburger menu (hide until needed)
 - Mega menus (for large sites, used carefully)
 - Command palette (power users)
 
 **DON'T:**
+
 - Hide everything behind hamburger on desktop
 - Use icons without labels for unfamiliar actions
 - Create deep navigation hierarchies
@@ -161,6 +171,7 @@ The mental effort required to process information and make decisions. Working me
 ### Implementation Guidelines
 
 **DO:**
+
 - Clear section headers
 - Consistent grouping logic
 - Sticky headers during scroll (for long sections)
@@ -168,6 +179,7 @@ The mental effort required to process information and make decisions. Working me
 - Consider collapsible sections
 
 **DON'T:**
+
 - Create too many sections (defeats purpose)
 - Use inconsistent grouping logic
 - Make headers look like list items
@@ -175,13 +187,13 @@ The mental effort required to process information and make decisions. Working me
 
 ### Grouping Strategies
 
-| Strategy | Use When |
-|----------|----------|
-| Alphabetical | Long known lists (contacts, countries) |
-| Categorical | Distinct types exist |
-| Chronological | Time-based relevance |
-| Frequency | Most-used items first |
-| Custom | User-defined groups |
+| Strategy      | Use When                               |
+| ------------- | -------------------------------------- |
+| Alphabetical  | Long known lists (contacts, countries) |
+| Categorical   | Distinct types exist                   |
+| Chronological | Time-based relevance                   |
+| Frequency     | Most-used items first                  |
+| Custom        | User-defined groups                    |
 
 ---
 
@@ -200,29 +212,34 @@ The mental effort required to process information and make decisions. Working me
 ### Implementation Guidelines
 
 **Reduce Fields:**
-- Audit every field: "Do we *need* this?"
+
+- Audit every field: "Do we _need_ this?"
 - Make optional fields truly optional
 - Consider progressive profiling (ask over time)
 - Derive what you can (city from zip, etc.)
 
 **Smart Defaults:**
+
 - Geo-location for country
 - Today's date for date fields
 - Most common option pre-selected
 - Remember user's previous choices
 
 **Progressive Disclosure:**
+
 - Show advanced fields only when needed
 - "Add more details" expand pattern
 - Conditional fields based on previous answers
 
 **Inline Validation:**
+
 - Validate on blur (not on every keystroke)
 - Clear, specific error messages
 - Success indicators for valid fields
 - Don't prevent typing valid values
 
 **Field Layout:**
+
 - Single column preferred (easier scanning)
 - Labels above fields (faster)
 - Consistent field widths
@@ -271,13 +288,13 @@ The mental effort required to process information and make decisions. Working me
 
 ## Cognitive Load Audit
 
-| Check | Impact |
-|-------|--------|
-| ☐ Navigation items < 7 | Decision fatigue |
-| ☐ Form fields minimized | Input effort |
-| ☐ Smart defaults used | Decision effort |
-| ☐ Content chunked | Processing load |
-| ☐ Clear visual hierarchy | Scanning effort |
-| ☐ Recognition over recall | Memory load |
+| Check                         | Impact            |
+| ----------------------------- | ----------------- |
+| ☐ Navigation items < 7        | Decision fatigue  |
+| ☐ Form fields minimized       | Input effort      |
+| ☐ Smart defaults used         | Decision effort   |
+| ☐ Content chunked             | Processing load   |
+| ☐ Clear visual hierarchy      | Scanning effort   |
+| ☐ Recognition over recall     | Memory load       |
 | ☐ Progressive disclosure used | Initial overwhelm |
-| ☐ Consistent patterns | Learning load |
+| ☐ Consistent patterns         | Learning load     |

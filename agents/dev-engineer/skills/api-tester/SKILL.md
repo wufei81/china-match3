@@ -1,6 +1,8 @@
 ---
 name: api-tester
-description: Perform structured HTTP/HTTPS requests (GET, POST, PUT, DELETE) with custom headers and JSON body support. Use for API testing, health checks, or interacting with REST services programmatically without relying on curl.
+description:
+  Perform structured HTTP/HTTPS requests (GET, POST, PUT, DELETE) with custom headers and JSON body support. Use for API
+  testing, health checks, or interacting with REST services programmatically without relying on curl.
 ---
 
 # API Tester
@@ -12,18 +14,18 @@ A lightweight, dependency-free HTTP client for OpenClaw.
 ### Basic GET Request
 
 ```javascript
-const api = require('skills/api-tester');
-const result = await api.request('GET', 'https://api.example.com/data');
+const api = require("skills/api-tester");
+const result = await api.request("GET", "https://api.example.com/data");
 console.log(result.status, result.data);
 ```
 
 ### POST Request with JSON Body
 
 ```javascript
-const api = require('skills/api-tester');
-const payload = { key: 'value' };
-const headers = { 'Authorization': 'Bearer <token>' };
-const result = await api.request('POST', 'https://api.example.com/submit', headers, payload);
+const api = require("skills/api-tester");
+const payload = { key: "value" };
+const headers = { Authorization: "Bearer <token>" };
+const result = await api.request("POST", "https://api.example.com/submit", headers, payload);
 ```
 
 ### Return Format

@@ -6,7 +6,8 @@ Patterns for organizing, relating, and surfacing content.
 
 ## What are Information Relationships?
 
-How content connects, relates, and is organized. Good information architecture makes content findable and understandable.
+How content connects, relates, and is organized. Good information architecture makes content findable and
+understandable.
 
 **Core principle:** Users should always know where they are, how they got there, and where they can go.
 
@@ -18,11 +19,11 @@ How content connects, relates, and is organized. Good information architecture m
 
 ### Types
 
-| Type | Use Case |
-|------|----------|
+| Type                | Use Case                                         |
+| ------------------- | ------------------------------------------------ |
 | **Hierarchy-based** | Shows parent/child path (Home > Category > Item) |
-| **History-based** | Shows pages visited (like browser back) |
-| **Attribute-based** | Shows filters/selections applied |
+| **History-based**   | Shows pages visited (like browser back)          |
+| **Attribute-based** | Shows filters/selections applied                 |
 
 ### Benefits
 
@@ -34,6 +35,7 @@ How content connects, relates, and is organized. Good information architecture m
 ### Implementation Guidelines
 
 **DO:**
+
 - Use for sites with 3+ hierarchy levels
 - Link all but current page
 - Use separator (/ or >) between levels
@@ -41,6 +43,7 @@ How content connects, relates, and is organized. Good information architecture m
 - Position consistently (top of content area)
 
 **DON'T:**
+
 - Use for flat site structures
 - Make current page a link
 - Use breadcrumbs as primary navigation
@@ -50,16 +53,19 @@ How content connects, relates, and is organized. Good information architecture m
 ### Breadcrumb Examples
 
 **Standard:**
+
 ```
 Home / Products / Electronics / Headphones
 ```
 
 **Attribute-based:**
+
 ```
 Headphones > Over-ear > Wireless > Sony
 ```
 
 **Truncated:**
+
 ```
 Home / ... / Category / Subcategory / Item
 ```
@@ -72,26 +78,27 @@ Home / ... / Category / Subcategory / Item
 
 ### Sitemap Types
 
-| Type | Purpose |
-|------|---------|
-| **Visual sitemap** | Design/planning tool |
-| **HTML sitemap** | User-facing page listing |
-| **XML sitemap** | SEO, search engine crawling |
+| Type               | Purpose                     |
+| ------------------ | --------------------------- |
+| **Visual sitemap** | Design/planning tool        |
+| **HTML sitemap**   | User-facing page listing    |
+| **XML sitemap**    | SEO, search engine crawling |
 
 ### IA Organization Schemes
 
-| Scheme | Examples |
-|--------|----------|
-| **Alphabetical** | Directories, glossaries |
-| **Chronological** | News, blog archives |
-| **Geographical** | Store locators, regional content |
-| **Topical** | Subject-based categories |
-| **Task-based** | What users want to do |
-| **Audience-based** | By user type (admin, user) |
+| Scheme             | Examples                         |
+| ------------------ | -------------------------------- |
+| **Alphabetical**   | Directories, glossaries          |
+| **Chronological**  | News, blog archives              |
+| **Geographical**   | Store locators, regional content |
+| **Topical**        | Subject-based categories         |
+| **Task-based**     | What users want to do            |
+| **Audience-based** | By user type (admin, user)       |
 
 ### IA Principles
 
 **DO:**
+
 - Organize by user mental model
 - Use card sorting to validate
 - Limit depth (3-4 levels max)
@@ -99,6 +106,7 @@ Home / ... / Category / Subcategory / Item
 - Cross-link related content
 
 **DON'T:**
+
 - Organize by org structure
 - Create deep hierarchies
 - Use internal jargon
@@ -113,17 +121,18 @@ Home / ... / Category / Subcategory / Item
 
 ### Categories vs. Tags
 
-| Categories | Tags |
-|------------|------|
-| Hierarchical | Flat |
-| Mutually exclusive | Multiple allowed |
-| Pre-defined | Often user-created |
+| Categories           | Tags                 |
+| -------------------- | -------------------- |
+| Hierarchical         | Flat                 |
+| Mutually exclusive   | Multiple allowed     |
+| Pre-defined          | Often user-created   |
 | Broad classification | Specific descriptors |
-| Navigation structure | Discovery/filtering |
+| Navigation structure | Discovery/filtering  |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Define clear taxonomy
 - Limit tag proliferation (governance)
 - Show related content via shared tags
@@ -131,6 +140,7 @@ Home / ... / Category / Subcategory / Item
 - Make tags clickable (for discovery)
 
 **DON'T:**
+
 - Over-tag content
 - Create overlapping categories
 - Use inconsistent naming
@@ -140,11 +150,13 @@ Home / ... / Category / Subcategory / Item
 ### Tag UI Patterns
 
 **Tag display:**
+
 ```
 [UX Design] [Mobile] [Case Study]
 ```
 
 **Tag filtering:**
+
 ```
 Filter by tag:
 ☑ UX Design (24)
@@ -153,6 +165,7 @@ Filter by tag:
 ```
 
 **Tag input:**
+
 ```
 Tags: [UX Design ×] [Mobile ×] [Add tag...]
       Suggested: Case Study, Research
@@ -166,13 +179,13 @@ Tags: [UX Design ×] [Mobile ×] [Add tag...]
 
 ### Components
 
-| Component | Function |
-|-----------|----------|
-| **Facets** | Filter categories (price, size, color) |
-| **Values** | Options within facets |
-| **Counts** | Number of results per value |
-| **Applied filters** | Currently active filters |
-| **Clear all** | Reset to unfiltered state |
+| Component           | Function                               |
+| ------------------- | -------------------------------------- |
+| **Facets**          | Filter categories (price, size, color) |
+| **Values**          | Options within facets                  |
+| **Counts**          | Number of results per value            |
+| **Applied filters** | Currently active filters               |
+| **Clear all**       | Reset to unfiltered state              |
 
 ### Benefits
 
@@ -184,6 +197,7 @@ Tags: [UX Design ×] [Mobile ×] [Add tag...]
 ### Implementation Guidelines
 
 **DO:**
+
 - Show result counts per facet value
 - Allow multiple selections within facets
 - Update results immediately (or on apply)
@@ -191,6 +205,7 @@ Tags: [UX Design ×] [Mobile ×] [Add tag...]
 - Provide clear "reset all"
 
 **DON'T:**
+
 - Show zero-result facet values (or mark unavailable)
 - Hide facet values users might need
 - Create too many facets
@@ -225,12 +240,12 @@ Brand
 
 ### Types
 
-| Type | Basis |
-|------|-------|
-| **Manual curation** | Editor-selected relations |
-| **Automatic** | Shared tags, categories, keywords |
-| **Behavioral** | "Users also viewed" |
-| **Temporal** | "Recent" or "trending" |
+| Type                | Basis                             |
+| ------------------- | --------------------------------- |
+| **Manual curation** | Editor-selected relations         |
+| **Automatic**       | Shared tags, categories, keywords |
+| **Behavioral**      | "Users also viewed"               |
+| **Temporal**        | "Recent" or "trending"            |
 
 ### Placement
 
@@ -242,6 +257,7 @@ Brand
 ### Implementation Guidelines
 
 **DO:**
+
 - Show genuinely related content
 - Limit quantity (3-5 items)
 - Include visual preview
@@ -249,6 +265,7 @@ Brand
 - Track click-through
 
 **DON'T:**
+
 - Show unrelated content
 - Overwhelm with recommendations
 - Use only one recommendation type
@@ -278,17 +295,18 @@ Related Articles
 
 ### Cross-Link Types
 
-| Type | Purpose |
-|------|---------|
-| **See also** | Alternative content |
-| **Learn more** | Deeper dive |
-| **Prerequisites** | Required knowledge |
-| **Next steps** | Sequential content |
-| **Examples** | Illustrative content |
+| Type              | Purpose              |
+| ----------------- | -------------------- |
+| **See also**      | Alternative content  |
+| **Learn more**    | Deeper dive          |
+| **Prerequisites** | Required knowledge   |
+| **Next steps**    | Sequential content   |
+| **Examples**      | Illustrative content |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Link to genuinely useful content
 - Use descriptive anchor text
 - Open external links appropriately
@@ -296,6 +314,7 @@ Related Articles
 - Use bidirectional linking
 
 **DON'T:**
+
 - Use "click here" as anchor text
 - Link excessively (every paragraph)
 - Link to irrelevant pages
@@ -305,16 +324,19 @@ Related Articles
 ### Link Patterns
 
 **Inline:**
+
 ```
 For more details, see our guide to [user research methods].
 ```
 
 **Call-out:**
+
 ```
 📚 Related: [Complete guide to design systems →]
 ```
 
 **Footer:**
+
 ```
 Learn more:
 • User research fundamentals
@@ -330,18 +352,19 @@ Learn more:
 
 ### Search Components
 
-| Component | Function |
-|-----------|----------|
-| **Search box** | Query input |
+| Component       | Function                      |
+| --------------- | ----------------------------- |
+| **Search box**  | Query input                   |
 | **Suggestions** | Autocomplete, recent, popular |
-| **Results** | Matched content |
-| **Filters** | Refine results |
-| **Sort** | Order results |
-| **No results** | Empty state handling |
+| **Results**     | Matched content               |
+| **Filters**     | Refine results                |
+| **Sort**        | Order results                 |
+| **No results**  | Empty state handling          |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Make search prominent
 - Support autocomplete
 - Show result count
@@ -350,6 +373,7 @@ Learn more:
 - Remember recent searches
 
 **DON'T:**
+
 - Hide search (especially on content-heavy sites)
 - Require exact matches
 - Show empty results without guidance
@@ -359,6 +383,7 @@ Learn more:
 ### Search UI Patterns
 
 **Search box:**
+
 ```
 🔍 [Search products, articles...  ]
     Recent: shoes, headphones
@@ -366,6 +391,7 @@ Learn more:
 ```
 
 **Search results:**
+
 ```
 42 results for "wireless headphones"
 
@@ -384,14 +410,14 @@ $549 ★★★★☆ (1,892)
 
 ## Information Architecture Checklist
 
-| Element | Implemented? |
-|---------|--------------|
-| ☐ Clear hierarchy (3-4 levels max) | |
-| ☐ Breadcrumbs for deep content | |
-| ☐ Consistent categorization | |
-| ☐ Useful tagging system | |
-| ☐ Effective search | |
-| ☐ Faceted filtering where appropriate | |
-| ☐ Related content surfacing | |
-| ☐ Cross-linking strategy | |
-| ☐ No orphan content | |
+| Element                               | Implemented? |
+| ------------------------------------- | ------------ |
+| ☐ Clear hierarchy (3-4 levels max)    |              |
+| ☐ Breadcrumbs for deep content        |              |
+| ☐ Consistent categorization           |              |
+| ☐ Useful tagging system               |              |
+| ☐ Effective search                    |              |
+| ☐ Faceted filtering where appropriate |              |
+| ☐ Related content surfacing           |              |
+| ☐ Cross-linking strategy              |              |
+| ☐ No orphan content                   |              |

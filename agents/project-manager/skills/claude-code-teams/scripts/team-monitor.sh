@@ -80,10 +80,10 @@ check_claude_process() {
 # Function to monitor (placeholder - actual implementation would parse Claude Code state)
 monitor_team() {
     local timestamp=$(date '+%H:%M:%S')
-    
+
     echo -e "${BLUE}[$timestamp] Team Status${NC}"
     echo "----------------------------------------"
-    
+
     # Check if Claude Code is running
     if ! check_claude_process; then
         echo -e "${RED}❌ No Claude Code process detected${NC}"
@@ -91,32 +91,32 @@ monitor_team() {
         echo "Start Claude Code with: claude --pty"
         return 1
     fi
-    
+
     echo -e "${GREEN}✅ Claude Code process running${NC}"
     echo ""
-    
+
     # NOTE: This is a placeholder. Actual implementation would:
     # 1. Check Claude Code session directory for task list state
     # 2. Parse teammate status files
     # 3. Read message queue
     # 4. Display structured output
-    
+
     echo "📋 Task List:"
     echo "  (Use Ctrl+T in Claude Code to view full task list)"
     echo ""
-    
+
     echo "👥 Active Teammates:"
     echo "  (Teammate status appears in Claude Code session)"
     echo ""
-    
+
     echo "💬 Recent Messages:"
     echo "  (Inter-agent messages visible in Claude Code)"
     echo ""
-    
+
     echo "ℹ️  Tip: For real-time monitoring, use Ctrl+T in Claude Code"
     echo "         to toggle task list and teammate status view."
     echo ""
-    
+
     return 0
 }
 
@@ -126,18 +126,18 @@ main() {
         monitor_team
         exit $?
     fi
-    
+
     echo "Monitoring every ${INTERVAL}s (press Ctrl+C to exit)"
     echo ""
-    
+
     while true; do
         clear
         monitor_team
-        
+
         if [ $? -ne 0 ]; then
             echo "Retrying in ${INTERVAL}s..."
         fi
-        
+
         sleep "$INTERVAL"
     done
 }

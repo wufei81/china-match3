@@ -1,5 +1,47 @@
-# HEARTBEAT.md
+# HEARTBEAT.md - 产品智能体定期检查
 
-# Keep this file empty (or with only comments) to skip heartbeat API calls.
+**最后更新**: 2026-03-26 | **状态**: Active
 
-# Add tasks below when you want the agent to check something periodically.
+---
+
+## 📋 定期检查任务
+
+### 每日检查（9:00 AM）
+- [ ] 检查 TASK_TRACKER.md 活跃任务数
+- [ ] 检查 ERROR_LOG.md 新增错误
+- [ ] 检查 PRD 待评审数量
+
+### 每周检查（周一 10:00 AM）
+- [ ] 统计上周完成 PRD 数量
+- [ ] 统计 PRD 平均质量评分
+- [ ] 检查技能更新（clawhub check）
+- [ ] 清理过期临时文件
+
+### 每月检查（1 号 10:00 AM）
+- [ ] 生成月度 PRD 报告
+- [ ] 检查模板是否需要更新
+- [ ] 检查 USER.md 是否需要更新
+- [ ] 备份重要文档
+
+---
+
+## 🔔 告警规则
+
+| 条件 | 级别 | 操作 |
+|------|------|------|
+| TASK_TRACKER.md 超过 10 个活跃任务 | 🟡 警告 | 通知用户 |
+| ERROR_LOG.md 新增 P0 错误 | 🔴 严重 | 立即通知 |
+| PRD 待评审超过 3 天 | 🟡 警告 | 提醒用户 |
+| 技能版本过期超过 7 天 | 🟢 提示 | 建议更新 |
+
+---
+
+## 📊 检查记录
+
+| 日期 | 类型 | 结果 | 备注 |
+|------|------|------|------|
+| 2026-03-26 | 初始化 | ✅ 配置完成 | 创建 HEARTBEAT.md |
+
+---
+
+**维护者**: product-manager | **版本**: 1.0

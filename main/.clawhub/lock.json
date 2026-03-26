@@ -64,6 +64,34 @@
     "memory-tiering": {
       "version": "1.0.0",
       "installedAt": 1773899637303
+    },
+    "superpowers": {
+      "version": "1.0.0",
+      "installedAt": 1774085260054
+    },
+    "planning-with-files": {
+      "version": "2.26.1",
+      "installedAt": 1774085458796
+    },
+    "auto-updater": {
+      "version": "1.0.0",
+      "installedAt": 1774088737951
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1774094773039
+    },
+    "cursor": {
+      "version": "1.0.0",
+      "installedAt": 1774278513865
+    },
+    "memory-qdrant": {
+      "version": "1.0.10",
+      "installedAt": 1774445206945
+    },
+    "memory-setup": {
+      "version": "1.0.0",
+      "installedAt": 1774445585498
     }
   }
 }

@@ -50,7 +50,8 @@ project/
 ## Full-stack (monorepo or separate repos)
 
 - **Option A**: Two repos (frontend, backend); each follows the layout above.
-- **Option B**: Monorepo with `apps/frontend/`, `apps/backend/`, shared code in `packages/` (e.g. pnpm workspaces, Turborepo, Nx).
+- **Option B**: Monorepo with `apps/frontend/`, `apps/backend/`, shared code in `packages/` (e.g. pnpm workspaces,
+  Turborepo, Nx).
 - Prefer separate repos unless you need shared types or coordinated releases.
 
 ## Config files to add from templates

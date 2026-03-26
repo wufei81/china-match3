@@ -7,6 +7,7 @@ Patterns for helping users move through interfaces and find content.
 ## What is Navigation?
 
 The system that lets users move through your interface. Navigation answers three questions:
+
 1. **Where am I?**
 2. **Where can I go?**
 3. **How do I get there?**
@@ -34,6 +35,7 @@ The system that lets users move through your interface. Navigation answers three
 ### Implementation Guidelines
 
 **DO:**
+
 - Order items by importance
 - Use clear "More" or "..." indicator
 - Test at various breakpoints
@@ -41,6 +43,7 @@ The system that lets users move through your interface. Navigation answers three
 - Make overflow menu discoverable
 
 **DON'T:**
+
 - Put critical items in overflow
 - Hide "More" when items overflow
 - Change item order at breakpoints
@@ -83,6 +86,7 @@ Mobile (375px):
 ### Implementation Guidelines
 
 **DO:**
+
 - Use recognizable icon (☰)
 - Add text label when space permits
 - Animate open/close smoothly
@@ -90,6 +94,7 @@ Mobile (375px):
 - Show current location indication
 
 **DON'T:**
+
 - Hide all navigation on desktop
 - Use non-standard icons
 - Make menu hard to close
@@ -102,8 +107,8 @@ Mobile (375px):
 [☰ Menu]
 
 ──────────────────────
-[Avatar] User Name    
-         user@email   
+[Avatar] User Name
+         user@email
 ──────────────────────
 🏠 Dashboard
 📁 Projects
@@ -122,12 +127,12 @@ Mobile (375px):
 
 ### Types
 
-| Type | Behavior |
-|------|----------|
-| **Always fixed** | Always visible, takes space |
-| **Scroll-up reveal** | Appears on scroll up, hides on scroll down |
-| **Compact on scroll** | Shrinks when scrolling |
-| **Below-fold sticky** | Becomes sticky after scrolling past hero |
+| Type                  | Behavior                                   |
+| --------------------- | ------------------------------------------ |
+| **Always fixed**      | Always visible, takes space                |
+| **Scroll-up reveal**  | Appears on scroll up, hides on scroll down |
+| **Compact on scroll** | Shrinks when scrolling                     |
+| **Below-fold sticky** | Becomes sticky after scrolling past hero   |
 
 ### Benefits
 
@@ -138,6 +143,7 @@ Mobile (375px):
 ### Implementation Guidelines
 
 **DO:**
+
 - Keep sticky nav compact
 - Use shadow to indicate elevation
 - Consider scroll direction hiding
@@ -145,6 +151,7 @@ Mobile (375px):
 - Ensure doesn't block content
 
 **DON'T:**
+
 - Take excessive vertical space
 - Forget mobile (screen height matters)
 - Cover content on tap
@@ -155,13 +162,20 @@ Mobile (375px):
 
 ```css
 /* Always visible */
-.nav { position: fixed; top: 0; }
+.nav {
+  position: fixed;
+  top: 0;
+}
 
 /* Compact on scroll */
-.nav.scrolled { height: 48px; /* vs 64px default */ }
+.nav.scrolled {
+  height: 48px; /* vs 64px default */
+}
 
 /* Hide on scroll down, show on scroll up */
-.nav.hidden { transform: translateY(-100%); }
+.nav.hidden {
+  transform: translateY(-100%);
+}
 ```
 
 ---
@@ -179,13 +193,15 @@ Mobile (375px):
 ### Implementation Guidelines
 
 **DO:**
+
 - Limit to 3-5 items
 - Use icon + label
 - Show active state clearly
-- Make touch targets 48px+ 
+- Make touch targets 48px+
 - Consider safe area (notch, home indicator)
 
 **DON'T:**
+
 - Use for > 5 items
 - Use icons alone (without labels)
 - Put scrollable content in bottom nav
@@ -207,11 +223,11 @@ Mobile (375px):
 
 ### Icon + Label Guidelines
 
-| Item Count | Label Visibility |
-|------------|-----------------|
-| 3 items | Labels always visible |
-| 4-5 items | Labels always visible or active only |
-| 5+ items | Consider other navigation pattern |
+| Item Count | Label Visibility                     |
+| ---------- | ------------------------------------ |
+| 3 items    | Labels always visible                |
+| 4-5 items  | Labels always visible or active only |
+| 5+ items   | Consider other navigation pattern    |
 
 ---
 
@@ -221,12 +237,12 @@ Mobile (375px):
 
 ### Types
 
-| Type | Use Case |
-|------|----------|
-| **Fixed sidebar** | Dashboard apps, admin tools |
-| **Collapsible** | Space optimization |
-| **Icon-only (rail)** | Minimal footprint |
-| **Expandable** | Icon-only → full on hover |
+| Type                 | Use Case                    |
+| -------------------- | --------------------------- |
+| **Fixed sidebar**    | Dashboard apps, admin tools |
+| **Collapsible**      | Space optimization          |
+| **Icon-only (rail)** | Minimal footprint           |
+| **Expandable**       | Icon-only → full on hover   |
 
 ### Benefits
 
@@ -238,6 +254,7 @@ Mobile (375px):
 ### Implementation Guidelines
 
 **DO:**
+
 - Group related items with headers
 - Show current location clearly
 - Allow collapse (icons only)
@@ -245,6 +262,7 @@ Mobile (375px):
 - Consider nesting (2 levels max)
 
 **DON'T:**
+
 - Create too many groups
 - Nest more than 2 levels
 - Use icons alone for unfamiliar actions
@@ -285,6 +303,7 @@ Mobile (375px):
 ### Implementation Guidelines
 
 **DO:**
+
 - Clear active state
 - Descriptive labels (2-3 words)
 - Logical order
@@ -292,6 +311,7 @@ Mobile (375px):
 - Support keyboard navigation
 
 **DON'T:**
+
 - Use for sequential steps (use stepper)
 - Use for > 7 tabs without overflow
 - Change tab content while in progress
@@ -300,12 +320,12 @@ Mobile (375px):
 
 ### Tab Variants
 
-| Variant | Use Case |
-|---------|----------|
-| **Text tabs** | Standard, most common |
+| Variant         | Use Case                   |
+| --------------- | -------------------------- |
+| **Text tabs**   | Standard, most common      |
 | **Icon + text** | When icons aid recognition |
-| **Scrollable** | Many tabs, mobile |
-| **Fitted** | Equal-width tabs |
+| **Scrollable**  | Many tabs, mobile          |
+| **Fitted**      | Equal-width tabs           |
 
 ---
 
@@ -322,6 +342,7 @@ Mobile (375px):
 ### Implementation Guidelines
 
 **DO:**
+
 - Organize into clear groups
 - Include images when helpful
 - Provide direct links to popular items
@@ -329,6 +350,7 @@ Mobile (375px):
 - Close on click outside
 
 **DON'T:**
+
 - Make too tall (don't push footer)
 - Include too much content
 - Auto-open on hover (click better)
@@ -366,6 +388,7 @@ Products ▼
 ### Implementation Guidelines
 
 **DO:**
+
 - Trigger with Cmd/Ctrl + K
 - Search items AND actions
 - Show keyboard shortcuts
@@ -373,6 +396,7 @@ Products ▼
 - Support recent/frequent items
 
 **DON'T:**
+
 - Make it the only way to access features
 - Require memorization to use
 - Forget fuzzy search
@@ -400,27 +424,27 @@ Products ▼
 
 ## Navigation Selection Guide
 
-| Context | Recommended Pattern |
-|---------|---------------------|
-| Web app, many sections | Sidebar |
-| Mobile app, 3-5 sections | Bottom nav |
-| Content site, many categories | Mega menu |
-| Power users | Command palette |
-| Limited nav items | Priority+ |
-| Mobile, complex nav | Hamburger + drawer |
-| Dashboard, multiple views | Tabs |
+| Context                       | Recommended Pattern |
+| ----------------------------- | ------------------- |
+| Web app, many sections        | Sidebar             |
+| Mobile app, 3-5 sections      | Bottom nav          |
+| Content site, many categories | Mega menu           |
+| Power users                   | Command palette     |
+| Limited nav items             | Priority+           |
+| Mobile, complex nav           | Hamburger + drawer  |
+| Dashboard, multiple views     | Tabs                |
 
 ---
 
 ## Navigation Audit
 
-| Requirement | Implemented? |
-|-------------|--------------|
-| ☐ Current location clear | |
-| ☐ Available destinations visible | |
-| ☐ Primary nav always accessible | |
-| ☐ Mobile navigation works | |
-| ☐ Keyboard navigation supported | |
-| ☐ Deep linking possible | |
-| ☐ Consistent across pages | |
-| ☐ Active states clear | |
+| Requirement                      | Implemented? |
+| -------------------------------- | ------------ |
+| ☐ Current location clear         |              |
+| ☐ Available destinations visible |              |
+| ☐ Primary nav always accessible  |              |
+| ☐ Mobile navigation works        |              |
+| ☐ Keyboard navigation supported  |              |
+| ☐ Deep linking possible          |              |
+| ☐ Consistent across pages        |              |
+| ☐ Active states clear            |              |

@@ -1,7 +1,9 @@
 ---
 name: document-pro
 version: 1.0.0
-description: 文档处理技能 - 让 AI 能够读取、解析、提取 PDF、DOCX、PPT 等文档的关键信息。当用户要求分析文档、提取内容、总结报告时触发此技能。
+description:
+  文档处理技能 - 让 AI 能够读取、解析、提取 PDF、DOCX、PPT
+  等文档的关键信息。当用户要求分析文档、提取内容、总结报告时触发此技能。
 ---
 
 # Document Pro - 文档处理技能
@@ -9,6 +11,7 @@ description: 文档处理技能 - 让 AI 能够读取、解析、提取 PDF、DO
 ## 概述
 
 赋予 AI 强大的文档处理能力：
+
 - PDF 读取与提取
 - Word 文档解析
 - PowerPoint 提取
@@ -25,14 +28,14 @@ description: 文档处理技能 - 让 AI 能够读取、解析、提取 PDF、DO
 
 ## 支持的格式
 
-| 格式 | 读取 | 写入 | 工具 |
-|------|------|------|------|
-| PDF | ✅ | ✅ | pdfplumber, PyPDF2 |
-| DOCX | ✅ | ✅ | python-docx |
-| PPTX | ✅ | ❌ | python-pptx |
-| XLSX | ✅ | ✅ | openpyxl |
-| TXT | ✅ | ✅ | 内置 |
-| Markdown | ✅ | ✅ | 内置 |
+| 格式     | 读取 | 写入 | 工具               |
+| -------- | ---- | ---- | ------------------ |
+| PDF      | ✅   | ✅   | pdfplumber, PyPDF2 |
+| DOCX     | ✅   | ✅   | python-docx        |
+| PPTX     | ✅   | ❌   | python-pptx        |
+| XLSX     | ✅   | ✅   | openpyxl           |
+| TXT      | ✅   | ✅   | 内置               |
+| Markdown | ✅   | ✅   | 内置               |
 
 ## 工具使用
 
@@ -91,16 +94,19 @@ for slide in prs.slides:
 ## 进阶功能
 
 ### 文档摘要
+
 - 提取文档主要观点
 - 生成简短摘要
 - 列出关键要点
 
 ### 表格处理
+
 - 识别表格结构
 - 提取表格数据
 - 转换为 CSV/Excel
 
 ### 关键词提取
+
 - 找出重要名词/术语
 - 识别主题
 - 提取关键信息
@@ -108,6 +114,7 @@ for slide in prs.slides:
 ## 输出格式
 
 向用户呈现文档时：
+
 - 文档类型和页数
 - 主要内容摘要
 - 关键要点（3-5条）

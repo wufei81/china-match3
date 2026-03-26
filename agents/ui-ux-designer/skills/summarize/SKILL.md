@@ -2,7 +2,24 @@
 name: summarize
 description: Summarize URLs or files with the summarize CLI (web, PDFs, images, audio, YouTube).
 homepage: https://summarize.sh
-metadata: {"clawdbot":{"emoji":"🧾","requires":{"bins":["summarize"]},"install":[{"id":"brew","kind":"brew","formula":"steipete/tap/summarize","bins":["summarize"],"label":"Install summarize (brew)"}]}}
+metadata:
+  {
+    "clawdbot":
+      {
+        "emoji": "🧾",
+        "requires": { "bins": ["summarize"] },
+        "install":
+          [
+            {
+              "id": "brew",
+              "kind": "brew",
+              "formula": "steipete/tap/summarize",
+              "bins": ["summarize"],
+              "label": "Install summarize (brew)",
+            },
+          ],
+      },
+  }
 ---
 
 # Summarize
@@ -20,6 +37,7 @@ summarize "https://youtu.be/dQw4w9WgXcQ" --youtube auto
 ## Model + keys
 
 Set the API key for your chosen provider:
+
 - OpenAI: `OPENAI_API_KEY`
 - Anthropic: `ANTHROPIC_API_KEY`
 - xAI: `XAI_API_KEY`
@@ -45,5 +63,6 @@ Optional config file: `~/.summarize/config.json`
 ```
 
 Optional services:
+
 - `FIRECRAWL_API_KEY` for blocked sites
 - `APIFY_API_TOKEN` for YouTube fallback

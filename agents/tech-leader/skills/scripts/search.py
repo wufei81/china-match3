@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Firecrawl web search script."""
+
 import argparse
 import json
 import os
@@ -14,26 +15,18 @@ def search(query: str, limit: int = 10):
     if not api_key:
         print("Error: FIRECRAWL_API_KEY not set", file=sys.stderr)
         sys.exit(1)
-    
+
     url = "https://api.firecrawl.dev/v1/search"
-    
-    data = json.dumps({
-        "query": query,
-        "limit": limit,
-        "lang": "en",
-        "country": "us"
-    }).encode()
-    
+
+    data = json.dumps({"query": query, "limit": limit, "lang": "en", "country": "us"}).encode()
+
     req = urllib.request.Request(
         url,
         data=data,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json"
-        },
-        method="POST"
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        method="POST",
     )
-    
+
     try:
         with urllib.request.urlopen(req, timeout=30) as resp:
             result = json.loads(resp.read().decode())
@@ -49,15 +42,15 @@ def main():
     parser.add_argument("query", help="Search query")
     parser.add_argument("--limit", type=int, default=10, help="Max results")
     parser.add_argument("--json", action="store_true", help="Output raw JSON")
-    
+
     args = parser.parse_args()
-    
+
     result = search(args.query, args.limit)
-    
+
     if args.json:
         print(json.dumps(result, indent=2))
         return
-    
+
     # Pretty print results
     if result.get("success") and "data" in result:
         for item in result["data"]:

@@ -11,23 +11,27 @@ Understand the technical and contextual landscape before designing.
 ### Key Questions
 
 ☐ **What type of system is this?**
+
 - Web application — Cross-platform, easy updates, limited hardware access
 - Mobile app — Native performance, deep device integration, separate iOS/Android
 - Desktop software — Full processing power, deep system access, requires updates
 - Embedded system — Fixed hardware, task-specific, constrained resources
 
 ☐ **What are the platform constraints?**
+
 - Screen sizes and orientations
 - Input methods (touch, mouse, keyboard, voice)
 - Performance requirements
 - Offline capabilities needed?
 
 ☐ **What data inputs/outputs exist?**
+
 - How do users get data in?
 - How do users get data out?
 - What integrations are required?
 
 ### Best Practices
+
 - Match the system type to user needs and contexts
 - Consider browser extensions, mobile companions for web apps
 - Prioritize input methods that fit user context
@@ -41,26 +45,31 @@ Define who users are and what they need to accomplish.
 ### Key Questions
 
 ☐ **Who are the different user types?**
+
 - What roles exist?
 - What permissions should each role have?
 - What are their distinct needs?
 
 ☐ **What are primary tasks users need to accomplish?**
+
 - What are the jobs-to-be-done?
 - How do tasks break into step-by-step workflows?
 - What are entry points, decision points, and endpoints?
 
 ☐ **How will users CRUD data?**
+
 - Create, Read, Update, Delete flows
 - Necessary sequencing and granularity
 - Bulk operations needed?
 
 ☐ **What are key data entities?**
+
 - What objects do users interact with?
 - How are entities related? (1:1, 1:many, many:many)
 - What's the data model?
 
 ### Best Practices
+
 - Focus on most frequent and important tasks first
 - Use simple, clear language for task descriptions
 - Validate task models with user research or feedback
@@ -75,23 +84,28 @@ Structure content and navigation before visual design.
 ### Key Questions
 
 ☐ **What are the high-level categories/sections?**
+
 - Main content areas or features?
 - How can categories be logically grouped?
 
 ☐ **What are relationships and hierarchies?**
+
 - What's the hierarchy of importance?
 - Which entities relate to which? (1:many, many:many)
 
 ☐ **What are primary and secondary navigation patterns?**
+
 - Main nav menu structure?
 - Contextual or in-page nav needed?
 - Breadcrumbs? Secondary nav?
 
 ☐ **What content and actions should be prioritized?**
+
 - What info is critical for task completion?
 - How can visual hierarchy guide users?
 
 ### Best Practices
+
 - Use card sorting or tree testing to validate IA
 - Follow established conventions for nav
 - Provide clear labels and signposts
@@ -114,9 +128,11 @@ Research before creating. Stand on shoulders of giants.
 ### Inspiration Sources
 
 **Standard:**
+
 - Dribbble, Behance, Awwwards, Pinterest
 
 **More interesting:**
+
 - ProductHunt — How startups differentiate
 - Layers.to — Higher quality than Dribbble
 - Pageflows.com — User flows of popular apps
@@ -124,6 +140,7 @@ Research before creating. Stand on shoulders of giants.
 - Teardowns.ai — AI feature patterns
 
 ### Best Practices
+
 - Focus on examples matching your project constraints
 - Look beyond direct competitors to adjacent domains
 - Create moodboards and organized collections
@@ -138,17 +155,20 @@ Quantity before quality. Explore widely before refining.
 ### Key Activities
 
 ☐ **Sketch 6+ low-fidelity concepts**
+
 - Don't judge while creating
 - Set a timer (15-30 min)
 - Explore diverse approaches
 
 ☐ **Vary the fundamentals**
+
 - Different layouts
 - Different navigation approaches
 - Different information hierarchies
 - Different interaction patterns
 
 ☐ **Focus on structure, not style**
+
 - Boxes and labels, not colors and fonts
 - Workflow and flow, not polish
 
@@ -161,6 +181,7 @@ Quantity before quality. Explore widely before refining.
 - **Constraint removal** — What if we had no [budget/time/tech] limits?
 
 ### Best Practices
+
 - Timebox ideation to prevent overthinking
 - Don't fall in love with first idea
 - Involve others for diverse perspectives
@@ -182,35 +203,42 @@ Move from concept to detailed design.
 ### Key Questions for Enhancement
 
 ☐ **Are all component states defined?**
+
 - Default, hover, active, focus, disabled, loading, error
 
 ☐ **Are all interactions specified?**
+
 - Primary interactions (clicks, taps)
 - Secondary interactions (hovers, long-press)
 - Gestures and shortcuts
 
 ☐ **Is content scalability addressed?**
+
 - Empty states
 - Minimal content
 - Maximum/overflow content
 - Edge cases
 
 ☐ **Is system feedback clear?**
+
 - Loading states
 - Success/error feedback
 - Progress indicators
 
 ☐ **Is user input handled?**
+
 - Validation states
 - Error messages
 - Help text
 
 ☐ **Is navigation complete?**
+
 - All pages/views connected
 - Back navigation
 - Deep linking
 
 ### Best Practices
+
 - Apply fidelity checklists (see 11-checklist-fidelity.md)
 - Apply visual style checklists (see 12-checklist-visual-style.md)
 - Test with real content, not lorem ipsum
@@ -220,13 +248,13 @@ Move from concept to detailed design.
 
 ## Quick Reference: 6-Step Summary
 
-| Step | Focus | Output |
-|------|-------|--------|
-| 1. Define System | Platform, constraints, data | System requirements doc |
-| 2. Model Tasks | Users, workflows, entities | Task flows, CRUD maps |
-| 3. Organize Info | Categories, hierarchy, nav | Information architecture |
-| 4. Gather Inspiration | Research, patterns, references | Moodboard, pattern library |
-| 5. Generate Ideas | Divergent exploration | 6+ wireframe concepts |
-| 6. Enhance Fidelity | Detail, polish, edge cases | High-fi designs, prototypes |
+| Step                  | Focus                          | Output                      |
+| --------------------- | ------------------------------ | --------------------------- |
+| 1. Define System      | Platform, constraints, data    | System requirements doc     |
+| 2. Model Tasks        | Users, workflows, entities     | Task flows, CRUD maps       |
+| 3. Organize Info      | Categories, hierarchy, nav     | Information architecture    |
+| 4. Gather Inspiration | Research, patterns, references | Moodboard, pattern library  |
+| 5. Generate Ideas     | Divergent exploration          | 6+ wireframe concepts       |
+| 6. Enhance Fidelity   | Detail, polish, edge cases     | High-fi designs, prototypes |
 
 **Rule:** Resist the urge to skip to Step 6. Steps 1-5 make Step 6 dramatically faster and better.

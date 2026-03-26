@@ -6,7 +6,8 @@ Patterns for breaking content into digestible, organized units.
 
 ## What is Chunking?
 
-Breaking complex information into smaller, manageable pieces that users can process and remember more easily. Based on Miller's Law (7±2 items in working memory).
+Breaking complex information into smaller, manageable pieces that users can process and remember more easily. Based on
+Miller's Law (7±2 items in working memory).
 
 **Core principle:** Users can't process everything at once. Group related items, separate unrelated items.
 
@@ -32,6 +33,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 ### Implementation Guidelines
 
 **DO:**
+
 - Clear visual boundary (border, shadow, or background)
 - Consistent card structure across the set
 - Visual hierarchy within the card (image → title → description → actions)
@@ -39,6 +41,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 - Interactive states (hover, selected)
 
 **DON'T:**
+
 - Mix card sizes without purpose
 - Overload cards with too much content
 - Use cards for single items (overkill)
@@ -47,13 +50,13 @@ Breaking complex information into smaller, manageable pieces that users can proc
 
 ### Common Variants
 
-| Variant | Use Case |
-|---------|----------|
-| Media card | Image/video prominent |
-| Stat card | Single metric focus |
-| Action card | Primary CTA emphasis |
-| Profile card | Person/account info |
-| Preview card | Summary with expand |
+| Variant      | Use Case              |
+| ------------ | --------------------- |
+| Media card   | Image/video prominent |
+| Stat card    | Single metric focus   |
+| Action card  | Primary CTA emphasis  |
+| Profile card | Person/account info   |
+| Preview card | Summary with expand   |
 
 ---
 
@@ -63,11 +66,11 @@ Breaking complex information into smaller, manageable pieces that users can proc
 
 ### When to Use Tabs vs. Accordions
 
-| Tabs | Accordions |
-|------|------------|
-| 2-7 peer sections | Many sections (5+) |
-| Mutually exclusive content | Content can stack |
-| Horizontal space available | Vertical list format |
+| Tabs                            | Accordions               |
+| ------------------------------- | ------------------------ |
+| 2-7 peer sections               | Many sections (5+)       |
+| Mutually exclusive content      | Content can stack        |
+| Horizontal space available      | Vertical list format     |
 | Users need to switch frequently | Users view one at a time |
 
 ### Benefits & Use Cases
@@ -86,6 +89,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 ### Implementation Guidelines (Tabs)
 
 **DO:**
+
 - Clear active state
 - Limit to 7 tabs (use dropdown for more)
 - Descriptive labels (2-3 words)
@@ -93,6 +97,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 - Preserve state when switching
 
 **DON'T:**
+
 - Use tabs for sequential steps (use steppers)
 - Mix tabs with different content types
 - Use very long labels
@@ -102,6 +107,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 ### Implementation Guidelines (Accordions)
 
 **DO:**
+
 - Clear expand/collapse indicators (chevron, +/-)
 - Allow multiple open (usually) or single open (sometimes)
 - Animate expansion smoothly
@@ -109,6 +115,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 - Consider default-expanded first item
 
 **DON'T:**
+
 - Nest accordions deeply
 - Hide critical information in collapsed sections
 - Use vague headers
@@ -136,6 +143,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 ### Implementation Guidelines
 
 **DO:**
+
 - Group by relationship (personal info, shipping, payment)
 - Use visual separation (whitespace, lines, containers)
 - Label groups with clear headers
@@ -143,6 +151,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 - Consider two-column layout for short fields
 
 **DON'T:**
+
 - Create groups that are too large
 - Separate clearly related fields (first/last name)
 - Use inconsistent grouping across forms
@@ -150,13 +159,13 @@ Breaking complex information into smaller, manageable pieces that users can proc
 
 ### Common Groupings
 
-| Group | Fields |
-|-------|--------|
-| Personal | Name, email, phone |
-| Address | Street, city, state, zip, country |
-| Payment | Card, expiry, CVV, billing address |
-| Credentials | Username/email, password, confirm |
-| Preferences | Notification settings, privacy |
+| Group       | Fields                             |
+| ----------- | ---------------------------------- |
+| Personal    | Name, email, phone                 |
+| Address     | Street, city, state, zip, country  |
+| Payment     | Card, expiry, CVV, billing address |
+| Credentials | Username/email, password, confirm  |
+| Preferences | Notification settings, privacy     |
 
 ---
 
@@ -166,11 +175,11 @@ Breaking complex information into smaller, manageable pieces that users can proc
 
 ### Pagination vs. Infinite Scroll vs. Load More
 
-| Pattern | Use When |
-|---------|----------|
-| **Pagination** | User needs to locate specific items, page numbers meaningful, SEO important |
+| Pattern             | Use When                                                                      |
+| ------------------- | ----------------------------------------------------------------------------- |
+| **Pagination**      | User needs to locate specific items, page numbers meaningful, SEO important   |
 | **Infinite scroll** | Browsing/discovery, no specific target, continuous consumption (social feeds) |
-| **Load more** | Compromise between above, user controls when to load |
+| **Load more**       | Compromise between above, user controls when to load                          |
 
 ### Benefits & Use Cases
 
@@ -188,6 +197,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 ### Implementation Guidelines
 
 **DO:**
+
 - Show current page and total pages
 - Provide first/last page shortcuts (for many pages)
 - Truncate middle pages with ellipsis (1 2 3 ... 10)
@@ -195,6 +205,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 - Preserve page in URL (deep linking)
 
 **DON'T:**
+
 - Use pagination for < 20 items
 - Hide page count
 - Break in the middle of logical groups
@@ -203,12 +214,12 @@ Breaking complex information into smaller, manageable pieces that users can proc
 
 ### Page Size Guidelines
 
-| Context | Items/Page |
-|---------|------------|
-| Data tables | 10-50, user configurable |
-| Search results | 10-25 |
-| Product listings | 12-48 |
-| Blog/articles | 5-10 |
+| Context          | Items/Page               |
+| ---------------- | ------------------------ |
+| Data tables      | 10-50, user configurable |
+| Search results   | 10-25                    |
+| Product listings | 12-48                    |
+| Blog/articles    | 5-10                     |
 
 ---
 
@@ -232,6 +243,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 ### Implementation Guidelines
 
 **DO:**
+
 - Show partial next item (indicates more content)
 - Clear navigation controls (arrows, dots)
 - Allow touch/swipe on mobile
@@ -239,6 +251,7 @@ Breaking complex information into smaller, manageable pieces that users can proc
 - Pause auto-advance on hover/focus
 
 **DON'T:**
+
 - Auto-advance too fast (5+ seconds minimum)
 - Use for critical content (users miss it)
 - Hide navigation controls
@@ -247,10 +260,8 @@ Breaking complex information into smaller, manageable pieces that users can proc
 
 ### Critical Warnings
 
-⚠️ Carousels have notoriously low engagement beyond first item
-⚠️ Users often miss carousel content entirely
-⚠️ Auto-advance frustrates users trying to read
-⚠️ Consider if content is important enough to warrant space without hiding
+⚠️ Carousels have notoriously low engagement beyond first item ⚠️ Users often miss carousel content entirely ⚠️
+Auto-advance frustrates users trying to read ⚠️ Consider if content is important enough to warrant space without hiding
 
 ### Better Alternatives
 
@@ -263,11 +274,11 @@ Breaking complex information into smaller, manageable pieces that users can proc
 
 ## Chunking Pattern Selection Guide
 
-| User Need | Pattern |
-|-----------|---------|
-| Compare items | Cards in grid |
-| View details on demand | Accordions |
-| Switch between categories | Tabs |
-| Fill related information | Grouped forms |
-| Navigate large sets | Pagination |
-| Browse highlights | Carousel (with caution) |
+| User Need                 | Pattern                 |
+| ------------------------- | ----------------------- |
+| Compare items             | Cards in grid           |
+| View details on demand    | Accordions              |
+| Switch between categories | Tabs                    |
+| Fill related information  | Grouped forms           |
+| Navigate large sets       | Pagination              |
+| Browse highlights         | Carousel (with caution) |

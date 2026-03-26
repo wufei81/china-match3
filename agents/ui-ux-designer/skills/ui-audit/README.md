@@ -21,9 +21,11 @@
 
 ## What is this?
 
-A skill that gives AI assistants the ability to perform structured UI audits. Based on [Making UX Decisions](https://uxdecisions.com) by Tommy Geoco.
+A skill that gives AI assistants the ability to perform structured UI audits. Based on
+[Making UX Decisions](https://uxdecisions.com) by Tommy Geoco.
 
 **Audits include:**
+
 - Visual hierarchy & typography
 - Visual style & spacing
 - Accessibility & contrast
@@ -72,16 +74,19 @@ ui-audit/
 View the full list of principles at **[audit.uxtools.co](https://audit.uxtools.co)**
 
 ### Decisioning
+
 - Weigh information in order: Institutional knowledge → User familiarity → Research
 - Align every decision with macro bets: Velocity, Efficiency, Accuracy, or Innovation
 - Define jobs-to-be-done first
 
 ### Visual Hierarchy
+
 - Primary action is obvious within 3 seconds
 - 2:1 ratio minimum between heading levels
 - Related items are grouped (Law of Proximity)
 
 ### Accessibility
+
 - Keyboard works everywhere
 - Focus is always visible
 - Color is not the only indicator
@@ -90,7 +95,8 @@ View the full list of principles at **[audit.uxtools.co](https://audit.uxtools.c
 
 ## Author
 
-**[Tommy Geoco](https://x.com/designertom)** — [uxtools.co](https://uxtools.co) • [uxdecisions.com](https://uxdecisions.com)
+**[Tommy Geoco](https://x.com/designertom)** — [uxtools.co](https://uxtools.co) •
+[uxdecisions.com](https://uxdecisions.com)
 
 ## License
 

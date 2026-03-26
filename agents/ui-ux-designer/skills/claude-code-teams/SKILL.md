@@ -14,11 +14,13 @@ metadata:
 
 # Claude Code Agent Teams
 
-Orchestrate multiple Claude Code agents working together on complex tasks. Agents coordinate through a shared task list, message each other directly, and work in parallel on independent scopes.
+Orchestrate multiple Claude Code agents working together on complex tasks. Agents coordinate through a shared task list,
+message each other directly, and work in parallel on independent scopes.
 
 ## When to Use
 
 ✅ **Use for parallel independent work:**
+
 - Multi-lens code reviews (security, performance, tests in parallel)
 - Debugging with competing hypotheses (test theories simultaneously)
 - Full-stack features (frontend/backend/tests by separate specialists)
@@ -27,6 +29,7 @@ Orchestrate multiple Claude Code agents working together on complex tasks. Agent
 - Data-parallel work (inventory classification, bulk refactoring)
 
 ❌ **Don't use for:**
+
 - Sequential work with tight dependencies
 - Same-file edits (conflict risk)
 - Simple tasks (coordination overhead > benefit)
@@ -39,11 +42,13 @@ Orchestrate multiple Claude Code agents working together on complex tasks. Agent
 ### 1. Enable Feature
 
 **Environment variable:**
+
 ```bash
 export CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1
 ```
 
 **Or settings file** (`~/.claude/settings.json`):
+
 ```json
 {
   "env": {
@@ -62,14 +67,14 @@ Checks for: env var set, `claude` CLI available, `tmux` installed (optional).
 
 ### 3. Pick Template
 
-| Template | Use Case |
-|----------|----------|
-| `parallel-review.md` | Multi-lens code review (security + performance + tests) |
-| `competing-hypotheses.md` | Debug by testing competing theories |
-| `fullstack-feature.md` | Frontend/backend/tests coordination |
-| `architecture-decision.md` | ADR with adversarial debate |
-| `bottleneck-analysis.md` | Cross-domain performance investigation |
-| `inventory-classification.md` | Data-parallel classification/refactoring |
+| Template                      | Use Case                                                |
+| ----------------------------- | ------------------------------------------------------- |
+| `parallel-review.md`          | Multi-lens code review (security + performance + tests) |
+| `competing-hypotheses.md`     | Debug by testing competing theories                     |
+| `fullstack-feature.md`        | Frontend/backend/tests coordination                     |
+| `architecture-decision.md`    | ADR with adversarial debate                             |
+| `bottleneck-analysis.md`      | Cross-domain performance investigation                  |
+| `inventory-classification.md` | Data-parallel classification/refactoring                |
 
 Each template includes: when to use, team structure, copy-paste spawn prompt, expected outcomes.
 
@@ -95,6 +100,7 @@ Monitor with `./scripts/team-monitor.sh` (separate terminal) or `Ctrl+T` (in Cla
 Agent teams multiply token usage **3-4x** vs single session. Each teammate has its own context window.
 
 **Optimize with:**
+
 - **Model mixing** - Opus for lead (strategic), Sonnet for teammates (tactical) = ~40% savings
 - **Minimize broadcasts** - Direct messages only (broadcasts copy to all teammates)
 - **Right-size teams** - 3 teammates usually optimal; 6+ only for highly parallel work
@@ -104,13 +110,16 @@ See `references/cost-management.md` for detailed strategies.
 ## Troubleshooting
 
 **Teammates not spawning?**
+
 - Verify `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` is set
 - Restart Claude Code after setting env var
 
 **File conflicts?**
+
 - Define explicit file boundaries in spawn prompt (directory-level ownership)
 
 **Lead implementing instead of coordinating?**
+
 - Add "Use delegate mode: coordinate but don't implement" to spawn prompt
 - Or press Shift+Tab to cycle into delegate mode
 
@@ -119,11 +128,13 @@ See `references/troubleshooting.md` for full list.
 ## Automation
 
 **Monitor progress:**
+
 ```bash
 ./scripts/team-monitor.sh
 ```
 
 **Cleanup (graceful shutdown):**
+
 ```bash
 ./scripts/team-cleanup.sh
 ```
@@ -131,11 +142,13 @@ See `references/troubleshooting.md` for full list.
 ## Display Modes
 
 **In-process** (default) - All teammates in main terminal
+
 - `Shift+Up/Down` - Select teammate
 - `Ctrl+T` - Toggle task list
 - `Escape` - Interrupt teammate
 
 **Split-pane** (requires tmux or iTerm2) - Each teammate gets own pane
+
 - Set `teammateMode: "tmux"` in `~/.claude/settings.json`
 
 ## References
@@ -149,15 +162,16 @@ See `references/troubleshooting.md` for full list.
 
 ## Comparison
 
-| Approach | Best For |
-|----------|----------|
-| Single session | Sequential work, exploration |
+| Approach                 | Best For                                     |
+| ------------------------ | -------------------------------------------- |
+| Single session           | Sequential work, exploration                 |
 | Agent teams (this skill) | Parallel independent tasks with coordination |
-| OpenClaw subagents | Background work, long-running tasks |
+| OpenClaw subagents       | Background work, long-running tasks          |
 
 ## Contributing
 
 Found a useful pattern? Submit PR with:
+
 1. Template or example
 2. When to use + team structure
 3. Spawn prompt + expected outcomes
@@ -168,5 +182,4 @@ Built with insights from Claude Code documentation, ClaudeFast patterns, and Ope
 
 ---
 
-**Repository:** https://github.com/matthew-a-gordon/claude-code-teams  
-**License:** MIT
+**Repository:** https://github.com/matthew-a-gordon/claude-code-teams **License:** MIT

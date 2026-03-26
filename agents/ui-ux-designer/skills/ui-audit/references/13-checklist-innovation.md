@@ -32,11 +32,8 @@ Copies              Parallels  & Analogies Innovation
 
 ### How to Execute
 
-☐ Identify the pattern you're copying
-☐ Understand *why* it works (not just *what*)
-☐ Copy the principles, adapt the details
-☐ Ensure it fits your context
-☐ Give credit where appropriate
+☐ Identify the pattern you're copying ☐ Understand _why_ it works (not just _what_) ☐ Copy the principles, adapt the
+details ☐ Ensure it fits your context ☐ Give credit where appropriate
 
 ### Examples
 
@@ -65,11 +62,8 @@ Copies              Parallels  & Analogies Innovation
 
 ### How to Execute
 
-☐ Identify 2-3 source patterns
-☐ Extract the best elements from each
-☐ Combine intentionally (not randomly)
-☐ Test the combination works cohesively
-☐ Document the sources and your reasoning
+☐ Identify 2-3 source patterns ☐ Extract the best elements from each ☐ Combine intentionally (not randomly) ☐ Test the
+combination works cohesively ☐ Document the sources and your reasoning
 
 ### Examples
 
@@ -98,11 +92,8 @@ Copies              Parallels  & Analogies Innovation
 
 ### How to Execute
 
-☐ Define the core problem (abstractly)
-☐ Identify other domains with the same problem
-☐ Research how those domains solve it
-☐ Translate the solution to your context
-☐ Validate it works for your users
+☐ Define the core problem (abstractly) ☐ Identify other domains with the same problem ☐ Research how those domains solve
+it ☐ Translate the solution to your context ☐ Validate it works for your users
 
 ### Examples
 
@@ -140,32 +131,26 @@ Copies              Parallels  & Analogies Innovation
 
 ### How to Execute
 
-☐ Identify the concept users need to understand
-☐ Find a familiar real-world analog
-☐ Map the relationships (what matches, what doesn't)
-☐ Use language and visuals from the metaphor
-☐ Don't over-extend the metaphor
+☐ Identify the concept users need to understand ☐ Find a familiar real-world analog ☐ Map the relationships (what
+matches, what doesn't) ☐ Use language and visuals from the metaphor ☐ Don't over-extend the metaphor
 
 ### Classic Metaphors in Software
 
-| Metaphor | Software Concept |
-|----------|-----------------|
-| Desktop | OS file management |
-| Folder | Directory |
-| Trash can | Deleted files |
-| Shopping cart | Checkout |
-| Inbox | Messages |
-| Library | Content collection |
-| Dashboard | Metrics overview |
-| Workspace | Project environment |
+| Metaphor      | Software Concept    |
+| ------------- | ------------------- |
+| Desktop       | OS file management  |
+| Folder        | Directory           |
+| Trash can     | Deleted files       |
+| Shopping cart | Checkout            |
+| Inbox         | Messages            |
+| Library       | Content collection  |
+| Dashboard     | Metrics overview    |
+| Workspace     | Project environment |
 
 ### Creating New Metaphors
 
-☐ The metaphor should simplify, not complicate
-☐ The mapping should be intuitive
-☐ Don't force all aspects to match
-☐ Test if users understand the metaphor
-☐ Be consistent once you commit
+☐ The metaphor should simplify, not complicate ☐ The mapping should be intuitive ☐ Don't force all aspects to match ☐
+Test if users understand the metaphor ☐ Be consistent once you commit
 
 ### Risks
 
@@ -190,12 +175,8 @@ Copies              Parallels  & Analogies Innovation
 
 ### How to Execute
 
-☐ Define the problem from first principles
-☐ Question all assumptions about current solutions
-☐ Explore multiple radical approaches
-☐ Prototype and test extensively
-☐ Be prepared to fail and iterate
-☐ Document your learnings
+☐ Define the problem from first principles ☐ Question all assumptions about current solutions ☐ Explore multiple radical
+approaches ☐ Prototype and test extensively ☐ Be prepared to fail and iterate ☐ Document your learnings
 
 ### First Principles Questions
 
@@ -227,24 +208,24 @@ Copies              Parallels  & Analogies Innovation
 
 ### Decision Framework
 
-| Factor | Lower Originality | Higher Originality |
-|--------|------------------|-------------------|
-| Time available | Limited | Ample |
-| Risk tolerance | Low | High |
-| User sophistication | General | Early adopters |
-| Market maturity | Established | Emerging |
-| Differentiation need | Low | Critical |
-| Pattern clarity | Clear best practice | No clear winner |
+| Factor               | Lower Originality   | Higher Originality |
+| -------------------- | ------------------- | ------------------ |
+| Time available       | Limited             | Ample              |
+| Risk tolerance       | Low                 | High               |
+| User sophistication  | General             | Early adopters     |
+| Market maturity      | Established         | Emerging           |
+| Differentiation need | Low                 | Critical           |
+| Pattern clarity      | Clear best practice | No clear winner    |
 
 ### By Context
 
-| Context | Recommended Level |
-|---------|------------------|
-| Internal tools | 1 (Direct copies) |
-| Commodity features | 1-2 (Copies, Remixes) |
-| Core product features | 2-3 (Remixes, Parallels) |
-| Key differentiators | 3-4 (Parallels, Metaphors) |
-| New categories | 4-5 (Metaphors, Innovation) |
+| Context               | Recommended Level           |
+| --------------------- | --------------------------- |
+| Internal tools        | 1 (Direct copies)           |
+| Commodity features    | 1-2 (Copies, Remixes)       |
+| Core product features | 2-3 (Remixes, Parallels)    |
+| Key differentiators   | 3-4 (Parallels, Metaphors)  |
+| New categories        | 4-5 (Metaphors, Innovation) |
 
 ---
 
@@ -286,11 +267,11 @@ When pursuing higher originality levels:
 
 Before pursuing originality:
 
-| Question | Answer |
-|----------|--------|
-| Why is innovation needed here? | |
-| What's the risk if we fail? | |
-| Do we have time to iterate? | |
-| What's our differentiation goal? | |
-| What's the simplest option that might work? | |
-| Have we validated user need? | |
+| Question                                    | Answer |
+| ------------------------------------------- | ------ |
+| Why is innovation needed here?              |        |
+| What's the risk if we fail?                 |        |
+| Do we have time to iterate?                 |        |
+| What's our differentiation goal?            |        |
+| What's the simplest option that might work? |        |
+| Have we validated user need?                |        |

@@ -156,9 +156,8 @@ DevOpsDeliverables | Deployable, monitoring ready |
 
 **核心工具**:
 
-- **prd-writer**: Primary for PRD creation. Triggers: "write PRD", "create PRD", "new feature", "/prd"
+- **prd-writer** (`phy-prd-writer`): Primary for PRD creation. Triggers: "write PRD", "create PRD", "new feature", "/prd"
 - **diagram**: 图表生成 (Mermaid, PlantUML, ASCII). 用于流程图、时序图、架构图、ER 图、状态图
-- **smart-memory**: 持久化认知记忆 (episodic/semantic/belief/goal)
 - **firecrawl-search**: Primary for competitor/user/market research
 
 **辅助工具**:

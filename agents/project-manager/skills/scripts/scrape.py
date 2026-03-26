@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Firecrawl scrape script for single URLs."""
+
 import argparse
 import json
 import os
@@ -14,27 +15,20 @@ def scrape(url: str, formats: list = None, only_main: bool = True):
     if not api_key:
         print("Error: FIRECRAWL_API_KEY not set", file=sys.stderr)
         sys.exit(1)
-    
+
     formats = formats or ["markdown"]
-    
+
     req_url = "https://api.firecrawl.dev/v1/scrape"
-    
-    data = json.dumps({
-        "url": url,
-        "formats": formats,
-        "onlyMainContent": only_main
-    }).encode()
-    
+
+    data = json.dumps({"url": url, "formats": formats, "onlyMainContent": only_main}).encode()
+
     req = urllib.request.Request(
         req_url,
         data=data,
-        headers={
-            "Authorization": f"Bearer {api_key}",
-            "Content-Type": "application/json"
-        },
-        method="POST"
+        headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+        method="POST",
     )
-    
+
     try:
         with urllib.request.urlopen(req, timeout=60) as resp:
             result = json.loads(resp.read().decode())
@@ -52,9 +46,9 @@ def main():
     parser.add_argument("--markdown", action="store_true", default=True, help="Include markdown format")
     parser.add_argument("--screenshot", action="store_true", help="Include screenshot")
     parser.add_argument("--json", action="store_true", help="Output raw JSON")
-    
+
     args = parser.parse_args()
-    
+
     formats = []
     if args.html:
         formats.append("html")
@@ -62,20 +56,20 @@ def main():
         formats.append("markdown")
     if args.screenshot:
         formats.append("screenshot")
-    
+
     result = scrape(args.url, formats)
-    
+
     if args.json:
         print(json.dumps(result, indent=2))
         return
-    
+
     # Pretty print results
     if result.get("success") and "data" in result:
         data = result["data"]
         print(f"Title: {data.get('metadata', {}).get('title', 'N/A')}")
         print(f"URL: {data.get('metadata', {}).get('sourceURL', args.url)}")
         print(f"\n{'='*60}\n")
-        
+
         if "markdown" in data:
             print(data["markdown"])
         elif "html" in data:

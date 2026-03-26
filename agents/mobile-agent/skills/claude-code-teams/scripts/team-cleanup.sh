@@ -76,11 +76,11 @@ confirm() {
     if [ "$AUTO_YES" = true ]; then
         return 0
     fi
-    
+
     local message="$1"
     echo -ne "${YELLOW}${message} (y/N): ${NC}"
     read -r response
-    
+
     if [[ "$response" =~ ^[Yy]$ ]]; then
         return 0
     else
@@ -101,7 +101,7 @@ check_claude_process() {
 graceful_cleanup() {
     echo "Starting graceful cleanup..."
     echo ""
-    
+
     # Step 1: Check for active Claude Code session
     echo -n "Step 1: Checking for active Claude Code session... "
     if check_claude_process; then
@@ -112,41 +112,41 @@ graceful_cleanup() {
         echo "Nothing to clean up."
         exit 0
     fi
-    
+
     # Step 2: Signal teammates to finish
     echo ""
     echo "Step 2: Signaling teammates to complete current tasks..."
     echo "  (In Claude Code, type: 'Please finish your current tasks and report status')"
     echo ""
-    
+
     if ! confirm "Have teammates reported completion?"; then
         echo "Cleanup cancelled. Teammates still working."
         exit 1
     fi
-    
+
     # Step 3: Shut down teammates
     echo ""
     echo "Step 3: Shutting down teammates..."
     echo "  (In Claude Code, type: 'Shutdown all teammates gracefully')"
     echo ""
-    
+
     if ! confirm "Have teammates shut down?"; then
         echo "Cleanup cancelled. Teammates still active."
         exit 1
     fi
-    
+
     # Step 4: Clean up temporary files (placeholder)
     echo ""
     echo "Step 4: Cleaning up temporary files..."
     # This would clean up any temp files created during team operation
     echo -e "${GREEN}✅ Complete${NC}"
-    
+
     # Step 5: Exit Claude Code
     echo ""
     echo "Step 5: Ready to exit Claude Code session"
     echo "  (Type 'exit' in Claude Code to close)"
     echo ""
-    
+
     echo -e "${GREEN}✅ Graceful cleanup complete${NC}"
     echo ""
     echo "Next steps:"
@@ -162,21 +162,21 @@ force_cleanup() {
     echo "This will immediately terminate the Claude Code session."
     echo "Work in progress may be lost."
     echo ""
-    
+
     if ! confirm "Are you sure you want to force shutdown?"; then
         echo "Force cleanup cancelled."
         exit 1
     fi
-    
+
     echo ""
     echo "Terminating Claude Code processes..."
-    
+
     if pkill -f "claude.*pty"; then
         echo -e "${GREEN}✅ Processes terminated${NC}"
     else
         echo -e "${YELLOW}⚠️  No processes found${NC}"
     fi
-    
+
     echo ""
     echo -e "${RED}⚠️  Force cleanup complete${NC}"
     echo "Review any incomplete work before proceeding."
@@ -207,7 +207,7 @@ main() {
     else
         graceful_cleanup
     fi
-    
+
     show_checklist
 }
 

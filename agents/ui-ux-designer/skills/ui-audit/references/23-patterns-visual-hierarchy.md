@@ -6,7 +6,8 @@ Patterns for guiding attention and creating clear content structure.
 
 ## What is Visual Hierarchy?
 
-The arrangement of elements to show relative importance. Users should instantly understand what's most important without reading everything.
+The arrangement of elements to show relative importance. Users should instantly understand what's most important without
+reading everything.
 
 **Core principle:** Design tells users where to look. Make it intentional.
 
@@ -18,19 +19,20 @@ The arrangement of elements to show relative importance. Users should instantly 
 
 ### Hierarchy Levels
 
-| Level | Purpose | Typical Treatment |
-|-------|---------|-------------------|
-| **Display** | Hero content, page title | Largest, boldest |
-| **H1** | Page heading | Large, bold |
-| **H2** | Section heading | Medium-large, semibold |
-| **H3** | Subsection | Medium, semibold |
-| **Body** | Primary content | Base size, regular |
-| **Secondary** | Supporting text | Smaller, lighter color |
-| **Caption** | Labels, metadata | Smallest, light |
+| Level         | Purpose                  | Typical Treatment      |
+| ------------- | ------------------------ | ---------------------- |
+| **Display**   | Hero content, page title | Largest, boldest       |
+| **H1**        | Page heading             | Large, bold            |
+| **H2**        | Section heading          | Medium-large, semibold |
+| **H3**        | Subsection               | Medium, semibold       |
+| **Body**      | Primary content          | Base size, regular     |
+| **Secondary** | Supporting text          | Smaller, lighter color |
+| **Caption**   | Labels, metadata         | Smallest, light        |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - 2:1 ratio minimum between heading levels
 - Consistent application across pages
 - Weight AND size differences (not just one)
@@ -38,6 +40,7 @@ The arrangement of elements to show relative importance. Users should instantly 
 - Limit to 4-5 distinct levels
 
 **DON'T:**
+
 - Use more than 2 typefaces
 - Make headings barely bigger than body
 - Use color alone for hierarchy
@@ -48,7 +51,7 @@ The arrangement of elements to show relative importance. Users should instantly 
 
 ```
 Display:  48px / Bold
-H1:       36px / Bold  
+H1:       36px / Bold
 H2:       24px / Semibold
 H3:       20px / Semibold
 Body:     16px / Regular
@@ -64,19 +67,20 @@ Caption:  12px / Regular
 
 ### Hierarchy Through Color
 
-| Element | Color Treatment |
-|---------|-----------------|
-| Primary action | Brand color, high saturation |
-| Secondary action | Muted/outline variant |
-| Primary text | Darkest (near black) |
-| Secondary text | Medium gray |
-| Disabled | Light gray |
-| Destructive | Red family |
-| Success | Green family |
+| Element          | Color Treatment              |
+| ---------------- | ---------------------------- |
+| Primary action   | Brand color, high saturation |
+| Secondary action | Muted/outline variant        |
+| Primary text     | Darkest (near black)         |
+| Secondary text   | Medium gray                  |
+| Disabled         | Light gray                   |
+| Destructive      | Red family                   |
+| Success          | Green family                 |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - High contrast for primary elements
 - Reserve saturated colors for actions/emphasis
 - Use color consistently (same action = same color)
@@ -84,6 +88,7 @@ Caption:  12px / Regular
 - Test with color blindness simulators
 
 **DON'T:**
+
 - Use more than 3-4 colors for UI elements
 - Use red for non-destructive actions
 - Rely on color alone to convey meaning
@@ -126,6 +131,7 @@ Disabled:          Gray-100 bg + Gray-400 text
 ### Implementation Guidelines
 
 **DO:**
+
 - Follow Law of Proximity religiously
 - Use consistent spacing scale
 - More space above headings than below
@@ -133,6 +139,7 @@ Disabled:          Gray-100 bg + Gray-400 text
 - Space proportional to importance
 
 **DON'T:**
+
 - Use arbitrary spacing values
 - Cram elements together
 - Use equal spacing everywhere
@@ -163,12 +170,12 @@ X-Small: 24px height (compact contexts)
 
 ### Card Size Hierarchy
 
-| Purpose | Size |
-|---------|------|
-| Featured | Largest, spans multiple columns |
-| Primary | Standard size, prominent |
-| Secondary | Smaller, supporting content |
-| Compact | Minimal, high-density contexts |
+| Purpose   | Size                            |
+| --------- | ------------------------------- |
+| Featured  | Largest, spans multiple columns |
+| Primary   | Standard size, prominent        |
+| Secondary | Smaller, supporting content     |
+| Compact   | Minimal, high-density contexts  |
 
 ---
 
@@ -186,22 +193,26 @@ X-Small: 24px height (compact contexts)
 ### Application Examples
 
 **Proximity:**
+
 - Form label + input (tight spacing)
 - Form group + next group (more spacing)
 - Card content grouped tightly
 - Cards separated from each other
 
 **Similarity:**
+
 - All navigation items styled the same
 - All buttons of same importance styled the same
 - All card components share style
 
 **Common Region:**
+
 - Related items in same card/container
 - Form fields in fieldset
 - Related actions in button group
 
 **Connectedness:**
+
 - Breadcrumbs connected by separators
 - Stepper stages connected by line
 - Related items connected by visual element
@@ -214,23 +225,25 @@ X-Small: 24px height (compact contexts)
 
 ### Contrast Types
 
-| Type | Application |
-|------|-------------|
-| **Color contrast** | Light/dark, saturated/muted |
-| **Size contrast** | Large/small |
-| **Weight contrast** | Bold/regular |
-| **Density contrast** | Busy/sparse areas |
-| **Motion contrast** | Static/animated |
+| Type                 | Application                 |
+| -------------------- | --------------------------- |
+| **Color contrast**   | Light/dark, saturated/muted |
+| **Size contrast**    | Large/small                 |
+| **Weight contrast**  | Bold/regular                |
+| **Density contrast** | Busy/sparse areas           |
+| **Motion contrast**  | Static/animated             |
 
 ### Creating Focus
 
 **High contrast for:**
+
 - Primary CTAs
 - Important information
 - Error states
 - Current/active states
 
 **Low contrast for:**
+
 - Secondary actions
 - Supporting text
 - Disabled states
@@ -245,31 +258,36 @@ X-Small: 24px height (compact contexts)
 ### Reading Patterns
 
 **F-Pattern (text-heavy pages):**
+
 - Users scan horizontally at top
 - Then vertically down left side
 - Place key content along the F
 
 **Z-Pattern (sparse pages):**
+
 - Users scan top left to right
 - Then diagonally to bottom left
 - Then across bottom
 - Place CTAs at end of Z
 
 **Gutenberg Diagram:**
+
 - Top left: Primary optical area (high attention)
 - Top right: Strong fallow area
-- Bottom left: Weak fallow area  
+- Bottom left: Weak fallow area
 - Bottom right: Terminal area (natural end, place CTAs)
 
 ### Position Guidelines
 
 **DO:**
+
 - Most important content top-left
 - Primary actions top-right or bottom-right
 - Navigation where expected (top, left)
 - CTAs at natural stopping points
 
 **DON'T:**
+
 - Bury primary actions bottom-left
 - Place important info in weak fallow area
 - Violate expectations without reason
@@ -317,12 +335,12 @@ X-Small: 24px height (compact contexts)
 
 ## Hierarchy Audit
 
-| Element | Clear Hierarchy? |
-|---------|------------------|
-| ☐ Headings distinct from body | |
-| ☐ Primary action obvious | |
-| ☐ Related items grouped | |
-| ☐ Unrelated items separated | |
-| ☐ Reading flow logical | |
-| ☐ Most important content prominent | |
-| ☐ Consistent hierarchy across pages | |
+| Element                             | Clear Hierarchy? |
+| ----------------------------------- | ---------------- |
+| ☐ Headings distinct from body       |                  |
+| ☐ Primary action obvious            |                  |
+| ☐ Related items grouped             |                  |
+| ☐ Unrelated items separated         |                  |
+| ☐ Reading flow logical              |                  |
+| ☐ Most important content prominent  |                  |
+| ☐ Consistent hierarchy across pages |                  |

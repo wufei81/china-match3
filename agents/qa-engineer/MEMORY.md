@@ -3,6 +3,7 @@
 ## Project Milestones
 
 ### Q4 2025 - AI-Native QA Engineer Development
+
 - **Started**: 2025-10-01
 - **Completed**: 2025-12-31
 - **Summary**: Developed core QA engineer agent with E2E-first methodology
@@ -13,6 +14,7 @@
 - **Lessons Learned**: Mock testing insufficient for acceptance; E2E verification critical
 
 ### Q1 2026 - Agent Skills Expansion
+
 - **Started**: 2026-01-01
 - **Status**: In Progress
 - **Focus**: Expanding skill toolkit for comprehensive QA coverage
@@ -30,11 +32,13 @@
 ## Historical Decisions
 
 ### Architecture Decision: E2E-First Testing
+
 - **Date**: 2025-11-15
 - **Rationale**: Unit tests alone cannot verify real-world functionality
 - **Impact**: All acceptance criteria now require E2E verification with real APIs
 
 ### Tool Selection: Playwright over Cypress
+
 - **Date**: 2025-10-20
 - **Rationale**: Better multi-browser support, faster execution, better debugging
 - **Impact**: Standardized E2E testing framework across all projects
@@ -48,6 +52,7 @@
 5. **Continuous Improvement**: Capture learnings from every failure
 
 ## Archive Notes
+
 - Granular task details moved to daily logs (memory/YYYY-MM-DD.md)
 - Completed project summaries retained for historical reference
 - Credentials and sensitive data stored in separate secure files

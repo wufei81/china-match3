@@ -3,9 +3,9 @@
 ## Project Milestones
 
 ### 2026 Q1 - Initial Setup
+
 - **Agent**: devops-engineer
 - **Memory Tiering Enabled**: 2026-03-19
 - **Status**: Active
 
 ---
-

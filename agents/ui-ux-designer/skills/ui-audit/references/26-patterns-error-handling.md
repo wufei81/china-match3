@@ -18,32 +18,33 @@ The best error is the one that never happens. The second best is the one users c
 
 **What:** Limiting input to valid options.
 
-| Technique | Example |
-|-----------|---------|
-| **Input masks** | Phone: (___) ___-____ |
-| **Dropdowns** | Choose from valid options |
-| **Date pickers** | Can't type invalid dates |
-| **Range limits** | min/max on number inputs |
-| **Character limits** | maxlength on text |
-| **Disabled states** | Can't click invalid options |
+| Technique            | Example                     |
+| -------------------- | --------------------------- |
+| **Input masks**      | Phone: (**_) _**-\_\_\_\_   |
+| **Dropdowns**        | Choose from valid options   |
+| **Date pickers**     | Can't type invalid dates    |
+| **Range limits**     | min/max on number inputs    |
+| **Character limits** | maxlength on text           |
+| **Disabled states**  | Can't click invalid options |
 
 ### Guidance
 
 **What:** Helping users get it right the first time.
 
-| Technique | Example |
-|-----------|---------|
-| **Inline hints** | "Password must be 8+ characters" |
-| **Examples** | "e.g., name@example.com" |
-| **Format indicators** | Showing expected format |
-| **Real-time validation** | Check as user types |
-| **Autocomplete** | Suggest valid values |
+| Technique                | Example                          |
+| ------------------------ | -------------------------------- |
+| **Inline hints**         | "Password must be 8+ characters" |
+| **Examples**             | "e.g., name@example.com"         |
+| **Format indicators**    | Showing expected format          |
+| **Real-time validation** | Check as user types              |
+| **Autocomplete**         | Suggest valid values             |
 
 ### Confirmations
 
 **What:** Verifying destructive or irreversible actions.
 
 **Use confirmation dialogs for:**
+
 - Deleting data
 - Canceling subscriptions
 - Sending to many recipients
@@ -58,12 +59,12 @@ The best error is the one that never happens. The second best is the one users c
 
 ### Validation Approaches
 
-| Approach | Pros | Cons |
-|----------|------|------|
-| **On blur** | Good balance, validates after field | Slight delay |
-| **On submit** | Simple to implement | Errors appear late |
-| **Real-time** | Immediate feedback | Can be annoying |
-| **Debounced** | Good for async checks | Timing tuning needed |
+| Approach      | Pros                                | Cons                 |
+| ------------- | ----------------------------------- | -------------------- |
+| **On blur**   | Good balance, validates after field | Slight delay         |
+| **On submit** | Simple to implement                 | Errors appear late   |
+| **Real-time** | Immediate feedback                  | Can be annoying      |
+| **Debounced** | Good for async checks               | Timing tuning needed |
 
 ### Recommended Approach
 
@@ -75,6 +76,7 @@ The best error is the one that never happens. The second best is the one users c
 ### Error Display Guidelines
 
 **DO:**
+
 - Show error adjacent to the field
 - Use red color + icon (accessible)
 - Explain the problem specifically
@@ -83,6 +85,7 @@ The best error is the one that never happens. The second best is the one users c
 - Scroll to first error
 
 **DON'T:**
+
 - Show only at page top
 - Clear user input on error
 - Use only color to indicate error
@@ -116,16 +119,19 @@ Examples:
 ### Implementation Patterns
 
 **Soft delete:**
+
 - Move to trash instead of permanent delete
 - Show "Undo" toast with time limit
 - Allow recovery from trash
 
 **Action undo:**
+
 - "Undo" button in success toast
 - Keyboard shortcut (Cmd/Ctrl+Z)
 - Undo stack for multiple actions
 
 **Draft preservation:**
+
 - Auto-save drafts
 - Recover unsaved work
 - Version history
@@ -133,6 +139,7 @@ Examples:
 ### Guidelines
 
 **DO:**
+
 - Provide undo for destructive actions
 - Show clear undo affordance
 - Time-limit undo window (5-30 seconds)
@@ -140,6 +147,7 @@ Examples:
 - Support keyboard shortcuts
 
 **DON'T:**
+
 - Require confirmation AND undo (choose one)
 - Make undo window too short
 - Hide undo affordance
@@ -164,25 +172,26 @@ Examples:
 
 ### Error Types
 
-| Type | Tone | Recovery Options |
-|------|------|------------------|
-| **User error** | Helpful, not blaming | Explain how to fix |
-| **System error** | Apologetic | Retry, contact support |
-| **Network error** | Informative | Retry when connected |
-| **Permission error** | Clear | Request access, explain why |
+| Type                 | Tone                 | Recovery Options            |
+| -------------------- | -------------------- | --------------------------- |
+| **User error**       | Helpful, not blaming | Explain how to fix          |
+| **System error**     | Apologetic           | Retry, contact support      |
+| **Network error**    | Informative          | Retry when connected        |
+| **Permission error** | Clear                | Request access, explain why |
 
 ### Error Message Examples
 
-| Bad | Good |
-|-----|------|
-| "Error 500" | "Something went wrong on our end. Please try again." |
-| "Invalid operation" | "You don't have permission to delete this. Contact an admin." |
-| "Failed" | "Couldn't save your changes. Check your connection and try again." |
-| "Null pointer exception" | "Something unexpected happened. Our team has been notified." |
+| Bad                      | Good                                                               |
+| ------------------------ | ------------------------------------------------------------------ |
+| "Error 500"              | "Something went wrong on our end. Please try again."               |
+| "Invalid operation"      | "You don't have permission to delete this. Contact an admin."      |
+| "Failed"                 | "Couldn't save your changes. Check your connection and try again." |
+| "Null pointer exception" | "Something unexpected happened. Our team has been notified."       |
 
 ### Guidelines
 
 **DO:**
+
 - Use human language
 - Explain what happened
 - Offer recovery action
@@ -190,6 +199,7 @@ Examples:
 - Apologize when it's system's fault
 
 **DON'T:**
+
 - Show technical details to users
 - Blame the user
 - Leave users stuck
@@ -204,17 +214,18 @@ Examples:
 
 ### Autosave Strategies
 
-| Strategy | Best For |
-|----------|----------|
-| **Continuous** | Text editors, forms (debounced) |
-| **On change** | Settings, toggles |
-| **On blur** | Form fields |
-| **Periodic** | Long-form content (every 30-60s) |
-| **Before navigation** | Forms with unsaved changes |
+| Strategy              | Best For                         |
+| --------------------- | -------------------------------- |
+| **Continuous**        | Text editors, forms (debounced)  |
+| **On change**         | Settings, toggles                |
+| **On blur**           | Form fields                      |
+| **Periodic**          | Long-form content (every 30-60s) |
+| **Before navigation** | Forms with unsaved changes       |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Indicate save status ("Saved", "Saving...", "Changes pending")
 - Save to server when possible
 - Fall back to local storage
@@ -222,6 +233,7 @@ Examples:
 - Warn before navigating away with unsaved changes
 
 **DON'T:**
+
 - Save too frequently (server load)
 - Save too infrequently (data loss risk)
 - Fail silently
@@ -247,17 +259,18 @@ If you leave, your changes will be lost.
 
 ### Strategies
 
-| Failure | Graceful Response |
-|---------|-------------------|
-| Network down | Show cached data, queue actions |
-| Feature fails | Disable feature, don't crash |
-| Image fails | Show placeholder |
-| Third-party down | Fallback or skip gracefully |
-| Timeout | Auto-retry, then explain |
+| Failure          | Graceful Response               |
+| ---------------- | ------------------------------- |
+| Network down     | Show cached data, queue actions |
+| Feature fails    | Disable feature, don't crash    |
+| Image fails      | Show placeholder                |
+| Third-party down | Fallback or skip gracefully     |
+| Timeout          | Auto-retry, then explain        |
 
 ### Guidelines
 
 **DO:**
+
 - Anticipate failure modes
 - Provide fallbacks
 - Inform users of degraded state
@@ -265,6 +278,7 @@ If you leave, your changes will be lost.
 - Auto-retry where appropriate
 
 **DON'T:**
+
 - Let one failure cascade
 - Show blank screens
 - Hide degraded state
@@ -275,14 +289,14 @@ If you leave, your changes will be lost.
 
 ## Error Prevention Checklist
 
-| Area | Techniques Applied |
-|------|-------------------|
-| ☐ Input constraints (masks, limits) | |
-| ☐ Guidance before errors occur | |
-| ☐ Confirmation for destructive actions | |
-| ☐ Appropriate validation timing | |
-| ☐ Clear, actionable error messages | |
-| ☐ Undo for reversible actions | |
-| ☐ Autosave for data preservation | |
-| ☐ Graceful handling of system errors | |
-| ☐ Recovery options always available | |
+| Area                                   | Techniques Applied |
+| -------------------------------------- | ------------------ |
+| ☐ Input constraints (masks, limits)    |                    |
+| ☐ Guidance before errors occur         |                    |
+| ☐ Confirmation for destructive actions |                    |
+| ☐ Appropriate validation timing        |                    |
+| ☐ Clear, actionable error messages     |                    |
+| ☐ Undo for reversible actions          |                    |
+| ☐ Autosave for data preservation       |                    |
+| ☐ Graceful handling of system errors   |                    |
+| ☐ Recovery options always available    |                    |

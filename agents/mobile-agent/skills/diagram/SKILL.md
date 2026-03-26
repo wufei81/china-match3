@@ -1,11 +1,14 @@
 ---
 name: Diagram
-description: Generate diagrams from descriptions with Mermaid, PlantUML, or ASCII for architecture, flows, sequences, and data models.
+description:
+  Generate diagrams from descriptions with Mermaid, PlantUML, or ASCII for architecture, flows, sequences, and data
+  models.
 ---
 
 ## Principle
 
-Diagrams should **clarify, not complicate**. Start simple, add detail only when needed. A 5-box flowchart beats a 50-node sprawl.
+Diagrams should **clarify, not complicate**. Start simple, add detail only when needed. A 5-box flowchart beats a
+50-node sprawl.
 
 ## When User Describes a System or Flow
 
@@ -16,25 +19,25 @@ Diagrams should **clarify, not complicate**. Start simple, add detail only when 
 
 ## Diagram Types
 
-| Type | Use For | Format |
-|------|---------|--------|
-| Flowchart | Processes, decisions, workflows | Mermaid `flowchart` |
-| Sequence | API calls, interactions, protocols | Mermaid `sequenceDiagram` |
-| Architecture | System components, infrastructure | Mermaid `flowchart` or `C4` |
-| ER/Data model | Database schemas, relationships | Mermaid `erDiagram` |
-| Class | Object structure, inheritance | Mermaid `classDiagram` |
-| State | Lifecycles, status transitions | Mermaid `stateDiagram-v2` |
-| Timeline | Project phases, history | Mermaid `timeline` |
-| Mindmap | Brainstorming, concept mapping | Mermaid `mindmap` |
+| Type          | Use For                            | Format                      |
+| ------------- | ---------------------------------- | --------------------------- |
+| Flowchart     | Processes, decisions, workflows    | Mermaid `flowchart`         |
+| Sequence      | API calls, interactions, protocols | Mermaid `sequenceDiagram`   |
+| Architecture  | System components, infrastructure  | Mermaid `flowchart` or `C4` |
+| ER/Data model | Database schemas, relationships    | Mermaid `erDiagram`         |
+| Class         | Object structure, inheritance      | Mermaid `classDiagram`      |
+| State         | Lifecycles, status transitions     | Mermaid `stateDiagram-v2`   |
+| Timeline      | Project phases, history            | Mermaid `timeline`          |
+| Mindmap       | Brainstorming, concept mapping     | Mermaid `mindmap`           |
 
 ## Output Methods
 
-| Method | When |
-|--------|------|
+| Method             | When                                   |
+| ------------------ | -------------------------------------- |
 | Mermaid code block | User can render (docs, GitHub, Notion) |
-| Render to PNG/SVG | User needs image file |
-| ASCII inline | Quick sketch in chat |
-| HTML + Mermaid.js | Interactive viewing |
+| Render to PNG/SVG  | User needs image file                  |
+| ASCII inline       | Quick sketch in chat                   |
+| HTML + Mermaid.js  | Interactive viewing                    |
 
 ### Rendering Mermaid to Image
 
@@ -49,6 +52,7 @@ npx -y @mermaid-js/mermaid-cli mmdc -i diagram.mmd -o diagram.png -b transparent
 ## Mermaid Quick Reference
 
 **Flowchart:**
+
 ```mermaid
 flowchart LR
     A[Start] --> B{Decision}
@@ -57,6 +61,7 @@ flowchart LR
 ```
 
 **Sequence:**
+
 ```mermaid
 sequenceDiagram
     User->>API: Request
@@ -66,6 +71,7 @@ sequenceDiagram
 ```
 
 **ER Diagram:**
+
 ```mermaid
 erDiagram
     USER ||--o{ ORDER : places
@@ -82,13 +88,13 @@ erDiagram
 
 ## Common Requests
 
-| Request | Interpret As |
-|---------|--------------|
-| "Draw my API flow" | Sequence diagram: client → API → services |
-| "Show the architecture" | Flowchart with subgraphs for components |
-| "Database schema" | ER diagram with relationships |
-| "How the auth works" | Sequence or flowchart depending on complexity |
-| "User journey" | Flowchart with decision points |
+| Request                 | Interpret As                                  |
+| ----------------------- | --------------------------------------------- |
+| "Draw my API flow"      | Sequence diagram: client → API → services     |
+| "Show the architecture" | Flowchart with subgraphs for components       |
+| "Database schema"       | ER diagram with relationships                 |
+| "How the auth works"    | Sequence or flowchart depending on complexity |
+| "User journey"          | Flowchart with decision points                |
 
 ## Anti-Patterns
 

@@ -3,6 +3,7 @@
 ## Environment
 
 Set your API key:
+
 ```bash
 export FIRECRAWL_API_KEY=fc-xxxxxxxxxx
 ```
@@ -10,11 +11,13 @@ export FIRECRAWL_API_KEY=fc-xxxxxxxxxx
 ## API Endpoints
 
 ### Search
+
 ```bash
 POST https://api.firecrawl.dev/v1/search
 ```
 
 Request body:
+
 ```json
 {
   "query": "search terms",
@@ -25,11 +28,13 @@ Request body:
 ```
 
 ### Scrape
+
 ```bash
 POST https://api.firecrawl.dev/v1/scrape
 ```
 
 Request body:
+
 ```json
 {
   "url": "https://example.com",
@@ -41,11 +46,13 @@ Request body:
 ```
 
 ### Crawl
+
 ```bash
 POST https://api.firecrawl.dev/v1/crawl
 ```
 
 Request body:
+
 ```json
 {
   "url": "https://example.com",
@@ -59,6 +66,7 @@ Request body:
 ```
 
 Check status:
+
 ```bash
 GET https://api.firecrawl.dev/v1/crawl/{job_id}
 ```
@@ -66,6 +74,7 @@ GET https://api.firecrawl.dev/v1/crawl/{job_id}
 ## Response Format
 
 All responses follow this structure:
+
 ```json
 {
   "success": true,

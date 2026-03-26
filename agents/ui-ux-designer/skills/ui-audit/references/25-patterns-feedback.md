@@ -6,7 +6,8 @@ Patterns for communicating system status and action outcomes to users.
 
 ## What is System Feedback?
 
-Communication from the system that keeps users informed about what's happening. Based on Nielsen's first heuristic: "Visibility of system status."
+Communication from the system that keeps users informed about what's happening. Based on Nielsen's first heuristic:
+"Visibility of system status."
 
 **Core principle:** Users should never wonder what's happening. The system should always speak.
 
@@ -18,25 +19,26 @@ Communication from the system that keeps users informed about what's happening. 
 
 ### Types
 
-| Type | Use When |
-|------|----------|
-| **Determinate** | Duration known (upload 45%, step 2/4) |
-| **Indeterminate** | Duration unknown (spinner, loading bar) |
-| **Skeleton screens** | Loading structured content |
-| **Background indicator** | Process running but not blocking |
+| Type                     | Use When                                |
+| ------------------------ | --------------------------------------- |
+| **Determinate**          | Duration known (upload 45%, step 2/4)   |
+| **Indeterminate**        | Duration unknown (spinner, loading bar) |
+| **Skeleton screens**     | Loading structured content              |
+| **Background indicator** | Process running but not blocking        |
 
 ### Timing Guidelines
 
-| Duration | Feedback |
-|----------|----------|
-| < 100ms | None needed |
-| 100ms - 1s | Simple spinner |
-| 1s - 10s | Progress indicator with context |
-| 10s+ | Background process with notification |
+| Duration   | Feedback                             |
+| ---------- | ------------------------------------ |
+| < 100ms    | None needed                          |
+| 100ms - 1s | Simple spinner                       |
+| 1s - 10s   | Progress indicator with context      |
+| 10s+       | Background process with notification |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Show progress immediately on action
 - Use determinate when possible (more reassuring)
 - Include text explaining what's happening
@@ -44,6 +46,7 @@ Communication from the system that keeps users informed about what's happening. 
 - Celebrate completion (subtle success state)
 
 **DON'T:**
+
 - Leave users staring at nothing
 - Use spinners for > 10 seconds
 - Show fake progress
@@ -53,6 +56,7 @@ Communication from the system that keeps users informed about what's happening. 
 ### Skeleton Screens
 
 Best practices:
+
 - Match layout of loading content
 - Animate subtly (pulse or shimmer)
 - Show as soon as structure is known
@@ -67,12 +71,12 @@ Best practices:
 
 ### Types by Urgency
 
-| Type | Persistence | Attention Level |
-|------|-------------|-----------------|
-| **Toast** | Auto-dismiss (3-5s) | Low, informational |
-| **Banner** | Persistent until dismissed | Medium, action needed |
-| **Alert/Modal** | Blocks interaction | High, immediate action |
-| **Inline** | Contextual, persistent | Medium, related to specific element |
+| Type            | Persistence                | Attention Level                     |
+| --------------- | -------------------------- | ----------------------------------- |
+| **Toast**       | Auto-dismiss (3-5s)        | Low, informational                  |
+| **Banner**      | Persistent until dismissed | Medium, action needed               |
+| **Alert/Modal** | Blocks interaction         | High, immediate action              |
+| **Inline**      | Contextual, persistent     | Medium, related to specific element |
 
 ### Notification Anatomy
 
@@ -85,6 +89,7 @@ Best practices:
 ### Implementation Guidelines (Toasts)
 
 **DO:**
+
 - Brief, clear message
 - Auto-dismiss (3-5 seconds typical)
 - Allow manual dismiss
@@ -92,6 +97,7 @@ Best practices:
 - Position consistently (top-right or bottom-right common)
 
 **DON'T:**
+
 - Use for errors requiring action
 - Auto-dismiss critical information
 - Cover important content
@@ -101,6 +107,7 @@ Best practices:
 ### Implementation Guidelines (Banners)
 
 **DO:**
+
 - Span full width (usually top of page)
 - Clear close/dismiss button
 - Explain what and why
@@ -108,6 +115,7 @@ Best practices:
 - Use semantic colors (red=error, yellow=warning, blue=info)
 
 **DON'T:**
+
 - Stack multiple banners
 - Use for non-critical info
 - Make hard to dismiss
@@ -121,11 +129,11 @@ Best practices:
 
 ### Validation Timing
 
-| Timing | Best For |
-|--------|----------|
-| **Real-time** | Format validation (email, phone) |
-| **On blur** | Field completion check |
-| **On submit** | Final validation |
+| Timing        | Best For                                 |
+| ------------- | ---------------------------------------- |
+| **Real-time** | Format validation (email, phone)         |
+| **On blur**   | Field completion check                   |
+| **On submit** | Final validation                         |
 | **Debounced** | Async validation (username availability) |
 
 ### Validation States
@@ -140,6 +148,7 @@ Invalid   → Error state (red, message)
 ### Error Message Guidelines
 
 **DO:**
+
 - Explain what's wrong specifically
 - Explain how to fix it
 - Place near the field
@@ -147,6 +156,7 @@ Invalid   → Error state (red, message)
 - Persist until fixed
 
 **DON'T:**
+
 - Use generic messages ("Invalid input")
 - Blame the user ("You entered wrong value")
 - Use technical jargon
@@ -155,12 +165,12 @@ Invalid   → Error state (red, message)
 
 ### Examples
 
-| Bad | Good |
-|-----|------|
-| "Invalid email" | "Enter a valid email address (e.g., name@example.com)" |
-| "Required field" | "Email is required" |
-| "Password error" | "Password must be at least 8 characters" |
-| "Error" | "This username is already taken. Try another." |
+| Bad              | Good                                                   |
+| ---------------- | ------------------------------------------------------ |
+| "Invalid email"  | "Enter a valid email address (e.g., name@example.com)" |
+| "Required field" | "Email is required"                                    |
+| "Password error" | "Password must be at least 8 characters"               |
+| "Error"          | "This username is already taken. Try another."         |
 
 ---
 
@@ -170,16 +180,17 @@ Invalid   → Error state (red, message)
 
 ### Types
 
-| Type | Use Case |
-|------|----------|
-| **Inline** | Form field valid, item added |
-| **Toast** | Action completed successfully |
-| **Success page** | Major workflow complete |
-| **Animation** | Delightful confirmation |
+| Type             | Use Case                      |
+| ---------------- | ----------------------------- |
+| **Inline**       | Form field valid, item added  |
+| **Toast**        | Action completed successfully |
+| **Success page** | Major workflow complete       |
+| **Animation**    | Delightful confirmation       |
 
 ### Success Message Guidelines
 
 **DO:**
+
 - Confirm what was accomplished
 - Indicate next steps if applicable
 - Be brief but clear
@@ -187,6 +198,7 @@ Invalid   → Error state (red, message)
 - Celebrate appropriately
 
 **DON'T:**
+
 - Over-celebrate minor actions
 - Be vague about what succeeded
 - Require action to dismiss (usually)
@@ -209,24 +221,26 @@ Major: [Success page with next steps]
 
 ### Types
 
-| Type | Use Case |
-|------|----------|
-| **Tooltips** | Icon/term explanations |
-| **Inline hints** | Form field guidance |
-| **Helper text** | Persistent guidance below inputs |
-| **Info icons** | "What's this?" explanations |
-| **Empty states** | Guidance when no content |
+| Type             | Use Case                         |
+| ---------------- | -------------------------------- |
+| **Tooltips**     | Icon/term explanations           |
+| **Inline hints** | Form field guidance              |
+| **Helper text**  | Persistent guidance below inputs |
+| **Info icons**   | "What's this?" explanations      |
+| **Empty states** | Guidance when no content         |
 
 ### Implementation Guidelines
 
 **DO:**
-- Explain *why*, not just *what*
+
+- Explain _why_, not just _what_
 - Use plain language
 - Keep contextual (near related element)
 - Make optional (not blocking)
 - Provide examples when helpful
 
 **DON'T:**
+
 - Over-explain obvious things
 - Use tooltips for critical info
 - Write novels in helper text
@@ -236,6 +250,7 @@ Major: [Success page with next steps]
 ### Help Text Examples
 
 **Form fields:**
+
 ```
 Label: Password
 Input: ********
@@ -243,9 +258,10 @@ Helper: At least 8 characters with one number and symbol.
 ```
 
 **Feature explanation:**
+
 ```
 [i] What are workspaces?
-→ Workspaces let you organize projects into separate 
+→ Workspaces let you organize projects into separate
    areas. Each workspace has its own members and settings.
 ```
 
@@ -266,16 +282,17 @@ Helper: At least 8 characters with one number and symbol.
 
 ### Types
 
-| Type | Cause | Response |
-|------|-------|----------|
-| **First use** | New user, no data | Guide to create first item |
-| **No results** | Search/filter with no matches | Suggest adjustments |
-| **Cleared** | User deleted content | Confirm empty, offer restore |
-| **Error** | Failed to load | Explain and offer retry |
+| Type           | Cause                         | Response                     |
+| -------------- | ----------------------------- | ---------------------------- |
+| **First use**  | New user, no data             | Guide to create first item   |
+| **No results** | Search/filter with no matches | Suggest adjustments          |
+| **Cleared**    | User deleted content          | Confirm empty, offer restore |
+| **Error**      | Failed to load                | Explain and offer retry      |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Explain why it's empty
 - Provide clear action to fix
 - Match tone to context
@@ -283,6 +300,7 @@ Helper: At least 8 characters with one number and symbol.
 - Use as opportunity to educate
 
 **DON'T:**
+
 - Leave completely blank
 - Just say "No results"
 - Make user feel they did something wrong
@@ -293,24 +311,24 @@ Helper: At least 8 characters with one number and symbol.
 
 ## Feedback Timing Matrix
 
-| Action Type | Immediate | Short Delay | Background |
-|-------------|-----------|-------------|------------|
-| Button click | Visual state change | - | - |
-| Form submit | Disable + spinner | Success/error toast | - |
-| Save | Inline "saving..." | "Saved" confirmation | - |
-| Upload | Progress bar | Completion toast | Status in UI |
-| Long process | Initiated message | - | Notification when done |
+| Action Type  | Immediate           | Short Delay          | Background             |
+| ------------ | ------------------- | -------------------- | ---------------------- |
+| Button click | Visual state change | -                    | -                      |
+| Form submit  | Disable + spinner   | Success/error toast  | -                      |
+| Save         | Inline "saving..."  | "Saved" confirmation | -                      |
+| Upload       | Progress bar        | Completion toast     | Status in UI           |
+| Long process | Initiated message   | -                    | Notification when done |
 
 ---
 
 ## Feedback Audit
 
-| Element | Feedback Present? |
-|---------|-------------------|
-| ☐ Loading states defined | |
-| ☐ Success feedback clear | |
-| ☐ Error states helpful | |
-| ☐ Validation timing appropriate | |
-| ☐ Empty states designed | |
-| ☐ Help available in context | |
-| ☐ Progress visible for long actions | |
+| Element                             | Feedback Present? |
+| ----------------------------------- | ----------------- |
+| ☐ Loading states defined            |                   |
+| ☐ Success feedback clear            |                   |
+| ☐ Error states helpful              |                   |
+| ☐ Validation timing appropriate     |                   |
+| ☐ Empty states designed             |                   |
+| ☐ Help available in context         |                   |
+| ☐ Progress visible for long actions |                   |

@@ -6,9 +6,11 @@ Patterns for adapting interfaces to individual users.
 
 ## What is Personalization?
 
-Tailoring the interface, content, or functionality based on user data, preferences, or behavior. The goal is relevance—showing users what matters to them.
+Tailoring the interface, content, or functionality based on user data, preferences, or behavior. The goal is
+relevance—showing users what matters to them.
 
 **Spectrum:**
+
 - **Customization** — User explicitly sets preferences
 - **Personalization** — System adapts based on data/behavior
 
@@ -27,6 +29,7 @@ Tailoring the interface, content, or functionality based on user data, preferenc
 ### Implementation Guidelines
 
 **DO:**
+
 - Provide useful defaults (don't start empty)
 - Make customization discoverable but not required
 - Allow adding, removing, rearranging widgets
@@ -34,6 +37,7 @@ Tailoring the interface, content, or functionality based on user data, preferenc
 - Offer presets/templates
 
 **DON'T:**
+
 - Require customization to use the product
 - Make defaults unusable
 - Overwhelm with options
@@ -42,13 +46,13 @@ Tailoring the interface, content, or functionality based on user data, preferenc
 
 ### Widget Patterns
 
-| Pattern | Use For |
-|---------|---------|
-| **Drag-and-drop** | Rearranging layout |
-| **Widget picker** | Adding new widgets |
-| **Resize handles** | Adjusting widget size |
-| **Edit mode** | Toggled customization state |
-| **Templates** | Starting point presets |
+| Pattern            | Use For                     |
+| ------------------ | --------------------------- |
+| **Drag-and-drop**  | Rearranging layout          |
+| **Widget picker**  | Adding new widgets          |
+| **Resize handles** | Adjusting widget size       |
+| **Edit mode**      | Toggled customization state |
+| **Templates**      | Starting point presets      |
 
 ---
 
@@ -58,16 +62,17 @@ Tailoring the interface, content, or functionality based on user data, preferenc
 
 ### Types
 
-| Type | Basis | Example |
-|------|-------|---------|
-| **Role-based** | User role/permissions | Admin vs. user views |
-| **Behavior-based** | Past actions | "Continue where you left off" |
-| **Context-based** | Current state | Location, device, time |
-| **Preference-based** | Explicit settings | Language, theme |
+| Type                 | Basis                 | Example                       |
+| -------------------- | --------------------- | ----------------------------- |
+| **Role-based**       | User role/permissions | Admin vs. user views          |
+| **Behavior-based**   | Past actions          | "Continue where you left off" |
+| **Context-based**    | Current state         | Location, device, time        |
+| **Preference-based** | Explicit settings     | Language, theme               |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Explain why content is personalized
 - Allow users to dismiss/adjust
 - Respect privacy expectations
@@ -75,6 +80,7 @@ Tailoring the interface, content, or functionality based on user data, preferenc
 - Fall back gracefully to defaults
 
 **DON'T:**
+
 - Be creepy (mentioning private data)
 - Over-personalize (filter bubble)
 - Personalize without value
@@ -98,17 +104,18 @@ Tailoring the interface, content, or functionality based on user data, preferenc
 
 ### Common Preference Categories
 
-| Category | Examples |
-|----------|----------|
-| **Display** | Theme, density, font size |
+| Category          | Examples                            |
+| ----------------- | ----------------------------------- |
+| **Display**       | Theme, density, font size           |
 | **Communication** | Email frequency, notification types |
-| **Privacy** | Data sharing, tracking |
-| **Regional** | Language, timezone, currency |
-| **Workflow** | Default views, keyboard shortcuts |
+| **Privacy**       | Data sharing, tracking              |
+| **Regional**      | Language, timezone, currency        |
+| **Workflow**      | Default views, keyboard shortcuts   |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Group preferences logically
 - Provide clear defaults
 - Explain impact of settings
@@ -116,6 +123,7 @@ Tailoring the interface, content, or functionality based on user data, preferenc
 - Sync across devices
 
 **DON'T:**
+
 - Create endless settings pages
 - Hide important preferences
 - Require restart for simple changes
@@ -125,13 +133,14 @@ Tailoring the interface, content, or functionality based on user data, preferenc
 ### Settings Page Patterns
 
 **Grouped settings:**
+
 ```
 Account
   - Profile
   - Security
   - Privacy
 
-Preferences  
+Preferences
   - Appearance
   - Notifications
   - Language & Region
@@ -142,10 +151,11 @@ Integrations
 ```
 
 **Inline settings:**
+
 ```
 [Toggle] Enable email notifications
         Get notified about new messages
-        
+
 [Dropdown] Frequency: [Daily digest ▼]
 ```
 
@@ -157,19 +167,20 @@ Integrations
 
 ### Key Considerations
 
-| Element | Localization Needs |
-|---------|-------------------|
-| **Text** | Translation, expansion space |
-| **Dates** | Format varies by region |
-| **Numbers** | Decimal/thousand separators |
-| **Currency** | Symbol, position, format |
-| **Direction** | LTR vs. RTL layouts |
-| **Images** | Cultural appropriateness |
-| **Legal** | Region-specific requirements |
+| Element       | Localization Needs           |
+| ------------- | ---------------------------- |
+| **Text**      | Translation, expansion space |
+| **Dates**     | Format varies by region      |
+| **Numbers**   | Decimal/thousand separators  |
+| **Currency**  | Symbol, position, format     |
+| **Direction** | LTR vs. RTL layouts          |
+| **Images**    | Cultural appropriateness     |
+| **Legal**     | Region-specific requirements |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Design for text expansion (German ~30% longer)
 - Use Unicode/UTF-8 throughout
 - Externalize strings (no hardcoding)
@@ -178,6 +189,7 @@ Integrations
 - Consider cultural context
 
 **DON'T:**
+
 - Concatenate strings for sentences
 - Use flags for language selection
 - Assume formats (dates, addresses)
@@ -186,14 +198,14 @@ Integrations
 
 ### Text Expansion Guidelines
 
-| Language | Expansion vs. English |
-|----------|----------------------|
-| German | +30% |
-| French | +20% |
-| Spanish | +20% |
-| Chinese | -30% (but vertical space) |
-| Japanese | -20% |
-| Arabic | +25% (RTL) |
+| Language | Expansion vs. English     |
+| -------- | ------------------------- |
+| German   | +30%                      |
+| French   | +20%                      |
+| Spanish  | +20%                      |
+| Chinese  | -30% (but vertical space) |
+| Japanese | -20%                      |
+| Arabic   | +25% (RTL)                |
 
 ---
 
@@ -203,17 +215,18 @@ Integrations
 
 ### Default Sources
 
-| Source | Example |
-|--------|---------|
-| **User history** | Last used option |
-| **User profile** | Location-based defaults |
-| **Behavior patterns** | Most common choice |
-| **Context** | Time-appropriate defaults |
-| **System intelligence** | ML-predicted preference |
+| Source                  | Example                   |
+| ----------------------- | ------------------------- |
+| **User history**        | Last used option          |
+| **User profile**        | Location-based defaults   |
+| **Behavior patterns**   | Most common choice        |
+| **Context**             | Time-appropriate defaults |
+| **System intelligence** | ML-predicted preference   |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Save and reuse user preferences
 - Use sensible fallbacks
 - Make overriding easy
@@ -221,6 +234,7 @@ Integrations
 - Respect explicit user choices
 
 **DON'T:**
+
 - Force users into defaults
 - Reset preferences unexpectedly
 - Use defaults against user interest
@@ -245,15 +259,16 @@ Recipient: Default to recent contacts
 
 ### Types
 
-| Type | Basis | Example |
-|------|-------|---------|
-| **Collaborative** | Similar users' behavior | "Users like you also bought" |
-| **Content-based** | Item similarity | "Similar to items you viewed" |
-| **Hybrid** | Combined approaches | "Recommended for you" |
+| Type              | Basis                   | Example                       |
+| ----------------- | ----------------------- | ----------------------------- |
+| **Collaborative** | Similar users' behavior | "Users like you also bought"  |
+| **Content-based** | Item similarity         | "Similar to items you viewed" |
+| **Hybrid**        | Combined approaches     | "Recommended for you"         |
 
 ### Implementation Guidelines
 
 **DO:**
+
 - Explain recommendation basis
 - Allow feedback (helpful/not helpful)
 - Include diversity (avoid filter bubble)
@@ -261,6 +276,7 @@ Recipient: Default to recent contacts
 - Provide "see more like this" options
 
 **DON'T:**
+
 - Show only narrow recommendations
 - Recommend items already purchased/viewed
 - Use recommendations for upselling only
@@ -294,6 +310,7 @@ Recipient: Default to recent contacts
 ### Implementation Guidelines
 
 **DO:**
+
 - Ask for minimum to start
 - Request additional info contextually
 - Explain why you're asking
@@ -301,6 +318,7 @@ Recipient: Default to recent contacts
 - Show value of providing info
 
 **DON'T:**
+
 - Front-load all questions
 - Ask for irrelevant information
 - Require full profiles to start
@@ -320,13 +338,13 @@ Recipient: Default to recent contacts
 
 ## Personalization Audit
 
-| Element | Implemented? | Value to User? |
-|---------|--------------|----------------|
-| ☐ Customizable dashboard | | |
-| ☐ Saved preferences | | |
-| ☐ Smart defaults | | |
-| ☐ Content recommendations | | |
-| ☐ Regional localization | | |
-| ☐ Progressive profiling | | |
-| ☐ User-controlled options | | |
-| ☐ Transparency about personalization | | |
+| Element                              | Implemented? | Value to User? |
+| ------------------------------------ | ------------ | -------------- |
+| ☐ Customizable dashboard             |              |                |
+| ☐ Saved preferences                  |              |                |
+| ☐ Smart defaults                     |              |                |
+| ☐ Content recommendations            |              |                |
+| ☐ Regional localization              |              |                |
+| ☐ Progressive profiling              |              |                |
+| ☐ User-controlled options            |              |                |
+| ☐ Transparency about personalization |              |                |

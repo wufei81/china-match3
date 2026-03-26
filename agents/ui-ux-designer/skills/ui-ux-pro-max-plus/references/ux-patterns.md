@@ -7,20 +7,24 @@
 ## 🚪 导航模式
 
 ### 顶部导航（Top Navigation）
+
 **适用：** 网站、SaaS 产品
 
 **结构：**
+
 ```
 [Logo]  [主导航项 × 3-5]  [搜索]  [用户菜单]
 ```
 
 **设计要点：**
+
 - 导航项不超过 7 个
 - 当前页面高亮显示
 - 支持下拉菜单（二级导航）
 - 移动端转为汉堡菜单
 
 **Tailwind 实现：**
+
 ```html
 <nav class="bg-white border-b px-6 py-4">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
@@ -43,9 +47,11 @@
 ---
 
 ### 侧边导航（Sidebar Navigation）
+
 **适用：** 仪表盘、管理系统
 
 **结构：**
+
 ```
 [Logo]
 [首页]
@@ -57,6 +63,7 @@
 ```
 
 **设计要点：**
+
 - 图标 + 文字标签
 - 可折叠的子菜单
 - 当前项高亮
@@ -65,9 +72,11 @@
 ---
 
 ### 标签导航（Tab Navigation）
+
 **适用：** 内容分类、设置页面
 
 **类型：**
+
 - **水平标签：** 3-5 个，最常见
 - **垂直标签：** 左侧，适合较多选项
 - **下拉标签：** 移动端节省空间
@@ -79,6 +88,7 @@
 ### 表单布局
 
 **单列布局（推荐）：**
+
 ```
 [标签]
 [输入框                    ]
@@ -92,6 +102,7 @@
 ```
 
 **设计要点：**
+
 - 标签在输入框上方
 - 标签与输入框间距 8px
 - 输入框间距 24px
@@ -102,6 +113,7 @@
 ### 输入验证
 
 **实时验证（推荐）：**
+
 - 用户停止输入后验证
 - 用颜色 + 图标表示状态
 - 提供清晰的错误信息
@@ -109,10 +121,12 @@
 ```html
 <div class="space-y-1">
   <label class="text-sm font-medium">邮箱</label>
-  <input type="email" 
-         class="w-full px-3 py-2 border rounded 
+  <input
+    type="email"
+    class="w-full px-3 py-2 border rounded
                 focus:ring-2 focus:ring-blue-500
-                invalid:border-red-500 invalid:text-red-600" />
+                invalid:border-red-500 invalid:text-red-600"
+  />
   <p class="text-sm text-red-600">请输入有效的邮箱地址</p>
 </div>
 ```
@@ -120,9 +134,11 @@
 ---
 
 ### 分步表单（Wizard）
+
 **适用：** 复杂流程（注册、结账、配置）
 
 **结构：**
+
 ```
 [步骤1] → [步骤2] → [步骤3]
    ✓        ●         ○
@@ -133,6 +149,7 @@
 ```
 
 **设计要点：**
+
 - 显示进度（已完成/当前/待完成）
 - 允许返回修改
 - 显示步骤标题
@@ -143,11 +160,13 @@
 ## 🔔 反馈模式
 
 ### Toast 通知
+
 **适用：** 操作成功/失败的轻量反馈
 
 **位置：** 右上角或底部居中
 
 **类型：**
+
 ```
 ✅ 成功 - 绿色
 ❌ 错误 - 红色
@@ -156,6 +175,7 @@
 ```
 
 **行为：**
+
 - 自动消失（3-5秒）
 - 可手动关闭
 - 支持操作按钮（撤销）
@@ -163,14 +183,17 @@
 ---
 
 ### Modal 对话框
+
 **适用：** 需要用户确认或输入的打断式操作
 
 **使用场景：**
+
 - 删除确认
 - 重要设置修改
 - 表单提交确认
 
 **设计要点：**
+
 ```
 ┌─────────────────────┐
 │ 标题                │
@@ -182,6 +205,7 @@
 ```
 
 **实现：**
+
 ```html
 <div class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
   <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
@@ -198,9 +222,11 @@
 ---
 
 ### 空状态（Empty State）
+
 **适用：** 无数据时的友好提示
 
 **结构：**
+
 ```
 [插图/图标]
 [标题：暂无数据]
@@ -209,6 +235,7 @@
 ```
 
 **设计要点：**
+
 - 不要只显示"暂无数据"
 - 解释为什么会出现空状态
 - 提供明确的下一步操作
@@ -219,6 +246,7 @@
 ### 加载状态
 
 **骨架屏（Skeleton）：**
+
 ```html
 <div class="animate-pulse">
   <div class="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
@@ -228,6 +256,7 @@
 ```
 
 **加载指示器：**
+
 - 按钮内：Spinner
 - 页面：进度条或骨架屏
 - 列表：底部加载更多
@@ -239,11 +268,10 @@
 ### 搜索框
 
 **基础版：**
+
 ```html
 <div class="relative">
-  <input type="text" 
-         placeholder="搜索..."
-         class="w-full pl-10 pr-4 py-2 border rounded-lg" />
+  <input type="text" placeholder="搜索..." class="w-full pl-10 pr-4 py-2 border rounded-lg" />
   <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-400">
     <!-- 搜索图标 -->
   </svg>
@@ -251,6 +279,7 @@
 ```
 
 **增强版（自动完成）：**
+
 ```
 [搜索框：输入中...]
 ┌──────────────────┐
@@ -267,11 +296,13 @@
 ### 筛选器
 
 **水平筛选栏：**
+
 ```
 [全部] [活跃] [未激活] [已归档]        [筛选 ▼] [排序 ▼]
 ```
 
 **筛选面板（侧边）：**
+
 ```
 筛选
 ├── 状态
@@ -293,6 +324,7 @@
 ### 表格
 
 **基础表格：**
+
 ```
 ┌──────────┬──────────┬──────────┬──────────┐
 │ 姓名  ▼  │ 邮箱     │ 状态     │ 操作     │
@@ -303,6 +335,7 @@
 ```
 
 **设计要点：**
+
 - 表头加粗 + 排序功能
 - 行 hover 效果
 - 斑马纹（可选）
@@ -314,6 +347,7 @@
 ### 卡片网格
 
 **标准卡片：**
+
 ```
 ┌─────────────────┐
 │ [图片]          │
@@ -326,6 +360,7 @@
 ```
 
 **Tailwind 网格：**
+
 ```html
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
   <div class="bg-white rounded-lg shadow p-6">
@@ -339,6 +374,7 @@
 ### 列表
 
 **简单列表：**
+
 ```
 • 列表项 1
 • 列表项 2
@@ -346,6 +382,7 @@
 ```
 
 **复杂列表（带头像）：**
+
 ```
 ┌──────────────────────────┐
 │ [图] 标题           [操作]│
@@ -363,34 +400,31 @@
 ### 按钮层级
 
 **主要按钮（Primary）：**
+
 - 每个页面/区域只有一个
 - 实心填充、品牌色
 - 最重要的操作
 
 **次要按钮（Secondary）：**
+
 - 描边样式
 - 次要操作
 
 **文字按钮（Text）：**
+
 - 无背景
 - 低优先级操作
 - 通常是"取消"、"了解更多"
 
 ```html
 <!-- 主要 -->
-<button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-  保存
-</button>
+<button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">保存</button>
 
 <!-- 次要 -->
-<button class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-50">
-  取消
-</button>
+<button class="border border-gray-300 px-4 py-2 rounded hover:bg-gray-50">取消</button>
 
 <!-- 文字 -->
-<button class="text-blue-600 hover:underline">
-  了解更多
-</button>
+<button class="text-blue-600 hover:underline">了解更多</button>
 ```
 
 ---
@@ -412,13 +446,16 @@
 ---
 
 ### 悬浮操作按钮（FAB）
+
 **适用：** 移动端主要操作
 
 ```html
-<button class="fixed bottom-6 right-6 w-14 h-14 
-               bg-blue-600 text-white rounded-full 
+<button
+  class="fixed bottom-6 right-6 w-14 h-14
+               bg-blue-600 text-white rounded-full
                shadow-lg flex items-center justify-center
-               hover:bg-blue-700">
+               hover:bg-blue-700"
+>
   +
 </button>
 ```
@@ -428,12 +465,14 @@
 ## ♿ 可访问性模式
 
 ### 键盘导航
+
 - 所有交互元素可聚焦
 - Tab 顺序符合视觉顺序
 - Enter/Space 激活按钮
 - Esc 关闭模态框
 
 ### 焦点样式
+
 ```css
 /* 明显的焦点指示器 */
 :focus-visible {
@@ -443,6 +482,7 @@
 ```
 
 ### 语义化 HTML
+
 ```html
 <!-- 好的 -->
 <nav>...</nav>
@@ -463,6 +503,7 @@
 ### 登录/注册流程
 
 **登录页：**
+
 ```
 ┌─────────────────────────┐
 │        [Logo]           │
@@ -488,6 +529,7 @@
 ### 设置页面
 
 **布局：**
+
 ```
 ┌────────┬────────────────┐
 │ 账户   │ 账户信息       │

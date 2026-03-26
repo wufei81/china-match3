@@ -6,7 +6,8 @@ Patterns for revealing information gradually, on demand.
 
 ## What is Progressive Disclosure?
 
-Showing only the information users need at each moment, with additional details available on demand. Reduces cognitive load while maintaining access to complexity.
+Showing only the information users need at each moment, with additional details available on demand. Reduces cognitive
+load while maintaining access to complexity.
 
 **Core principle:** Simple by default, powerful when needed.
 
@@ -18,13 +19,13 @@ Showing only the information users need at each moment, with additional details 
 
 ### Tooltips vs. Popovers
 
-| Tooltips | Popovers |
-|----------|----------|
-| Text only | Rich content (images, links, actions) |
-| Hover-triggered | Click-triggered usually |
-| Auto-dismiss | User dismisses |
-| Brief explanation | Detailed information |
-| No interaction | Can contain interactions |
+| Tooltips          | Popovers                              |
+| ----------------- | ------------------------------------- |
+| Text only         | Rich content (images, links, actions) |
+| Hover-triggered   | Click-triggered usually               |
+| Auto-dismiss      | User dismisses                        |
+| Brief explanation | Detailed information                  |
+| No interaction    | Can contain interactions              |
 
 ### Benefits & Use Cases
 
@@ -42,6 +43,7 @@ Showing only the information users need at each moment, with additional details 
 ### Implementation Guidelines (Tooltips)
 
 **DO:**
+
 - Delay appearance (300-500ms) to avoid flicker
 - Position to not obscure related content
 - Keep text brief (1-2 sentences max)
@@ -49,6 +51,7 @@ Showing only the information users need at each moment, with additional details 
 - Use arrow pointing to trigger element
 
 **DON'T:**
+
 - Use for essential information
 - Require tooltips to complete tasks
 - Show on touch without alternative (no hover on mobile)
@@ -58,6 +61,7 @@ Showing only the information users need at each moment, with additional details 
 ### Implementation Guidelines (Popovers)
 
 **DO:**
+
 - Clear close mechanism (X, click outside)
 - Appropriate max-width for content
 - Position dynamically (flip if near edge)
@@ -65,6 +69,7 @@ Showing only the information users need at each moment, with additional details 
 - Consider mobile-specific behavior (bottom sheets)
 
 **DON'T:**
+
 - Nest popovers within popovers
 - Put critical actions only in popovers
 - Open on hover (confusing behavior)
@@ -92,6 +97,7 @@ Showing only the information users need at each moment, with additional details 
 ### Implementation Guidelines
 
 **DO:**
+
 - Limit nesting depth (2-3 levels max)
 - Clear visual indicator for submenus (arrow)
 - Appropriate hover delay for submenus (300ms)
@@ -99,6 +105,7 @@ Showing only the information users need at each moment, with additional details 
 - Keyboard navigation (arrows to navigate, Enter to select)
 
 **DON'T:**
+
 - Deeply nest menus (hard to navigate)
 - Make menus too narrow for content
 - Require precise mouse movements
@@ -133,6 +140,7 @@ Showing only the information users need at each moment, with additional details 
 ### Implementation Guidelines
 
 **DO:**
+
 - Clear expand/collapse indicator
 - Smooth animation
 - Distinct visual treatment for expanded content
@@ -140,6 +148,7 @@ Showing only the information users need at each moment, with additional details 
 - Preserve expanded state during interactions
 
 **DON'T:**
+
 - Auto-collapse other rows (usually—unless space critical)
 - Nest expandable rows within expandable rows
 - Put primary actions only in expanded view
@@ -162,13 +171,13 @@ Showing only the information users need at each moment, with additional details 
 
 ### Side Drawers vs. Bottom Sheets
 
-| Side Drawers | Bottom Sheets |
-|--------------|---------------|
-| Desktop primary | Mobile primary |
-| Navigation menus | Actions, options |
-| Longer content | Shorter content |
-| Wider content | Full-width content |
-| Slide from left/right | Slide from bottom |
+| Side Drawers          | Bottom Sheets      |
+| --------------------- | ------------------ |
+| Desktop primary       | Mobile primary     |
+| Navigation menus      | Actions, options   |
+| Longer content        | Shorter content    |
+| Wider content         | Full-width content |
+| Slide from left/right | Slide from bottom  |
 
 ### Benefits & Use Cases
 
@@ -187,6 +196,7 @@ Showing only the information users need at each moment, with additional details 
 ### Implementation Guidelines
 
 **DO:**
+
 - Clear close mechanism (X, tap outside, swipe)
 - Appropriate width (280-400px for side drawers)
 - Overlay/scrim behind to focus attention
@@ -194,6 +204,7 @@ Showing only the information users need at each moment, with additional details 
 - Trap focus within drawer (accessibility)
 
 **DON'T:**
+
 - Make drawers too wide (becomes a page)
 - Put critical info only in drawers
 - Stack multiple drawers
@@ -243,6 +254,7 @@ Showing only the information users need at each moment, with additional details 
 ### Implementation Guidelines
 
 **DO:**
+
 - Clear title describing the modal purpose
 - Primary action prominent (visual emphasis)
 - Secondary action available (cancel/back)
@@ -251,6 +263,7 @@ Showing only the information users need at each moment, with additional details 
 - Return focus to trigger on close
 
 **DON'T:**
+
 - Overuse modals (modal fatigue)
 - Stack modals (one modal opening another)
 - Require scrolling in modals (usually)
@@ -260,12 +273,12 @@ Showing only the information users need at each moment, with additional details 
 
 ### Modal Sizes
 
-| Size | Use Case |
-|------|----------|
-| Small (400px) | Simple confirmations |
-| Medium (600px) | Forms, content preview |
-| Large (800px+) | Complex tasks, multi-step |
-| Full screen | Immersive tasks (mobile common) |
+| Size           | Use Case                        |
+| -------------- | ------------------------------- |
+| Small (400px)  | Simple confirmations            |
+| Medium (600px) | Forms, content preview          |
+| Large (800px+) | Complex tasks, multi-step       |
+| Full screen    | Immersive tasks (mobile common) |
 
 ---
 
@@ -283,6 +296,7 @@ Showing only the information users need at each moment, with additional details 
 ### Implementation Guidelines
 
 **DO:**
+
 - Natural truncation point (sentence break, not mid-word)
 - Clear "Read more" link/button
 - Consider inline expansion vs. navigate to full page
@@ -290,6 +304,7 @@ Showing only the information users need at each moment, with additional details 
 - Animate expansion smoothly
 
 **DON'T:**
+
 - Truncate critically important content
 - Use arbitrary truncation lengths (vary by content)
 - Truncate to single words ("...")
@@ -298,23 +313,23 @@ Showing only the information users need at each moment, with additional details 
 
 ### Truncation Guidelines
 
-| Content Type | Truncation Point |
-|--------------|------------------|
-| Card descriptions | 2-3 lines |
-| Table cells | 1 line with tooltip |
-| List item descriptions | 1-2 sentences |
-| Blog excerpts | 150-250 characters |
+| Content Type           | Truncation Point    |
+| ---------------------- | ------------------- |
+| Card descriptions      | 2-3 lines           |
+| Table cells            | 1 line with tooltip |
+| List item descriptions | 1-2 sentences       |
+| Blog excerpts          | 150-250 characters  |
 
 ---
 
 ## Progressive Disclosure Pattern Selection
 
-| Need | Pattern |
-|------|---------|
-| Quick explanation | Tooltip |
-| Rich preview | Popover |
-| Deep navigation | Nested menus |
+| Need                     | Pattern         |
+| ------------------------ | --------------- |
+| Quick explanation        | Tooltip         |
+| Rich preview             | Popover         |
+| Deep navigation          | Nested menus    |
 | Detail on demand (lists) | Expandable rows |
-| Temporary panel | Drawer/sheet |
-| Required decision | Modal |
-| Optional full content | Read more |
+| Temporary panel          | Drawer/sheet    |
+| Required decision        | Modal           |
+| Optional full content    | Read more       |

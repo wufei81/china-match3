@@ -19,21 +19,21 @@ A comprehensive UI design decision-making framework. Use for rapid, intentional 
 
 Load as needed:
 
-| Category | File |
-|----------|------|
-| Core Framework | `references/00-core-framework.md` |
-| New Interfaces | `references/10-checklist-new-interfaces.md` |
-| Fidelity | `references/11-checklist-fidelity.md` |
-| Visual Style | `references/12-checklist-visual-style.md` |
+| Category         | File                                         |
+| ---------------- | -------------------------------------------- |
+| Core Framework   | `references/00-core-framework.md`            |
+| New Interfaces   | `references/10-checklist-new-interfaces.md`  |
+| Fidelity         | `references/11-checklist-fidelity.md`        |
+| Visual Style     | `references/12-checklist-visual-style.md`    |
 | Visual Hierarchy | `references/23-patterns-visual-hierarchy.md` |
-| Social Proof | `references/24-patterns-social-proof.md` |
-| Navigation | `references/31-patterns-navigation.md` |
+| Social Proof     | `references/24-patterns-social-proof.md`     |
+| Navigation       | `references/31-patterns-navigation.md`       |
 
 ## Macro Bets
 
-| Bet | Design Implication |
-|-----|-------------------|
-| **Velocity** | Reuse patterns, find metaphors |
-| **Efficiency** | Design systems, reduce WIP |
-| **Accuracy** | Stronger research, instrumentation |
+| Bet            | Design Implication                       |
+| -------------- | ---------------------------------------- |
+| **Velocity**   | Reuse patterns, find metaphors           |
+| **Efficiency** | Design systems, reduce WIP               |
+| **Accuracy**   | Stronger research, instrumentation       |
 | **Innovation** | Novel patterns, cross-domain inspiration |

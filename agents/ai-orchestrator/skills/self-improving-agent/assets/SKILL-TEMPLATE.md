@@ -18,8 +18,8 @@ Brief introduction explaining the problem this skill solves and its origin.
 
 ## Quick Reference
 
-| Situation | Action |
-|-----------|--------|
+| Situation   | Action     |
+| ----------- | ---------- |
 | [Trigger 1] | [Action 1] |
 | [Trigger 2] | [Action 2] |
 
@@ -37,9 +37,7 @@ Why this knowledge matters. What problems it prevents. Context from the original
 
 ### Code Example
 
-\`\`\`language
-// Example code demonstrating the solution
-\`\`\`
+\`\`\`language // Example code demonstrating the solution \`\`\`
 
 ## Common Variations
 
@@ -59,6 +57,7 @@ Why this knowledge matters. What problems it prevents. Context from the original
 ## Source
 
 Extracted from learning entry.
+
 - **Learning ID**: LRN-YYYYMMDD-XXX
 - **Original Category**: correction | insight | knowledge_gap | best_practice
 - **Extraction Date**: YYYY-MM-DD
@@ -107,18 +106,16 @@ description: "What this skill does and when to use it."
 
 ## Quick Reference
 
-| Command | Purpose |
-|---------|---------|
-| `./scripts/helper.sh` | [What it does] |
+| Command                 | Purpose        |
+| ----------------------- | -------------- |
+| `./scripts/helper.sh`   | [What it does] |
 | `./scripts/validate.sh` | [What it does] |
 
 ## Usage
 
 ### Automated (Recommended)
 
-\`\`\`bash
-./skills/skill-name/scripts/helper.sh [args]
-\`\`\`
+\`\`\`bash ./skills/skill-name/scripts/helper.sh [args] \`\`\`
 
 ### Manual Steps
 
@@ -127,9 +124,9 @@ description: "What this skill does and when to use it."
 
 ## Scripts
 
-| Script | Description |
-|--------|-------------|
-| `scripts/helper.sh` | Main utility |
+| Script                | Description        |
+| --------------------- | ------------------ |
+| `scripts/helper.sh`   | Main utility       |
 | `scripts/validate.sh` | Validation checker |
 
 ## Source

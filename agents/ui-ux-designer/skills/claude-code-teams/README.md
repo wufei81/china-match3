@@ -2,7 +2,8 @@
 
 **Production-ready orchestration for Claude Code's native agent teams feature.**
 
-> Coordinate multiple Claude Code agents working together on complex tasks. Multi-lens code reviews, parallel debugging, and full-stack coordination with templates for common patterns.
+> Coordinate multiple Claude Code agents working together on complex tasks. Multi-lens code reviews, parallel debugging,
+> and full-stack coordination with templates for common patterns.
 
 [![OpenClaw Skill](https://img.shields.io/badge/OpenClaw-Skill-blue)](https://openclaw.ai)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -11,9 +12,11 @@
 
 ## Why This Skill?
 
-Claude Code's agent teams feature lets you spawn multiple AI agents that coordinate through a shared task list and mailbox. But knowing *when* and *how* to use teams effectively is non-trivial.
+Claude Code's agent teams feature lets you spawn multiple AI agents that coordinate through a shared task list and
+mailbox. But knowing _when_ and _how_ to use teams effectively is non-trivial.
 
 This skill provides:
+
 - ✅ **6 templates** for common patterns (code review, debugging, full-stack builds)
 - ✅ **Automation scripts** for validation, monitoring, and cleanup
 - ✅ **Cost optimization** guidance (model mixing, team sizing)
@@ -64,14 +67,14 @@ cd ~/.openclaw/workspace/skills/claude-code-teams
 
 Choose from 6 templates:
 
-| Template | Use When |
-|----------|----------|
-| **parallel-review** | Need multi-lens code review (security + performance + tests) |
-| **competing-hypotheses** | Debugging with multiple plausible theories |
-| **fullstack-feature** | Building frontend + backend + tests in parallel |
-| **architecture-decision** | Making ADR with adversarial debate |
-| **bottleneck-analysis** | Investigating performance across systems |
-| **inventory-classification** | Bulk refactoring/classification (data-parallel) |
+| Template                     | Use When                                                     |
+| ---------------------------- | ------------------------------------------------------------ |
+| **parallel-review**          | Need multi-lens code review (security + performance + tests) |
+| **competing-hypotheses**     | Debugging with multiple plausible theories                   |
+| **fullstack-feature**        | Building frontend + backend + tests in parallel              |
+| **architecture-decision**    | Making ADR with adversarial debate                           |
+| **bottleneck-analysis**      | Investigating performance across systems                     |
+| **inventory-classification** | Bulk refactoring/classification (data-parallel)              |
 
 ### 5. Spawn Team
 
@@ -141,6 +144,7 @@ Use delegate mode: I coordinate, teammates review."
 **Speedup:** ~3x faster than sequential review
 
 **Example output:**
+
 ```
 findings-security.md    → SQL injection risk in user-input.ts
 findings-performance.md → N+1 query in posts endpoint
@@ -158,6 +162,7 @@ findings-tests.md       → Missing edge case tests for pagination
 **Speedup:** Identifies root cause faster than sequential investigation
 
 **Example:**
+
 ```
 Hypothesis A: Database connection pool exhausted
 Hypothesis B: Memory leak in worker process
@@ -175,6 +180,7 @@ Hypothesis C: Network latency to external API
 **Speedup:** ~2-3x faster than sequential implementation
 
 **Example:**
+
 ```
 Frontend: React component + API integration
 Backend: FastAPI endpoint + business logic
@@ -192,6 +198,7 @@ Tests: Integration + unit tests for both layers
 **Outcome:** Stronger decisions with explored alternatives
 
 **Example:**
+
 ```
 Agent A: Advocate for PostgreSQL (relational benefits)
 Agent B: Advocate for MongoDB (flexibility benefits)
@@ -209,6 +216,7 @@ Output: ADR with trade-offs and recommendation
 **Speedup:** Faster identification across full stack
 
 **Example:**
+
 ```
 DB Analyst: Check slow queries, connection pool
 Network Analyst: Check latency, packet loss
@@ -227,6 +235,7 @@ Frontend Analyst: Check render performance, bundle size
 **Speedup:** Linear (3 agents = ~3x faster)
 
 **Example:**
+
 ```
 Agent 1: Process files 1-100
 Agent 2: Process files 101-200
@@ -248,6 +257,7 @@ Check prerequisites before spawning teams.
 ```
 
 Checks:
+
 - `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=true` is set
 - `claude` CLI is available
 - `tmux` is installed (for split-pane display)
@@ -263,6 +273,7 @@ Monitor task list and teammate status in real-time.
 ```
 
 Shows:
+
 - Task list (pending → in progress → complete)
 - Active teammates and current work
 - Recent inter-agent messages
@@ -306,11 +317,11 @@ claude --model opus
 
 ### Estimated Costs
 
-| Team Size | Duration | Model Mix | Cost |
-|-----------|----------|-----------|------|
-| 1 lead + 3 teammates | 30 min | Opus lead, Sonnet team | $15-25 |
-| 1 lead + 3 teammates | 30 min | All Opus | $25-40 |
-| 1 lead + 6 teammates | 30 min | Opus lead, Sonnet team | $25-40 |
+| Team Size            | Duration | Model Mix              | Cost   |
+| -------------------- | -------- | ---------------------- | ------ |
+| 1 lead + 3 teammates | 30 min   | Opus lead, Sonnet team | $15-25 |
+| 1 lead + 3 teammates | 30 min   | All Opus               | $25-40 |
+| 1 lead + 6 teammates | 30 min   | Opus lead, Sonnet team | $25-40 |
 
 See [references/cost-management.md](references/cost-management.md) for detailed strategies.
 
@@ -321,6 +332,7 @@ See [references/cost-management.md](references/cost-management.md) for detailed 
 ### PR Review ([examples/pr-review-example.md](examples/pr-review-example.md))
 
 Step-by-step walkthrough of parallel PR review:
+
 1. Security reviewer checks auth + input validation
 2. Performance reviewer profiles queries + rendering
 3. Test reviewer assesses coverage + edge cases
@@ -333,6 +345,7 @@ Step-by-step walkthrough of parallel PR review:
 ### Bug Hunt ([examples/bug-hunt-example.md](examples/bug-hunt-example.md))
 
 Competing hypotheses pattern for root cause analysis:
+
 1. Spawn 3 agents with different theories
 2. Each investigates independently (logs, metrics, traces)
 3. Report findings + confidence level
@@ -345,6 +358,7 @@ Competing hypotheses pattern for root cause analysis:
 ### Feature Build ([examples/feature-build-example.md](examples/feature-build-example.md))
 
 Full-stack coordination for user authentication:
+
 1. Backend agent builds FastAPI endpoint + JWT logic
 2. Frontend agent builds React login form + API integration
 3. Test agent writes integration + unit tests
@@ -359,8 +373,7 @@ Full-stack coordination for user authentication:
 ### Clear File Boundaries
 
 ```markdown
-❌ Bad: "Alice and Bob both work on user-service.ts"
-✅ Good: "Alice owns user-service.ts, Bob owns user-repository.ts"
+❌ Bad: "Alice and Bob both work on user-service.ts" ✅ Good: "Alice owns user-service.ts, Bob owns user-repository.ts"
 ```
 
 ### Use Delegate Mode
@@ -387,12 +400,12 @@ See [references/best-practices.md](references/best-practices.md) for detailed gu
 
 ## Troubleshooting
 
-| Issue | Solution |
-|-------|----------|
-| Teammates not spawning | Check `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=true`, restart Claude Code |
-| Same-file conflicts | Fix file boundaries in spawn prompt |
-| Lead implementing instead of coordinating | Add "Use delegate mode" to spawn prompt |
-| High costs | Use model mixing, reduce team size, minimize broadcasts |
+| Issue                                     | Solution                                                               |
+| ----------------------------------------- | ---------------------------------------------------------------------- |
+| Teammates not spawning                    | Check `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=true`, restart Claude Code |
+| Same-file conflicts                       | Fix file boundaries in spawn prompt                                    |
+| Lead implementing instead of coordinating | Add "Use delegate mode" to spawn prompt                                |
+| High costs                                | Use model mixing, reduce team size, minimize broadcasts                |
 
 See [references/troubleshooting.md](references/troubleshooting.md) for full list.
 
@@ -400,12 +413,12 @@ See [references/troubleshooting.md](references/troubleshooting.md) for full list
 
 ## Comparison with Alternatives
 
-| Approach | Best For | Limitations |
-|----------|----------|-------------|
-| **Single Claude Code session** | Sequential work, learning | Can't parallelize |
+| Approach                           | Best For                   | Limitations           |
+| ---------------------------------- | -------------------------- | --------------------- |
+| **Single Claude Code session**     | Sequential work, learning  | Can't parallelize     |
 | **Claude Code teams** (this skill) | Parallel independent tasks | Coordination overhead |
-| **OpenClaw subagents** | Background work | No shared state |
-| **Multiple terminals** | Isolated tasks | No coordination |
+| **OpenClaw subagents**             | Background work            | No shared state       |
+| **Multiple terminals**             | Isolated tasks             | No coordination       |
 
 ---
 
@@ -429,6 +442,7 @@ MIT License - see [LICENSE](LICENSE) for details.
 ## Credits
 
 Built with insights from:
+
 - [Claude Code official documentation](https://github.com/anthropics/claude-code)
 - ClaudeFast best practices
 - OpenClaw community patterns

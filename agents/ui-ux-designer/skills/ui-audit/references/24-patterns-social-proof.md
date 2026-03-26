@@ -6,7 +6,8 @@ Patterns for leveraging social influence to build trust and encourage action.
 
 ## What is Social Proof?
 
-People look to others' behavior to guide their own decisions. When uncertain, we assume the crowd knows something we don't.
+People look to others' behavior to guide their own decisions. When uncertain, we assume the crowd knows something we
+don't.
 
 **Core principle:** Show users that others have chosen, trusted, and succeeded with your product.
 
@@ -18,13 +19,13 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 
 ### Types
 
-| Type | Use Case |
-|------|----------|
+| Type                   | Use Case                         |
+| ---------------------- | -------------------------------- |
 | **Quote testimonials** | Brand credibility, landing pages |
-| **Star ratings** | Quick quality signal |
-| **Written reviews** | Detailed feedback, product pages |
-| **Video testimonials** | High-trust, emotional impact |
-| **Case studies** | B2B, complex products |
+| **Star ratings**       | Quick quality signal             |
+| **Written reviews**    | Detailed feedback, product pages |
+| **Video testimonials** | High-trust, emotional impact     |
+| **Case studies**       | B2B, complex products            |
 
 ### Psychological Principles
 
@@ -35,6 +36,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### Implementation Guidelines
 
 **DO:**
+
 - Real names, photos, roles (specific > anonymous)
 - Include measurable results when possible
 - Show diversity in testimonials
@@ -42,6 +44,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 - Keep quotes concise and specific
 
 **DON'T:**
+
 - Fabricate testimonials (ever)
 - Use generic/vague praise ("Great product!")
 - Hide negative reviews entirely (looks suspicious)
@@ -51,7 +54,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### Testimonial Structure
 
 ```
-"[Specific benefit achieved] since using [product]. 
+"[Specific benefit achieved] since using [product].
 [Quantifiable result if possible]."
 
 — [Full Name], [Role] at [Company]
@@ -81,6 +84,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### Implementation Guidelines
 
 **DO:**
+
 - Curate quality examples
 - Credit creators
 - Show recent activity (freshness matters)
@@ -88,6 +92,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 - Make submission easy
 
 **DON'T:**
+
 - Display low-quality content
 - Use without permission
 - Fake UGC
@@ -102,13 +107,13 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 
 ### Types
 
-| Indicator | Example |
-|-----------|---------|
-| **User count** | "Join 50,000+ users" |
-| **Activity count** | "2.5M projects created" |
-| **Live activity** | "42 people viewing this" |
-| **Popularity** | "Bestseller", "Trending" |
-| **Engagement** | "10K+ likes" |
+| Indicator          | Example                  |
+| ------------------ | ------------------------ |
+| **User count**     | "Join 50,000+ users"     |
+| **Activity count** | "2.5M projects created"  |
+| **Live activity**  | "42 people viewing this" |
+| **Popularity**     | "Bestseller", "Trending" |
+| **Engagement**     | "10K+ likes"             |
 
 ### Psychological Principles
 
@@ -119,6 +124,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### Implementation Guidelines
 
 **DO:**
+
 - Use real, verifiable numbers
 - Update numbers regularly
 - Round for readability (50K not 49,847)
@@ -126,6 +132,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 - Place near CTAs
 
 **DON'T:**
+
 - Show embarrassingly low numbers
 - Fabricate statistics
 - Show stale data
@@ -135,11 +142,13 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### When to Show vs. Hide
 
 **Show when:**
+
 - Numbers are impressive
 - Metric is relevant
 - Adds credibility
 
 **Hide when:**
+
 - Numbers are low (new product)
 - Metric is vanity
 - Would cause FOMO negatively
@@ -152,14 +161,14 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 
 ### Types
 
-| Badge Type | Purpose |
-|------------|---------|
-| **Security** | SSL, payment security, privacy compliance |
-| **Certifications** | ISO, SOC2, industry standards |
-| **Reviews** | G2, Capterra, TrustPilot ratings |
-| **Press** | "As seen in" media logos |
-| **Awards** | Industry recognition |
-| **Associations** | Professional memberships |
+| Badge Type         | Purpose                                   |
+| ------------------ | ----------------------------------------- |
+| **Security**       | SSL, payment security, privacy compliance |
+| **Certifications** | ISO, SOC2, industry standards             |
+| **Reviews**        | G2, Capterra, TrustPilot ratings          |
+| **Press**          | "As seen in" media logos                  |
+| **Awards**         | Industry recognition                      |
+| **Associations**   | Professional memberships                  |
 
 ### Placement Guidelines
 
@@ -172,6 +181,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### Implementation Guidelines
 
 **DO:**
+
 - Use recognizable badges
 - Link to verification where possible
 - Keep current (expired certs = worse than none)
@@ -179,6 +189,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 - Limit quantity (3-5 max per area)
 
 **DON'T:**
+
 - Use fake/made-up badges
 - Overwhelm with too many badges
 - Use outdated certifications
@@ -208,12 +219,14 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### Implementation Guidelines
 
 **DO:**
+
 - Show impressive follower counts
 - Display recent, positive social activity
 - Enable easy sharing
 - Use recognizable social icons
 
 **DON'T:**
+
 - Show low follower counts
 - Embed feeds with negative comments visible
 - Show outdated social activity
@@ -228,12 +241,12 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 
 ### Types
 
-| Pattern | Example |
-|---------|---------|
-| **Stock scarcity** | "Only 3 left in stock" |
-| **Demand scarcity** | "12 people viewing this" |
-| **Time urgency** | "Sale ends in 2:15:00" |
-| **Social urgency** | "5 purchased in last hour" |
+| Pattern             | Example                    |
+| ------------------- | -------------------------- |
+| **Stock scarcity**  | "Only 3 left in stock"     |
+| **Demand scarcity** | "12 people viewing this"   |
+| **Time urgency**    | "Sale ends in 2:15:00"     |
+| **Social urgency**  | "5 purchased in last hour" |
 
 ### Psychological Principles
 
@@ -244,12 +257,14 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### Implementation Guidelines
 
 **DO:**
+
 - Use real scarcity data
 - Be truthful about urgency
 - Make scarcity relevant (matters for that product)
 - Use sparingly for maximum impact
 
 **DON'T:**
+
 - Fake scarcity (destroys trust)
 - Use constant urgency (loses impact)
 - Create anxiety unnecessarily
@@ -281,6 +296,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 ### Implementation Guidelines
 
 **DO:**
+
 - Make the similarity relevant and specific
 - Show why similar (explicit connection)
 - Use real data for recommendations
@@ -288,6 +304,7 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 - Test recommendation algorithms
 
 **DON'T:**
+
 - Use vague similarity ("customers")
 - Show irrelevant recommendations
 - Over-personalize (creepy)
@@ -298,24 +315,24 @@ People look to others' behavior to guide their own decisions. When uncertain, we
 
 ## Social Proof Placement
 
-| Page/Context | Best Social Proof |
-|--------------|-------------------|
-| Homepage | User counts, press logos, featured testimonials |
-| Pricing | Testimonials near CTAs, trust badges |
-| Product page | Reviews, ratings, popularity indicators |
-| Checkout | Security badges, trust signals |
-| Sign-up | User counts, social login |
-| Features | Case studies, specific testimonials |
+| Page/Context | Best Social Proof                               |
+| ------------ | ----------------------------------------------- |
+| Homepage     | User counts, press logos, featured testimonials |
+| Pricing      | Testimonials near CTAs, trust badges            |
+| Product page | Reviews, ratings, popularity indicators         |
+| Checkout     | Security badges, trust signals                  |
+| Sign-up      | User counts, social login                       |
+| Features     | Case studies, specific testimonials             |
 
 ---
 
 ## Social Proof Audit
 
-| Element | Present? | Effective? |
-|---------|----------|------------|
-| ☐ Testimonials with real names | | |
-| ☐ Quantifiable social proof | | |
-| ☐ Trust badges near decisions | | |
-| ☐ Social proof near CTAs | | |
-| ☐ Authentic, not fabricated | | |
-| ☐ Appropriate scarcity (if used) | | |
+| Element                          | Present? | Effective? |
+| -------------------------------- | -------- | ---------- |
+| ☐ Testimonials with real names   |          |            |
+| ☐ Quantifiable social proof      |          |            |
+| ☐ Trust badges near decisions    |          |            |
+| ☐ Social proof near CTAs         |          |            |
+| ☐ Authentic, not fabricated      |          |            |
+| ☐ Appropriate scarcity (if used) |          |            |

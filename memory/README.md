@@ -59,41 +59,44 @@ print(f"总记忆数：{stats['total_memories']}")
 
 ### VectorMemory 类
 
-| 方法 | 说明 |
-|------|------|
-| `add_memory(text, category, metadata)` | 添加记忆 |
-| `search_memories(query, n_results, category)` | 搜索记忆 |
-| `delete_memory(memory_id)` | 删除记忆 |
-| `get_all_memories(category)` | 获取所有记忆 |
-| `get_stats()` | 获取统计信息 |
-| `export_memories(output_path)` | 导出到 JSON |
+| 方法                                          | 说明         |
+| --------------------------------------------- | ------------ |
+| `add_memory(text, category, metadata)`        | 添加记忆     |
+| `search_memories(query, n_results, category)` | 搜索记忆     |
+| `delete_memory(memory_id)`                    | 删除记忆     |
+| `get_all_memories(category)`                  | 获取所有记忆 |
+| `get_stats()`                                 | 获取统计信息 |
+| `export_memories(output_path)`                | 导出到 JSON  |
 
 ### 参数说明
 
 **add_memory:**
+
 - `text` (str): 记忆内容
 - `category` (str): 分类标签 (general, investment, preference, schedule, etc.)
 - `metadata` (dict): 额外元数据 (可选)
 
 **search_memories:**
+
 - `query` (str): 搜索查询 (支持自然语言)
 - `n_results` (int): 返回结果数量 (默认 5)
 - `category` (str): 分类过滤 (可选)
 
 ## 分类建议
 
-| 分类 | 用途 | 示例 |
-|------|------|------|
-| `general` | 通用记忆 | 用户基本信息 |
-| `investment` | 投资相关 | 持仓、偏好、策略 |
+| 分类         | 用途     | 示例               |
+| ------------ | -------- | ------------------ |
+| `general`    | 通用记忆 | 用户基本信息       |
+| `investment` | 投资相关 | 持仓、偏好、策略   |
 | `preference` | 用户偏好 | 邮件格式、通知方式 |
-| `schedule` | 定时任务 | cron 任务、提醒 |
-| `work` | 工作相关 | 项目、任务 |
-| `personal` | 个人信息 | 联系方式、地址 |
+| `schedule`   | 定时任务 | cron 任务、提醒    |
+| `work`       | 工作相关 | 项目、任务         |
+| `personal`   | 个人信息 | 联系方式、地址     |
 
 ## 语义搜索原理
 
 使用 `all-MiniLM-L6-v2` 模型 (384 维向量) 进行文本嵌入：
+
 - 自动下载首次运行时
 - 本地缓存于 `~/.cache/chroma/`
 - 支持中文语义理解
@@ -125,4 +128,4 @@ python3 -c "from vector_memory import VectorMemory; m=VectorMemory(); print(m.ge
 
 ---
 
-*最后更新：2026-03-09*
+_最后更新：2026-03-09_

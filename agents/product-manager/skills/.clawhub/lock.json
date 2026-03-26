@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "skills": {
+    "using-superpowers": {
+      "version": "0.1.0",
+      "installedAt": 1774086823452
+    },
+    "planning-with-files": {
+      "version": "2.26.1",
+      "installedAt": 1774086826289
+    },
+    "auto-updater": {
+      "version": "1.0.0",
+      "installedAt": 1774088674396
+    },
+    "skill-vetter": {
+      "version": "1.0.0",
+      "installedAt": 1774094862143
+    }
+  }
+}
