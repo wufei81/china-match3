@@ -1,0 +1,47 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "name": "notify-qa-on-validation",
+        "matcher": "tool == \"Write\" && file_path includes \"VALIDATION_LOG.md\"",
+        "hooks": [{
+          "type": "command",
+          "command": "#!/bin/bash\necho \"📢 [AUTO-NOTIFY] DevEngineer → QAEngineer\"\necho \"   状态：开发完成，E2E 自验证通过\"\necho \"   时间：$(date '+%Y-%m-%d %H:%M:%S')\"\necho \"   请 QAEngineer 开始测试\"\n"
+        }]
+      },
+      {
+        "name": "notify-devops-on-test-pass",
+        "matcher": "tool == \"Write\" && file_path includes \"INTEGRATION_TEST_PLAN.md\"",
+        "hooks": [{
+          "type": "command",
+          "command": "#!/bin/bash\necho \"📢 [AUTO-NOTIFY] QAEngineer → DevOpsEngineer\"\necho \"   状态：E2E 测试 100% 通过\"\necho \"   时间：$(date '+%Y-%m-%d %H:%M:%S')\"\necho \"   请 DevOpsEngineer 准备部署\"\n"
+        }]
+      },
+      {
+        "name": "notify-techlead-on-arch",
+        "matcher": "tool == \"Write\" && file_path includes \"ARCH_\" && file_path includes \".md\"",
+        "hooks": [{
+          "type": "command",
+          "command": "#!/bin/bash\necho \"📢 [AUTO-NOTIFY] Architect → TechLeader\"\necho \"   状态：架构设计完成\"\necho \"   时间：$(date '+%Y-%m-%d %H:%M:%S')\"\necho \"   请 TechLeader 评审\"\n"
+        }]
+      },
+      {
+        "name": "notify-arch-on-codebase-update",
+        "matcher": "tool == \"Write\" && file_path includes \"CODEBASE_INDEX.md\"",
+        "hooks": [{
+          "type": "command",
+          "command": "#!/bin/bash\necho \"📢 [AUTO-NOTIFY] DevEngineer → Architect\"\necho \"   状态：代码实现完成，已更新索引\"\necho \"   时间：$(date '+%Y-%m-%d %H:%M:%S')\"\necho \"   请 Architect 确认对齐架构\"\n"
+        }]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "name": "auto-learn-pattern",
+        "hooks": [{
+          "type": "command",
+          "command": "/learn"
+        }]
+      }
+    ]
+  }
+}

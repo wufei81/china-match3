@@ -237,6 +237,20 @@ user-invocable: true
 - **smart-memory**: 持久化认知记忆
 - **self-improving-agent**: 持续学习与改进
 
+**🔐 GitHub 认证配置**:
+
+```bash
+# 环境变量 (自动加载)
+export GITHUB_TOKEN="github_pat_xxx"
+export GITHUB_EMAIL="wufei81@126.com"
+export GITHUB_USER="wufei"
+
+# Git 配置
+git config --global credential.helper store
+git config --global user.email "wufei81@126.com"
+git config --global user.name "wufei"
+```
+
 **⭐ Everything Claude Code (优先使用)**:
 
 资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
