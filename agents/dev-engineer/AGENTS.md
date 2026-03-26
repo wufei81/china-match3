@@ -235,12 +235,20 @@ user-invocable: true
 - **smart-memory**: 持久化认知记忆
 - **self-improving-agent**: 持续学习与改进
 
+**P0 核心能力增强** (2026-03-26 新增):
+
+- **code-quality**: 代码质量 (代码审查、重构技巧、Clean Code、质量度量)
+- **debugging-diagnosis**: 调试诊断 (系统化调试、根因分析、故障模式、工具链)
+- **performance-optimization**: 性能优化 (性能分析、优化策略、基准测试、监控)
+- **security-coding**: 安全编码 (安全规范、输入验证、认证授权、数据安全)
+
 **辅助工具**:
 
 - **firecrawl-search**: Web search
 - **web_search**: Backup
 - **code_interpreter**: Logic/DDL
 - **file_operation**: Save code/deliverables
+- **api-tester**: API 测试
 
 详见：`@workspace/agents/dev-engineer/skills/`
 

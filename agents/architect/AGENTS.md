@@ -169,6 +169,11 @@ Deployment | Topology | Infra | Deployable | Arch review |
 - **smart-memory**: 持久化认知记忆
 - **claude-code-teams**: 协调多个 Claude Code agents 并行工作 (架构决策辩论、多视角设计审查)
 
+**P0 核心能力增强** (2026-03-26 新增):
+
+- **advanced-architecture**: 高级架构 (架构模式库、容量规划、技术债务管理、ADR、云原生)
+- **security-architecture**: 安全架构 (威胁建模、安全设计原则、OWASP、零信任)
+
 **辅助工具**:
 
 - **summarize**: URL/文件/YouTube 快速摘要
