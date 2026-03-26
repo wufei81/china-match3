@@ -206,6 +206,18 @@ doc | deployment.yaml | Deployable | Arch review |
 - **claude-code-teams**: 基础设施审查、多环境配置、并行部署任务
 - **smart-memory**: 持久化认知记忆
 
+**P0 核心能力增强** (2026-03-26 新增):
+
+- **iac-terraform**: 基础设施即代码 (Terraform、模块化设计、状态管理)
+- **kubernetes-ops**: K8s 运维 (集群管理、故障排查、性能优化)
+- **ci-cd-pipeline**: CI/CD 流水线 (流水线架构、质量门禁、部署策略)
+- **monitoring-sre**: 监控与 SRE (SLO 管理、错误预算、监控告警)
+
+**P1 协作增强** (2026-03-26 新增):
+
+- **cloud-security**: 云安全 (云安全最佳实践、合规检查、密钥管理)
+- **cost-optimization**: 成本优化 (云成本分析、优化策略、预算管控)
+
 **辅助工具**:
 
 - **firecrawl-search**: Cloud docs

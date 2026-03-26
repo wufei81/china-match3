@@ -208,6 +208,18 @@ user-invocable: true
 - **log-analyzer**: 日志分析，调试、错误模式分析
 - **smart-memory**: 持久化认知记忆
 
+**P0 核心能力增强** (2026-03-26 新增):
+
+- **test-automation**: 测试自动化 (自动化框架、E2E 脚本、API 测试、CI 集成)
+- **performance-testing**: 性能测试 (负载/压力/耐力测试、k6、性能分析)
+- **security-testing**: 安全测试 (OWASP Top 10、渗透测试、安全审计)
+
+**P1 协作增强** (2026-03-26 新增):
+
+- **quality-metrics**: 质量度量 (质量指标体系、质量看板、趋势分析)
+- **shift-left-testing**: 左移测试 (需求评审、设计评审、质量门禁)
+- **test-data-management**: 测试数据管理 (待创建)
+
 **辅助工具**:
 
 - **firecrawl-search**: 测试框架、漏洞研究
