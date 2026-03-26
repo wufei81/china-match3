@@ -33,3 +33,10 @@ echo "清理旧备份..."
 find /home/wufei/.openclaw/workspace/backups -name "*.tar.gz" -mtime +30 -delete
 
 echo "✅ 备份完成：/home/wufei/.openclaw/workspace/backups/$(date +%Y%m%d).tar.gz"
+
+# 加密备份
+if command -v gpg &> /dev/null; then
+  gpg --symmetric --cipher-algo AES256 --batch --passphrase-file ~/.backup-passphrase $BACKUP_DIR.tar.gz
+  rm -f $BACKUP_DIR.tar.gz
+  echo "✅ 备份已加密"
+fi
