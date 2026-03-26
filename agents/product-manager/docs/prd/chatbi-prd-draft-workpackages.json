@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-03-26T12:15:17.681662",
+  "prd_file": "docs/prd/chatbi-prd-draft.md",
+  "packages": {
+    "ui-ux-designer": {
+      "input": "P0 功能列表",
+      "output": "设计交付物 (Figma/原型)",
+      "tasks": [
+        "P0 功能待提取"
+      ],
+      "acceptance": "设计覆盖所有 P0 功能的 AC"
+    },
+    "architect": {
+      "input": "PRD + API 契约草稿",
+      "output": "架构文档 + DDL",
+      "tasks": [
+        "POST /api/v1/query",
+        "POST /api/v1/visualize",
+        "POST /api/v1/reports"
+      ],
+      "acceptance": "字段级契约明确，DDD 完整"
+    },
+    "dev-engineer": {
+      "input": "架构文档 + 设计稿",
+      "output": "可运行代码 + 单元测试",
+      "tasks": [
+        "用户故事待提取"
+      ],
+      "acceptance": "E2E 测试通过，AC 覆盖 100%"
+    },
+    "qa-engineer": {
+      "input": "PRD AC + 交付物",
+      "output": "测试用例 + E2E 测试",
+      "tasks": [
+        "Gherkin AC 已定义"
+      ],
+      "acceptance": "E2E 通过，AC 覆盖 100%"
+    },
+    "devops-engineer": {
+      "input": "架构拓扑 + 部署需求",
+      "output": "部署脚本 + 监控配置",
+      "tasks": [
+        "部署需求已识别",
+        "监控需求已识别",
+        "安全需求已识别"
+      ],
+      "acceptance": "可一键部署，监控告警就绪"
+    }
+  }
+}
