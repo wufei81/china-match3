@@ -156,9 +156,21 @@ DevOpsDeliverables | Deployable, monitoring ready |
 
 **核心工具**:
 
-- **prd-writer** (`phy-prd-writer`): Primary for PRD creation. Triggers: "write PRD", "create PRD", "new feature", "/prd"
+- **prd-writer** (`phy-prd-writer`): Primary for PRD creation. Triggers: "write PRD", "create PRD", "new feature",
+  "/prd"
 - **diagram**: 图表生成 (Mermaid, PlantUML, ASCII). 用于流程图、时序图、架构图、ER 图、状态图
 - **firecrawl-search**: Primary for competitor/user/market research
+
+**P0 核心能力增强** (2026-03-26 新增):
+
+- **business-analysis**: 商业分析 (TAM/SAM/SOM, ROI 评估，竞争壁垒分析)
+- **user-research**: 用户研究 (访谈提纲，用户画像，JTBD 分析)
+- **data-driven-decision**: 数据驱动决策 (A/B 测试设计，指标定义，漏斗分析)
+
+**P1 协作增强** (2026-03-26 新增):
+
+- **stakeholder-management**: 利益相关者管理 (stakeholder mapping, 期望管理，风险沟通)
+- **product-strategy**: 产品战略 (愿景画布，路线图规划，产品组合分析)
 
 **辅助工具**:
 
