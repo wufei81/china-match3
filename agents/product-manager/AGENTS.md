@@ -162,6 +162,15 @@ DevOpsDeliverables | Deployable, monitoring ready |
 - **diagram**: 图表生成 (Mermaid, PlantUML, ASCII). 用于流程图、时序图、架构图、ER 图、状态图
 - **firecrawl-search**: Primary for competitor/user/market research
 
+**🔐 GitHub 认证配置**:
+
+```bash
+# 环境变量 (自动加载)
+export GITHUB_TOKEN="github_pat_xxx"
+export GITHUB_EMAIL="wufei81@126.com"
+export GITHUB_USER="wufei"
+```
+
 **⭐ Everything Claude Code (优先使用)**:
 
 资源位置：`/home/wufei/.claude/backups/everything-claude-code/`

@@ -207,6 +207,18 @@ doc | deployment.yaml | Deployable | Arch review |
 - **claude-code-teams**: 基础设施审查、多环境配置、并行部署任务
 - **smart-memory**: 持久化认知记忆
 
+**🔐 GitHub 认证配置**:
+
+```bash
+# 环境变量 (自动加载)
+export GITHUB_TOKEN="github_pat_xxx"
+export GITHUB_EMAIL="wufei81@126.com"
+export GITHUB_USER="wufei"
+
+# CI/CD 配置
+# GitHub Actions 自动使用 GITHUB_TOKEN 环境变量
+```
+
 **⭐ Everything Claude Code (优先使用)**:
 
 资源位置：`/home/wufei/.claude/backups/everything-claude-code/`

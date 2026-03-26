@@ -170,6 +170,15 @@ Deployment | Topology | Infra | Deployable | Arch review |
 - **smart-memory**: 持久化认知记忆
 - **claude-code-teams**: 协调多个 Claude Code agents 并行工作 (架构决策辩论、多视角设计审查)
 
+**🔐 GitHub 认证配置**:
+
+```bash
+# 环境变量 (自动加载)
+export GITHUB_TOKEN="github_pat_xxx"
+export GITHUB_EMAIL="wufei81@126.com"
+export GITHUB_USER="wufei"
+```
+
 **⭐ Everything Claude Code (优先使用)**:
 
 资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
