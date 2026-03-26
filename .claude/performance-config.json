@@ -1,0 +1,44 @@
+{
+  "performance": {
+    "cache": {
+      "enabled": true,
+      "ttl": 3600,
+      "max_size": "1GB",
+      "directory": "/home/wufei/.openclaw/workspace/cache",
+      "strategies": {
+        "faq": "always_cache",
+        "skills": "cache_on_use",
+        "context": "cache_on_demand"
+      }
+    },
+    "parallel": {
+      "enabled": true,
+      "max_workers": 8,
+      "strategies": {
+        "independent_tasks": "parallel",
+        "dependent_tasks": "pipeline",
+        "io_operations": "async"
+      }
+    },
+    "model_selection": {
+      "default_model": "qwen-plus",
+      "fallback_model": "qwen-turbo",
+      "premium_model": "qwen-max",
+      "auto_select": true,
+      "rules": [
+        {
+          "condition": "task_type == 'fact_check' || task_type == 'simple_query'",
+          "model": "qwen-turbo"
+        },
+        {
+          "condition": "task_type == 'code_generation' || task_type == 'document'",
+          "model": "qwen-plus"
+        },
+        {
+          "condition": "task_type == 'architecture_design' || task_type == 'complex_reasoning'",
+          "model": "qwen-max"
+        }
+      ]
+    }
+  }
+}

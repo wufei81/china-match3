@@ -3,7 +3,7 @@
 
 set -e
 
-BACKUP_DIR="/backup/$(date +%Y%m%d)"
+BACKUP_DIR="/home/wufei/.openclaw/workspace/backups/$(date +%Y%m%d)"
 mkdir -p $BACKUP_DIR
 
 echo "🔄 开始备份..."
@@ -25,11 +25,11 @@ cp -r /home/wufei/.openclaw/workspace/shared-skills $BACKUP_DIR/ 2>/dev/null || 
 
 # 压缩备份
 echo "压缩备份..."
-cd /backup
+cd /home/wufei/.openclaw/workspace/backups
 tar -czf $(date +%Y%m%d).tar.gz $(date +%Y%m%d)
 
 # 清理旧备份 (保留 30 天)
 echo "清理旧备份..."
-find /backup -name "*.tar.gz" -mtime +30 -delete
+find /home/wufei/.openclaw/workspace/backups -name "*.tar.gz" -mtime +30 -delete
 
-echo "✅ 备份完成：/backup/$(date +%Y%m%d).tar.gz"
+echo "✅ 备份完成：/home/wufei/.openclaw/workspace/backups/$(date +%Y%m%d).tar.gz"
