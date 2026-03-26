@@ -68,6 +68,7 @@ user-invocable: true
 2. 本文件 (角色规范)
 3. `TASK_TRACKER.md` (项目状态)
 4. `PROJECT_STARTUP_CHECKLIST.md` (初始化状态)
+5. `@workspace/DEV_ENGINEER_CLAUDE_CODE_USAGE.md` (Everything Claude Code 使用方案) ⭐ **新增**
 
 **快速参考**: `@workspace/agents/dev-engineer/BOOTSTRAP.md`
 
@@ -232,8 +233,28 @@ user-invocable: true
 **核心工具**:
 
 - **claude-code-teams**: 首选代码开发工具，协调多个 Claude Code agents 并行工作
+- **everything-claude-code**: ⭐ **核心开发框架** (13 代理、43 技能、31 命令) - **优先使用**
 - **smart-memory**: 持久化认知记忆
 - **self-improving-agent**: 持续学习与改进
+
+**⭐ Everything Claude Code (优先使用)**:
+
+资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
+
+**13 个专业代理**:
+- `/planner` - 功能实现规划 (新任务必用)
+- `/architect` - 系统设计决策 (复杂任务必用)
+- `/tdd` - 测试驱动开发 (开发必用)
+- `/code-review` - 质量审查 (完成必用)
+- `/security-reviewer` - 安全审查 (安全敏感必用)
+- `/build-fix` - 构建错误修复 (构建失败必用)
+- `/e2e` - E2E 测试生成 (完成必用)
+- `/refactor-clean` - 死代码清理 (定期使用)
+- `/doc-updater` - 文档同步 (变更后必用)
+- `/go-reviewer` - Go 代码审查 (Go 开发用)
+- `/go-build` - Go 构建修复 (Go 构建失败用)
+- `/learn` - 模式提取 (会话结束必用)
+- `/verify` - 验证循环 (交付前必用)
 
 **P0 核心能力增强** (2026-03-26 新增):
 
@@ -261,6 +282,58 @@ user-invocable: true
 ---
 
 ## 5. Example
+
+### 示例 1: 标准开发流程 (使用 Everything Claude Code) ⭐
+
+**Input**: "实现用户登录功能"
+
+**Output**:
+
+```bash
+# Phase 0: 任务规划
+/planner "实现用户登录功能"
+# → 任务拆解、优先级、时间估算
+
+# Phase 1: 架构设计 (复杂任务)
+/architect "设计登录模块架构"
+# → 系统架构、技术选型、数据模型
+
+# Phase 2: TDD 开发
+/tdd "实现登录 API"
+# → RED: 失败测试 → GREEN: 实现 → IMPROVE: 重构
+
+# Phase 3: 代码审查
+/code-review "审查登录模块"
+/security-reviewer "审查安全性"
+# → 修复 P0/P1 问题
+
+# Phase 4: 构建验证
+npm run build
+# 如失败 → /build-fix "修复构建错误"
+
+# Phase 5: E2E 测试
+/e2e "生成登录流程 E2E 测试"
+# → 执行测试、修复失败
+
+# Phase 6: 重构清理
+/refactor-clean "清理登录模块死代码"
+# → 审查并应用重构
+
+# Phase 7: 文档同步
+/doc-updater "更新 API 文档"
+# → 更新 CODEBASE_INDEX.md
+
+# Phase 8: 学习提取
+/learn "从登录模块开发中提取模式"
+# → 保存到技能库
+
+# Phase 9: 验证交付
+/verify "验证登录模块"
+/checkpoint "登录模块完成"
+# → 填写 VALIDATION_LOG.md，交付 QA
+```
+
+### 示例 2: 传统开发流程
 
 **Input**: Implement IM auth module (Login API + Login page).
 
@@ -301,6 +374,17 @@ user-invocable: true
 
 **交付前必须执行**:
 
+#### Everything Claude Code 流程检查 ⭐
+- [ ] `/planner` 已使用 (任务拆解)
+- [ ] `/tdd` 已使用 (TDD 开发)
+- [ ] `/code-review` 已使用 (代码审查)
+- [ ] `/security-reviewer` 已使用 (安全检查，如适用)
+- [ ] `/e2e` 已使用 (E2E 测试)
+- [ ] `/doc-updater` 已使用 (文档同步)
+- [ ] `/learn` 已使用 (模式提取)
+- [ ] `/verify` 已使用 (验证交付)
+
+#### 技术检查
 1. ✅ `npm run lint` → PASSED (0 errors)
 2. ✅ `npm run test` → PASSED (coverage ≥80%)
 3. ✅ `npm run build` → PASSED (0 compilation errors)
@@ -315,6 +399,7 @@ user-invocable: true
 - Missing `VALIDATION_LOG.md` → `qa-engineer` MUST reject delivery
 - Failing lint/test/build → fix first, then fill log
 - **Starting Phase 4 before Phases 0-3** → `tech-leader` MUST reject
+- **Not using Everything Claude Code commands** → `tech-leader` MUST reject (⭐ 新增)
 - Record all errors in `ERROR_LOG.md` with retry attempts
 
 ---
