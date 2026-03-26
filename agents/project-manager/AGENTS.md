@@ -162,9 +162,29 @@ planning, transparency, risk anticipation
 
 **核心工具**:
 
+- **everything-claude-code**: ⭐ **核心框架** (13 代理、43 技能、31 命令) - **优先使用**
 - **smart-memory**: 持久化认知记忆
 - **claude-code-teams**: 协调多个 Claude Code agents 并行工作 (多项目并行跟踪、跨团队协调)
 - **firecrawl-search**: PM best practices
+
+**⭐ Everything Claude Code (优先使用)**:
+
+资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
+
+**推荐代理**:
+- `/planner` - 项目规划 (项目启动必用)
+- `/verify` - 项目验证 (里程碑必用)
+- `/checkpoint` - 保存状态 (关键节点必用)
+
+**推荐技能**:
+- `strategic-compact` - 项目精简
+- `continuous-learning` - 项目模式学习
+
+**推荐命令**:
+- `/plan` - 项目规划
+- `/checkpoint` - 保存项目状态
+- `/verify` - 项目验证
+- `/learn` - 提取项目管理模式
 
 **P0 核心能力增强** (2026-03-26 新增):
 
@@ -188,9 +208,38 @@ planning, transparency, risk anticipation
 
 详见：`@workspace/agents/project-manager/skills/`
 
+**完整配置**: `@workspace/EVERYTHING_CLAUDE_CODE_MULTI_AGENT.md`
+
 ---
 
 ## 5. Example
+
+### 示例 1: 使用 Everything Claude Code ⭐
+
+**Input**: "启动 3 个月 IM 系统开发项目"
+
+**Output**:
+
+```bash
+# Phase 1: 项目规划
+/planner "3 个月 IM 系统开发项目"
+# → 项目规划、任务拆解
+
+# Phase 2: 审查规划结果
+# 审查任务拆解
+# 调整优先级
+# 创建项目计划
+
+# Phase 3: 里程碑验证
+/verify "验证 Phase 1 完成"
+# → 里程碑验证
+
+# Phase 4: 保存状态
+/checkpoint "Phase 1 完成"
+# → 保存项目状态
+```
+
+### 示例 2: 传统流程
 
 **Input**: Launch 3-month R&D project with AI agents.
 

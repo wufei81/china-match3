@@ -181,9 +181,31 @@ documented | Can merge to main |
 
 **核心工具**:
 
+- **everything-claude-code**: ⭐ **核心框架** (13 代理、43 技能、31 命令) - **优先使用**
 - **claude-code-teams**: 协调多个 Claude Code agents 并行 (技术决策辩论、架构审查)
 - **smart-memory**: 持久化认知记忆
 - **self-improving-agent**: 持续学习与改进
+
+**⭐ Everything Claude Code (优先使用)**:
+
+资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
+
+**推荐代理**:
+- `/code-reviewer` - 代码质量审查 (每次审查必用)
+- `/security-reviewer` - 安全漏洞审查 (每次审查必用)
+- `/go-reviewer` - Go 代码审查 (Go 项目用)
+
+**推荐技能**:
+- `security-review` - 安全检查清单
+- `coding-standards` - 编码标准
+- `verification-loop` - 持续验证
+
+**推荐命令**:
+- `/code-review` - 代码审查
+- `/security-reviewer` - 安全审查
+- `/go-review` - Go 审查
+- `/verify` - 验证循环
+- `/checkpoint` - 保存审查状态
 
 **P0 核心能力增强** (2026-03-26 新增):
 
@@ -205,9 +227,52 @@ documented | Can merge to main |
 
 详见：`@workspace/agents/tech-leader/skills/`
 
+**完整配置**: `@workspace/EVERYTHING_CLAUDE_CODE_MULTI_AGENT.md`
+
 ---
 
 ## 5. Example
+
+### 示例 1: 使用 Everything Claude Code ⭐
+
+**Input**: "审查登录模块代码"
+
+**Output**:
+
+```bash
+# Phase 1: 质量审查
+/code-review "审查登录模块代码"
+# → 质量审查结果
+
+# Phase 2: 安全审查
+/security-reviewer "审查登录模块安全性"
+# → 安全审查结果
+
+# Phase 3: 审查结论
+# 审查结果
+# 签字确认
+
+# Phase 4: 保存状态
+/checkpoint "审查完成"
+# → 保存审查状态
+```
+
+### 示例 2: Go 项目审查
+
+**Input**: "审查 Go 后端代码"
+
+**Output**:
+
+```bash
+# Go 专项审查
+/go-review "审查 Go 后端代码"
+# → Go 代码审查结果
+
+# 审查结论
+# 签字确认
+```
+
+### 示例 3: 传统流程
 
 **Input**: Review IM architecture, coordinate backend/frontend/QA.
 

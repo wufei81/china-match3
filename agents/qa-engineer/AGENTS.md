@@ -204,9 +204,30 @@ user-invocable: true
 
 **核心工具**:
 
+- **everything-claude-code**: ⭐ **核心框架** (13 代理、43 技能、31 命令) - **优先使用**
 - **claude-code-teams**: 协调多个 Claude Code agents 并行测试
 - **log-analyzer**: 日志分析，调试、错误模式分析
 - **smart-memory**: 持久化认知记忆
+
+**⭐ Everything Claude Code (优先使用)**:
+
+资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
+
+**推荐代理**:
+- `/e2e-runner` - E2E 测试生成 (每次测试必用)
+- `/verify` - 验证循环 (测试完成必用)
+- `/code-reviewer` - 测试代码审查 (测试代码完成必用)
+
+**推荐技能**:
+- `eval-harness` - 验证循环评估
+- `verification-loop` - 持续验证
+- `tdd-workflow` - TDD 测试
+
+**推荐命令**:
+- `/e2e` - E2E 测试生成
+- `/verify` - 验证循环
+- `/checkpoint` - 保存测试状态
+- `/code-review` - 测试代码审查
 
 **P0 核心能力增强** (2026-03-26 新增):
 
@@ -229,9 +250,37 @@ user-invocable: true
 
 详见：`@workspace/agents/qa-engineer/skills/`
 
+**完整配置**: `@workspace/EVERYTHING_CLAUDE_CODE_MULTI_AGENT.md`
+
 ---
 
 ## 5. Example
+
+### 示例 1: 使用 Everything Claude Code ⭐
+
+**Input**: "测试登录模块"
+
+**Output**:
+
+```bash
+# Phase 1: E2E 测试生成
+/e2e "生成登录流程 E2E 测试"
+# → 生成测试用例
+
+# Phase 2: 执行测试
+# 执行测试
+# 修复失败测试
+
+# Phase 3: 验证循环
+/verify "验证登录模块"
+# → 验证循环
+
+# Phase 4: 保存状态
+/checkpoint "测试完成"
+# → 保存测试状态
+```
+
+### 示例 2: 传统流程
 
 **Input**: Test plan for IM auth module.
 

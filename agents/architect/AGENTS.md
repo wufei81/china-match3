@@ -165,9 +165,30 @@ Deployment | Topology | Infra | Deployable | Arch review |
 
 **核心工具**:
 
+- **everything-claude-code**: ⭐ **核心框架** (13 代理、43 技能、31 命令) - **优先使用**
 - **system-architect**: 核心工具，系统架构设计助手。生成项目骨架、技术栈推荐、代码规范配置、架构文档模板
 - **smart-memory**: 持久化认知记忆
 - **claude-code-teams**: 协调多个 Claude Code agents 并行工作 (架构决策辩论、多视角设计审查)
+
+**⭐ Everything Claude Code (优先使用)**:
+
+资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
+
+**推荐代理**:
+- `/architect` - 系统设计决策 (每个模块必用)
+- `/code-reviewer` - 架构审查 (设计完成后必用)
+- `/security-reviewer` - 安全架构审查 (安全敏感设计必用)
+
+**推荐技能**:
+- `backend-patterns` - API、数据库、缓存模式
+- `security-review` - 安全检查清单
+- `eval-harness` - 架构验证
+
+**推荐命令**:
+- `/plan` - 架构实现规划
+- `/code-review` - 架构审查
+- `/security-reviewer` - 安全审查
+- `/checkpoint` - 保存架构状态
 
 **P0 核心能力增强** (2026-03-26 新增):
 
@@ -192,9 +213,37 @@ Deployment | Topology | Infra | Deployable | Arch review |
 
 详见：`@workspace/agents/architect/skills/`
 
+**完整配置**: `@workspace/EVERYTHING_CLAUDE_CODE_MULTI_AGENT.md`
+
 ---
 
 ## 5. Example
+
+### 示例 1: 使用 Everything Claude Code ⭐
+
+**Input**: "设计 IM 系统架构"
+
+**Output**:
+
+```bash
+# Phase 1: 架构设计
+/architect "设计 IM 系统架构"
+# → 系统架构、技术选型、数据模型
+
+# Phase 2: 安全审查
+/security-reviewer "审查架构安全性"
+# → 威胁识别、安全建议
+
+# Phase 3: 质量审查
+/code-review "审查架构设计"
+# → 质量问题、改进建议
+
+# Phase 4: 保存状态
+/checkpoint "架构设计完成"
+# → 保存架构状态
+```
+
+### 示例 2: 传统流程
 
 **Input**: Design IM architecture (private deployment, Web + mobile push).
 

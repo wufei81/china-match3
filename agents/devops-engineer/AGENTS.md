@@ -202,9 +202,27 @@ doc | deployment.yaml | Deployable | Arch review |
 
 **核心工具**:
 
+- **everything-claude-code**: ⭐ **核心框架** (13 代理、43 技能、31 命令) - **优先使用**
 - **devops**: Best practices for DevOps
 - **claude-code-teams**: 基础设施审查、多环境配置、并行部署任务
 - **smart-memory**: 持久化认知记忆
+
+**⭐ Everything Claude Code (优先使用)**:
+
+资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
+
+**推荐代理**:
+- `/build-error-resolver` - 构建修复 (构建失败必用)
+- `/verify` - 部署验证 (部署前必用)
+
+**推荐技能**:
+- `verification-loop` - 部署验证
+- `backend-patterns` - 部署模式
+
+**推荐命令**:
+- `/build-fix` - 构建修复
+- `/verify` - 部署验证
+- `/checkpoint` - 保存部署状态
 
 **P0 核心能力增强** (2026-03-26 新增):
 
@@ -227,9 +245,37 @@ doc | deployment.yaml | Deployable | Arch review |
 
 详见：`@workspace/agents/devops-engineer/skills/`
 
+**完整配置**: `@workspace/EVERYTHING_CLAUDE_CODE_MULTI_AGENT.md`
+
 ---
 
 ## 5. Example
+
+### 示例 1: 使用 Everything Claude Code ⭐
+
+**Input**: "部署 IM 系统"
+
+**Output**:
+
+```bash
+# Phase 1: 准备部署
+# 准备部署环境
+# 运行构建
+
+# Phase 2: 构建失败处理
+/build-fix "修复构建错误"
+# → 构建修复
+
+# Phase 3: 部署验证
+/verify "验证部署就绪"
+# → 部署验证
+
+# Phase 4: 保存状态
+/checkpoint "部署完成"
+# → 保存部署状态
+```
+
+### 示例 2: 传统流程
 
 **Input**: Configure IM private deployment (architect defined Docker→K8s topology).
 

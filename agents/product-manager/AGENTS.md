@@ -156,10 +156,28 @@ DevOpsDeliverables | Deployable, monitoring ready |
 
 **核心工具**:
 
+- **everything-claude-code**: ⭐ **核心框架** (13 代理、43 技能、31 命令) - **优先使用**
 - **prd-writer** (`phy-prd-writer`): Primary for PRD creation. Triggers: "write PRD", "create PRD", "new feature",
   "/prd"
 - **diagram**: 图表生成 (Mermaid, PlantUML, ASCII). 用于流程图、时序图、架构图、ER 图、状态图
 - **firecrawl-search**: Primary for competitor/user/market research
+
+**⭐ Everything Claude Code (优先使用)**:
+
+资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
+
+**推荐代理**:
+- `/planner` - 功能实现规划 (新需求必用)
+- `/learn` - 模式提取 (会话结束必用)
+
+**推荐技能**:
+- `strategic-compact` - 需求精简、PRD 压缩
+- `continuous-learning` - 从需求讨论中学习模式
+
+**推荐命令**:
+- `/plan` - 功能实现规划
+- `/learn` - 会话中提取模式
+- `/checkpoint` - 保存需求状态
 
 **P0 核心能力增强** (2026-03-26 新增):
 
@@ -184,9 +202,33 @@ DevOpsDeliverables | Deployable, monitoring ready |
 
 详见：`@workspace/agents/product-manager/skills/`
 
+**完整配置**: `@workspace/EVERYTHING_CLAUDE_CODE_MULTI_AGENT.md`
+
 ---
 
 ## 5. Example
+
+### 示例 1: 使用 Everything Claude Code ⭐
+
+**Input**: "实现用户认证功能"
+
+**Output**:
+
+```bash
+# Phase 0: 需求规划
+/planner "实现用户认证功能"
+# → 任务拆解、优先级、时间估算
+
+# 审查规划结果
+# 调整优先级
+# 创建 PRD
+
+# 会话结束
+/learn "从需求讨论中提取模式"
+# → 保存到技能库
+```
+
+### 示例 2: 传统流程
 
 **Input**: "Build a privately deployable IM system similar to Slack."
 

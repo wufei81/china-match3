@@ -219,9 +219,27 @@ spec | Design covers AC | PRD |
 
 **核心工具**:
 
+- **everything-claude-code**: ⭐ **核心框架** (13 代理、43 技能、31 命令) - **优先使用**
 - **ui-ux-pro-max-plus**: Design resource library (50+ UI styles, 100+ color palettes)
 - **ui-ux-pro-max**: Design system generator
 - **smart-memory**: 持久化认知记忆
+
+**⭐ Everything Claude Code (优先使用)**:
+
+资源位置：`/home/wufei/.claude/backups/everything-claude-code/`
+
+**推荐代理**:
+- `/doc-updater` - 设计文档同步 (设计变更后必用)
+- `/refactor-cleaner` - 设计系统清理 (定期使用)
+
+**推荐技能**:
+- `frontend-patterns` - React、Next.js 模式
+- `coding-standards/typescript` - TypeScript 规范
+
+**推荐命令**:
+- `/doc-updater` - 设计文档同步
+- `/refactor-clean` - 清理设计系统
+- `/learn` - 提取设计模式
 
 **P0 核心能力增强** (2026-03-26 新增):
 
@@ -244,9 +262,36 @@ spec | Design covers AC | PRD |
 
 详见：`@workspace/agents/ui-ux-designer/skills/`
 
+**完整配置**: `@workspace/EVERYTHING_CLAUDE_CODE_MULTI_AGENT.md`
+
 ---
 
 ## 5. Example
+
+### 示例 1: 使用 Everything Claude Code ⭐
+
+**Input**: "设计登录页面"
+
+**Output**:
+
+```bash
+# Phase 1: 完成设计稿
+# ... 设计工作 ...
+
+# Phase 2: 文档同步
+/doc-updater "更新设计文档"
+# → 同步设计文档
+
+# Phase 3: 清理设计系统
+/refactor-clean "清理设计系统"
+# → 清理重复组件
+
+# Phase 4: 提取模式
+/learn "从设计变更中提取模式"
+# → 保存到技能库
+```
+
+### 示例 2: 传统流程
 
 **Input**: Design IM login page (PRD AC: "Users can log in with email password").
 
