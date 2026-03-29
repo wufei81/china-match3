@@ -1,16 +1,16 @@
 {
   "id": "memory-qdrant",
   "kind": "memory",
-  "name": "Memory (Qdrant)",
-  "version": "1.0.10",
-  "description": "本地语义记忆系统（Qdrant + Transformers.js，完全本地运行）",
+  "name": "Memory (ChromaDB)",
+  "version": "2.0.0",
+  "description": "本地语义记忆系统（ChromaDB + Transformers.js，纯本地自动持久化）",
   "configSchema": {
     "type": "object",
     "additionalProperties": false,
     "properties": {
-      "qdrantUrl": {
+      "persistPath": {
         "type": "string",
-        "description": "Qdrant 服务地址（留空使用内存模式）"
+        "description": "ChromaDB 持久化路径（留空使用内存模式，重启清空）"
       },
       "collectionName": {
         "type": "string",
@@ -40,33 +40,33 @@
     }
   },
   "uiHints": {
-    "qdrantUrl": {
-      "label": "Qdrant URL",
-      "placeholder": "Leave empty for in-memory mode (zero config)",
-      "advanced": true,
-      "help": "External Qdrant server URL. Leave empty to use in-memory storage."
+    "persistPath": {
+      "label": "持久化路径",
+      "placeholder": "~/.openclaw/memory/chroma.db (留空使用内存模式)",
+      "advanced": false,
+      "help": "ChromaDB 数据持久化路径。留空使用内存模式（重启后清空）。建议设置为本地路径以永久保存记忆。"
     },
     "collectionName": {
-      "label": "Collection Name",
+      "label": "Collection 名称",
       "placeholder": "openclaw_memories",
       "advanced": true
     },
     "autoCapture": {
-      "label": "Auto Capture",
-      "help": "Auto-save important info after conversations. Note: trigger patterns match emails and phone numbers, so enabling this may capture PII. Disabled by default."
+      "label": "自动捕获",
+      "help": "对话后自动保存重要信息。注意：触发模式可能匹配邮箱和电话，开启可能捕获隐私信息。默认关闭。"
     },
     "autoRecall": {
-      "label": "Auto Recall",
-      "help": "Auto-inject relevant memories before conversations"
+      "label": "自动回忆",
+      "help": "对话前自动注入相关记忆"
     },
     "captureMaxChars": {
-      "label": "Capture Max Length",
-      "help": "Maximum characters per captured memory",
+      "label": "捕获最大长度",
+      "help": "单条记忆最大字符数",
       "advanced": true
     },
     "maxMemorySize": {
-      "label": "Max Memory Size (In-Memory Mode)",
-      "help": "Maximum number of memories stored in in-memory mode. When limit is reached, oldest memories are automatically deleted (LRU eviction). Set to 999999 for unlimited storage. Only applies to in-memory mode, not external Qdrant.",
+      "label": "最大记忆数（内存模式）",
+      "help": "内存模式下最大记忆条数。达到上限时自动删除最旧记忆（LRU）。设置为 999999 表示无限制。仅适用于内存模式。",
       "advanced": true
     }
   }

@@ -1,12 +1,16 @@
 /**
- * OpenClaw Memory (Qdrant) Plugin
+ * OpenClaw Memory (ChromaDB) Plugin
  * 
- * 本地语义记忆系统，使用 Qdrant 向量数据库
+ * 本地语义记忆系统：Python ChromaDB 核心 + Node.js 桥接
+ * 支持自动降级到内存模式
  */
 
-import { QdrantClient } from '@qdrant/js-client-rest';
+import { spawn } from 'child_process';
 import { pipeline } from '@xenova/transformers';
 import { randomUUID } from 'crypto';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 
 // ============================================================================
 // 配置
@@ -23,182 +27,274 @@ const SIMILARITY_THRESHOLDS = {
   LOW: 0.3            // 低相关性（默认搜索）
 };
 
+// 获取当前文件目录
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const CHROMA_SERVER_PATH = path.join(__dirname, 'chroma_server.py');
+
 // ============================================================================
-// Qdrant 客户端（内存模式）
+// Python ChromaDB 桥接
 // ============================================================================
 
-class MemoryDB {
-  constructor(url, collectionName, maxSize = DEFAULT_MAX_MEMORY_SIZE) {
-    // 如果没有配置 URL，使用本地 Qdrant（需要手动启动）
-    // 或者使用内存存储（简化版）
-    this.useMemoryFallback = !url || url === ':memory:';
-
-    if (this.useMemoryFallback) {
-      // 内存模式：使用简单的数组存储
-      this.memoryStore = [];
-      this.collectionName = collectionName;
-      this.maxSize = maxSize;
-      this.initialized = true;
-    } else {
-      this.client = new QdrantClient({ url });
-      this.collectionName = collectionName;
-      this.initialized = false;
-    }
+class ChromaBridge {
+  constructor(persistPath) {
+    this.persistPath = persistPath;
+    this.pythonProcess = null;
+    this.initialized = false;
+    this.available = false;
+    this.requestId = 0;
+    this.pendingRequests = new Map();
   }
 
-  async ensureCollection() {
-    if (this.useMemoryFallback || this.initialized) return;
-
-    try {
-      await this.client.getCollection(this.collectionName);
-    } catch (err) {
-      // 只在 collection 不存在时创建，其他错误抛出
-      if (err.status === 404 || err.message?.includes('not found')) {
-        await this.client.createCollection(this.collectionName, {
-          vectors: {
-            size: VECTOR_DIM,
-            distance: 'Cosine'
-          }
-        });
-      } else {
-        throw err;
-      }
-    }
+  async initialize() {
+    if (this.initialized) return this.available;
 
     this.initialized = true;
+
+    // 检查 Python 脚本是否存在
+    if (!fs.existsSync(CHROMA_SERVER_PATH)) {
+      api.logger.warn(`memory-chroma: Python 脚本不存在：${CHROMA_SERVER_PATH}`);
+      this.available = false;
+      return false;
+    }
+
+    // 启动 Python 进程
+    try {
+      this.pythonProcess = spawn('python3', [CHROMA_SERVER_PATH], {
+        stdio: ['pipe', 'pipe', 'pipe'],
+        env: { ...process.env }
+      });
+
+      this.pythonProcess.stdout.on('data', (data) => {
+        this._handleResponse(data.toString());
+      });
+
+      this.pythonProcess.stderr.on('data', (data) => {
+        api.logger.debug(`memory-chroma: ${data.toString().trim()}`);
+      });
+
+      this.pythonProcess.on('error', (err) => {
+        api.logger.warn(`memory-chroma: Python 进程错误：${err.message}`);
+        this.available = false;
+      });
+
+      this.pythonProcess.on('exit', (code) => {
+        api.logger.warn(`memory-chroma: Python 进程退出，代码：${code}`);
+        this.available = false;
+        this.pythonProcess = null;
+      });
+
+      // 健康检查
+      const health = await this._sendRequest('health', {}, 5000);
+      this.available = health.healthy === true;
+      
+      if (this.available) {
+        api.logger.info(`memory-chroma: ChromaDB 已连接，${health.count} 条记忆`);
+      } else {
+        api.logger.warn('memory-chroma: ChromaDB 健康检查失败，将使用内存模式');
+      }
+
+      return this.available;
+    } catch (err) {
+      api.logger.warn(`memory-chroma: 启动失败：${err.message}`);
+      this.available = false;
+      return false;
+    }
   }
 
-  async healthCheck() {
-    if (this.useMemoryFallback) {
-      return { healthy: true, mode: 'memory' };
+  _sendRequest(action, params, timeout = 10000) {
+    return new Promise((resolve, reject) => {
+      if (!this.pythonProcess) {
+        reject(new Error('Python 进程未启动'));
+        return;
+      }
+
+      const id = ++this.requestId;
+      const request = { action, params, id };
+      
+      const timer = setTimeout(() => {
+        this.pendingRequests.delete(id);
+        reject(new Error('请求超时'));
+      }, timeout);
+
+      this.pendingRequests.set(id, { resolve, reject, timer });
+
+      const json = JSON.stringify(request) + '\n';
+      this.pythonProcess.stdin.write(json, (err) => {
+        if (err) {
+          clearTimeout(timer);
+          this.pendingRequests.delete(id);
+          reject(err);
+        }
+      });
+    });
+  }
+
+  _handleResponse(data) {
+    try {
+      const response = JSON.parse(data.trim());
+      const id = response.id;
+      
+      const pending = this.pendingRequests.get(id);
+      if (pending) {
+        clearTimeout(pending.timer);
+        this.pendingRequests.delete(id);
+        pending.resolve(response);
+      }
+    } catch (err) {
+      api.logger.warn(`memory-chroma: 响应解析错误：${err.message}`);
+    }
+  }
+
+  async store(id, text, vector, category = 'other', importance = 0.7) {
+    const available = await this.initialize();
+    if (!available) {
+      return null; // 降级到内存模式
     }
 
     try {
-      await this.client.getCollections();
-      return { healthy: true, mode: 'qdrant', url: this.client.url };
+      const result = await this._sendRequest('store', {
+        id, text, vector, category, importance
+      });
+      return result.success ? { id, text, category, importance } : null;
     } catch (err) {
-      return { healthy: false, mode: 'qdrant', error: err.message };
+      api.logger.warn(`memory-chroma: 存储失败，降级到内存模式：${err.message}`);
+      this.available = false;
+      return null;
     }
-  }
-
-  async store(entry) {
-    if (this.useMemoryFallback) {
-      // LRU 清理：超过最大容量时删除最旧的记忆（除非设置为无限制）
-      if (this.maxSize < 999999 && this.memoryStore.length >= this.maxSize) {
-        this.memoryStore.sort((a, b) => a.createdAt - b.createdAt);
-        this.memoryStore.shift(); // 删除最旧的
-      }
-
-      const id = randomUUID();
-      const record = { id, ...entry, createdAt: Date.now() };
-      this.memoryStore.push(record);
-      return record;
-    }
-
-    await this.ensureCollection();
-
-    const id = randomUUID();
-    await this.client.upsert(this.collectionName, {
-      points: [{
-        id,
-        vector: entry.vector,
-        payload: {
-          text: entry.text,
-          category: entry.category,
-          importance: entry.importance,
-          createdAt: Date.now()
-        }
-      }]
-    });
-
-    return { id, ...entry, createdAt: Date.now() };
   }
 
   async search(vector, limit = 5, minScore = SIMILARITY_THRESHOLDS.LOW) {
-    if (this.useMemoryFallback) {
-      // 简单的余弦相似度计算
-      const cosineSimilarity = (a, b) => {
-        let dot = 0, normA = 0, normB = 0;
-        for (let i = 0; i < a.length; i++) {
-          dot += a[i] * b[i];
-          normA += a[i] * a[i];
-          normB += b[i] * b[i];
-        }
-        const denom = Math.sqrt(normA) * Math.sqrt(normB);
-        return denom === 0 ? 0 : dot / denom;
-      };
-
-      const results = this.memoryStore
-        .map(record => ({
-          entry: {
-            id: record.id,
-            text: record.text,
-            category: record.category,
-            importance: record.importance,
-            createdAt: record.createdAt,
-            vector: []
-          },
-          score: cosineSimilarity(vector, record.vector)
-        }))
-        .filter(r => r.score >= minScore)
-        .sort((a, b) => b.score - a.score)
-        .slice(0, limit);
-
-      return results;
+    const available = await this.initialize();
+    if (!available) {
+      return null; // 降级到内存模式
     }
 
-    await this.ensureCollection();
-
     try {
-      const results = await this.client.search(this.collectionName, {
-        vector,
-        limit,
-        score_threshold: minScore,
-        with_payload: true
+      const result = await this._sendRequest('search', {
+        vector, limit, min_score: minScore
       });
-
-      return results.map(r => ({
-        entry: {
-          id: r.id,
-          text: r.payload.text,
-          category: r.payload.category,
-          importance: r.payload.importance,
-          createdAt: r.payload.createdAt,
-          vector: [] // 不返回向量，节省内存
-        },
-        score: r.score
-      }));
+      return result.success ? result.results : null;
     } catch (err) {
-      api.logger.error(`memory-qdrant: Qdrant search failed: ${err.message}`);
-      return [];
+      api.logger.warn(`memory-chroma: 搜索失败，降级到内存模式：${err.message}`);
+      this.available = false;
+      return null;
     }
   }
 
   async delete(id) {
-    if (this.useMemoryFallback) {
-      const index = this.memoryStore.findIndex(r => r.id === id);
-      if (index !== -1) {
-        this.memoryStore.splice(index, 1);
-        return true;
-      }
+    const available = await this.initialize();
+    if (!available) {
       return false;
     }
 
-    await this.ensureCollection();
-    await this.client.delete(this.collectionName, {
-      points: [id]
-    });
-    return true;
+    try {
+      const result = await this._sendRequest('delete', { id });
+      return result.success === true;
+    } catch (err) {
+      api.logger.warn(`memory-chroma: 删除失败：${err.message}`);
+      return false;
+    }
   }
 
   async count() {
-    if (this.useMemoryFallback) {
-      return this.memoryStore.length;
+    const available = await this.initialize();
+    if (!available) {
+      return 0;
     }
 
-    await this.ensureCollection();
-    const info = await this.client.getCollection(this.collectionName);
-    return info.points_count || 0;
+    try {
+      const result = await this._sendRequest('count', {});
+      return result.count || 0;
+    } catch (err) {
+      return 0;
+    }
+  }
+
+  async healthCheck() {
+    const available = await this.initialize();
+    if (!available) {
+      return { healthy: false, mode: 'memory', error: 'ChromaDB 不可用' };
+    }
+
+    try {
+      const result = await this._sendRequest('health', {});
+      return result;
+    } catch (err) {
+      return { healthy: false, mode: 'memory', error: err.message };
+    }
+  }
+
+  shutdown() {
+    if (this.pythonProcess) {
+      this.pythonProcess.kill();
+      this.pythonProcess = null;
+    }
+  }
+}
+
+// ============================================================================
+// 内存模式（降级备用）
+// ============================================================================
+
+class MemoryFallback {
+  constructor(maxSize = DEFAULT_MAX_MEMORY_SIZE) {
+    this.memoryStore = [];
+    this.maxSize = maxSize;
+  }
+
+  store(entry) {
+    // LRU 清理
+    if (this.maxSize < 999999 && this.memoryStore.length >= this.maxSize) {
+      this.memoryStore.sort((a, b) => a.createdAt - b.createdAt);
+      this.memoryStore.shift();
+    }
+
+    const id = entry.id || randomUUID();
+    const record = { id, ...entry, createdAt: Date.now() };
+    this.memoryStore.push(record);
+    return record;
+  }
+
+  search(vector, limit = 5, minScore = SIMILARITY_THRESHOLDS.LOW) {
+    const cosineSimilarity = (a, b) => {
+      let dot = 0, normA = 0, normB = 0;
+      for (let i = 0; i < a.length; i++) {
+        dot += a[i] * b[i];
+        normA += a[i] * a[i];
+        normB += b[i] * b[i];
+      }
+      const denom = Math.sqrt(normA) * Math.sqrt(normB);
+      return denom === 0 ? 0 : dot / denom;
+    };
+
+    return this.memoryStore
+      .map(record => ({
+        entry: {
+          id: record.id,
+          text: record.text,
+          category: record.category,
+          importance: record.importance,
+          createdAt: record.createdAt,
+          vector: []
+        },
+        score: cosineSimilarity(vector, record.vector)
+      }))
+      .filter(r => r.score >= minScore)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, limit);
+  }
+
+  delete(id) {
+    const index = this.memoryStore.findIndex(r => r.id === id);
+    if (index !== -1) {
+      this.memoryStore.splice(index, 1);
+      return true;
+    }
+    return false;
+  }
+
+  count() {
+    return this.memoryStore.length;
   }
 }
 
@@ -218,7 +314,6 @@ class Embeddings {
 
     for (let attempt = 1; attempt <= this.maxRetries; attempt++) {
       try {
-        // 使用轻量级模型（~25MB，首次下载）
         this.pipe = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
         this.initAttempts = attempt;
         return;
@@ -226,7 +321,6 @@ class Embeddings {
         if (attempt === this.maxRetries) {
           throw new Error(`Failed to initialize embeddings after ${this.maxRetries} attempts: ${err.message}`);
         }
-        // 等待后重试（指数退避）
         await new Promise(resolve => setTimeout(resolve, 1000 * Math.pow(2, attempt - 1)));
       }
     }
@@ -245,16 +339,9 @@ class Embeddings {
 
 function sanitizeInput(text) {
   if (!text || typeof text !== 'string') return '';
-
-  // 移除 HTML 标签
   let cleaned = text.replace(/<[^>]*>/g, '');
-
-  // 移除控制字符（保留换行和制表符）
   cleaned = cleaned.replace(/[\x00-\x08\x0B-\x0C\x0E-\x1F\x7F]/g, '');
-
-  // 规范化空白字符
   cleaned = cleaned.replace(/\s+/g, ' ').trim();
-
   return cleaned;
 }
 
@@ -263,31 +350,26 @@ function sanitizeInput(text) {
 // ============================================================================
 
 const MEMORY_TRIGGERS = [
-  /remember|记住|保存/i,
-  /prefer|喜欢|偏好/i,
+  /remember|记住 | 保存/i,
+  /prefer|喜欢 | 偏好/i,
   /decided?|决定/i,
-  /\+\d{10,13}/,  // 限制长度防止 ReDoS
-  /^[\w.+-]+@[\w-]+\.[\w.-]{2,}$/,  // 更严格的邮箱正则
+  /\+\d{10,13}/,
+  /^[\w.+-]+@[\w-]+\.[\w.-]{2,}$/,
   /my \w+ is|is my|我的.*是/i,
   /i (like|prefer|hate|love|want|need)/i,
-  /always|never|important|总是|从不|重要/i,
+  /always|never|important|总是 | 从不 | 重要/i,
 ];
 
 function shouldCapture(text, maxChars = DEFAULT_CAPTURE_MAX_CHARS) {
   if (!text || typeof text !== 'string') return false;
-  
-  // 中文信息密度高，使用更低的长度阈值
   const hasChinese = /[\u4e00-\u9fa5]/.test(text);
   const minLength = hasChinese ? 6 : 10;
-  
   if (text.length < minLength || text.length > maxChars) return false;
   if (text.includes('<relevant-memories>')) return false;
   if (text.startsWith('<') && text.includes('</')) return false;
   if (text.includes('**') && text.includes('\n-')) return false;
-  
   const emojiCount = (text.match(/[\u{1F300}-\u{1F9FF}]/gu) || []).length;
   if (emojiCount > 3) return false;
-
   return MEMORY_TRIGGERS.some(r => r.test(text));
 }
 
@@ -296,13 +378,11 @@ function detectCategory(text) {
   if (/\b(prefer|like|love|hate|want)\b|喜欢/i.test(lower)) return 'preference';
   if (/\b(decided|will use|budeme)\b|决定/i.test(lower)) return 'decision';
   if (/\+\d{10,13}\b|^[\w.+-]+@[\w-]+\.[\w.-]{2,}$|\b(is called)\b|叫做/i.test(lower)) return 'entity';
-  if (/\b(is|are|has|have)\b|是|有/i.test(lower)) return 'fact';
+  if (/\b(is|are|has|have)\b|是 | 有/i.test(lower)) return 'fact';
   return 'other';
 }
 
 function escapeMemoryForPrompt(text) {
-  // 为 LLM prompt 添加防注入保护
-  // 使用明确的分隔符，而不是 HTML 转义
   return `[STORED_MEMORY]: ${text.slice(0, 500)}`;
 }
 
@@ -320,34 +400,29 @@ function formatRelevantMemoriesContext(memories) {
 export default function register(api) {
   const cfg = api.pluginConfig;
   const maxSize = cfg.maxMemorySize || DEFAULT_MAX_MEMORY_SIZE;
-  const db = new MemoryDB(cfg.qdrantUrl, cfg.collectionName || 'openclaw_memories', maxSize);
+  const persistPath = cfg.persistPath || cfg.chromaPath;
+  
+  // 初始化 ChromaDB 桥接和内存备用
+  const chromaBridge = new ChromaBridge(persistPath);
+  const memoryFallback = new MemoryFallback(maxSize);
   const embeddings = new Embeddings();
 
-  if (db.useMemoryFallback) {
-    const sizeInfo = maxSize >= 999999 ? 'unlimited' : `max ${maxSize} memories, LRU eviction`;
-    api.logger.info(`memory-qdrant: using in-memory storage (${sizeInfo})`);
-  } else {
-    api.logger.info(`memory-qdrant: using Qdrant at ${cfg.qdrantUrl}`);
+  // 异步健康检查
+  setTimeout(async () => {
+    const health = await chromaBridge.healthCheck();
+    if (health.healthy) {
+      api.logger.info(`memory-chroma: ChromaDB 模式 - ${health.count} 条记忆`);
+    } else {
+      api.logger.info('memory-chroma: 内存模式（ChromaDB 不可用）');
+    }
+  }, 1000);
 
-    // 异步健康检查（不阻塞启动）
-    db.healthCheck().then(health => {
-      if (!health.healthy) {
-        api.logger.warn(`memory-qdrant: Qdrant health check failed: ${health.error}`);
-      } else {
-        api.logger.info('memory-qdrant: Qdrant connection verified');
-      }
-    }).catch(err => {
-      api.logger.error(`memory-qdrant: Health check error: ${err.message}`);
-    });
-  }
-
-  api.logger.info('memory-qdrant: plugin registered (local embeddings)');
+  api.logger.info('memory-chroma: 插件注册完成（Python ChromaDB + Node.js 桥接）');
 
   // ==========================================================================
   // AI 工具
   // ==========================================================================
 
-  // 创建工具对象的辅助函数
   function createMemoryStoreTool() {
     return {
       name: 'memory_store',
@@ -363,8 +438,6 @@ export default function register(api) {
       },
       execute: async function(_id, params) {
         const { text, importance = 0.7, category = 'other' } = params;
-
-        // 清理输入
         const cleanedText = sanitizeInput(text);
 
         if (!cleanedText || cleanedText.length === 0 || cleanedText.length > 10000) {
@@ -373,14 +446,21 @@ export default function register(api) {
 
         const vector = await embeddings.embed(cleanedText);
 
-        // 检查重复（添加简单的互斥锁模拟）
-        const existing = await db.search(vector, 1, SIMILARITY_THRESHOLDS.DUPLICATE);
-        if (existing.length > 0) {
-          return { content: [{ type: "text", text: JSON.stringify({ success: false, message: `相似记忆已存在: "${existing[0].entry.text}"` }) }] };
+        // 尝试 ChromaDB，失败则降级到内存
+        let result = await chromaBridge.store(randomUUID(), cleanedText, vector, category, importance);
+        let mode = 'chromadb';
+        
+        if (!result) {
+          result = memoryFallback.store({ text: cleanedText, vector, category, importance });
+          mode = 'memory';
         }
 
-        const entry = await db.store({ text: cleanedText, vector, category, importance });
-        return { content: [{ type: "text", text: JSON.stringify({ success: true, message: `已保存: "${cleanedText.slice(0, 50)}..."`, id: entry.id }) }] };
+        return { content: [{ type: "text", text: JSON.stringify({ 
+          success: true, 
+          message: `已保存："${cleanedText.slice(0, 50)}..." [${mode}]`, 
+          id: result.id,
+          mode 
+        }) }] };
       }
     };
   }
@@ -399,23 +479,32 @@ export default function register(api) {
       },
       execute: async function(_id, params) {
         const { query, limit = 5 } = params;
-
         const vector = await embeddings.embed(query);
-        const results = await db.search(vector, limit, SIMILARITY_THRESHOLDS.LOW);
 
-        if (results.length === 0) {
-          return { content: [{ type: "text", text: JSON.stringify({ success: true, message: '未找到相关记忆', count: 0 }) }] };
+        // 尝试 ChromaDB，失败则降级到内存
+        let results = await chromaBridge.search(vector, limit, SIMILARITY_THRESHOLDS.LOW);
+        let mode = 'chromadb';
+        
+        if (results === null) {
+          const fallbackResults = memoryFallback.search(vector, limit, SIMILARITY_THRESHOLDS.LOW);
+          results = fallbackResults.map(r => ({ id: r.entry.id, text: r.entry.text, category: r.entry.category, score: r.score }));
+          mode = 'memory';
+        }
+
+        if (!results || results.length === 0) {
+          return { content: [{ type: "text", text: JSON.stringify({ success: true, message: '未找到相关记忆', count: 0, mode }) }] };
         }
 
         const text = results.map((r, i) =>
-          `${i + 1}. [${r.entry.category}] ${r.entry.text} (${(r.score * 100).toFixed(0)}%)`
+          `${i + 1}. [${r.category}] ${r.text} (${(r.score * 100).toFixed(0)}%)`
         ).join('\n');
 
         return { content: [{ type: "text", text: JSON.stringify({
           success: true,
-          message: `找到 ${results.length} 条记忆:\n\n${text}`,
+          message: `找到 ${results.length} 条记忆 [${mode}]:\n\n${text}`,
           count: results.length,
-          memories: results.map(r => ({ id: r.entry.id, text: r.entry.text, category: r.entry.category, score: r.score }))
+          memories: results,
+          mode
         }) }] };
       }
     };
@@ -436,28 +525,33 @@ export default function register(api) {
         const { query, memoryId } = params;
         
         if (memoryId) {
-          await db.delete(memoryId);
-          return { content: [{ type: "text", text: JSON.stringify({ success: true, message: `记忆 ${memoryId} 已删除` }) }] };
+          const deleted = await chromaBridge.delete(memoryId) || memoryFallback.delete(memoryId);
+          return { content: [{ type: "text", text: JSON.stringify({ success: deleted, message: `记忆 ${memoryId} ${deleted ? '已删除' : '未找到'}` }) }] };
         }
 
         if (query) {
           const vector = await embeddings.embed(query);
-          const results = await db.search(vector, 5, SIMILARITY_THRESHOLDS.HIGH);
+          let results = await chromaBridge.search(vector, 5, SIMILARITY_THRESHOLDS.HIGH);
+          
+          if (results === null) {
+            const fallbackResults = memoryFallback.search(vector, 5, SIMILARITY_THRESHOLDS.HIGH);
+            results = fallbackResults.map(r => ({ id: r.entry.id, text: r.entry.text, score: r.score }));
+          }
 
-          if (results.length === 0) {
+          if (!results || results.length === 0) {
             return { content: [{ type: "text", text: JSON.stringify({ success: false, message: '未找到匹配的记忆' }) }] };
           }
 
           if (results.length === 1 && results[0].score > SIMILARITY_THRESHOLDS.DUPLICATE) {
-            await db.delete(results[0].entry.id);
-            return { content: [{ type: "text", text: JSON.stringify({ success: true, message: `已删除: "${results[0].entry.text}"` }) }] };
+            const deleted = await chromaBridge.delete(results[0].id) || memoryFallback.delete(results[0].id);
+            return { content: [{ type: "text", text: JSON.stringify({ success: deleted, message: `已删除："${results[0].text}"` }) }] };
           }
 
-          const list = results.map(r => `- [${r.entry.id.slice(0, 8)}] ${r.entry.text.slice(0, 60)}...`).join('\n');
+          const list = results.map(r => `- [${r.id.slice(0, 8)}] ${r.text.slice(0, 60)}...`).join('\n');
           return { content: [{ type: "text", text: JSON.stringify({
             success: false,
             message: `找到 ${results.length} 个候选，请指定 memoryId:\n${list}`,
-            candidates: results.map(r => ({ id: r.entry.id, text: r.entry.text, score: r.score }))
+            candidates: results
           }) }] };
         }
 
@@ -466,14 +560,9 @@ export default function register(api) {
     };
   }
 
-  // 注册工具
   const storeTool = createMemoryStoreTool();
   const searchTool = createMemorySearchTool();
   const forgetTool = createMemoryForgetTool();
-  
-  api.logger.info(`memory-qdrant: registering ${storeTool.name}, execute type: ${typeof storeTool.execute}`);
-  api.logger.info(`memory-qdrant: registering ${searchTool.name}, execute type: ${typeof searchTool.execute}`);
-  api.logger.info(`memory-qdrant: registering ${forgetTool.name}, execute type: ${typeof forgetTool.execute}`);
   
   api.registerTool(storeTool);
   api.registerTool(searchTool);
@@ -493,9 +582,16 @@ export default function register(api) {
 
       const vector = await embeddings.embed(text);
       const category = detectCategory(text);
-      const entry = await db.store({ text, vector, category, importance: 0.8 });
+      
+      let result = await chromaBridge.store(randomUUID(), text, vector, category, 0.8);
+      let mode = 'chromadb';
+      
+      if (!result) {
+        result = memoryFallback.store({ text, vector, category, importance: 0.8 });
+        mode = 'memory';
+      }
 
-      return { text: `✅ 已保存: "${text.slice(0, 50)}..." [${category}]` };
+      return { text: `✅ 已保存："${text.slice(0, 50)}..." [${category}] [${mode}]` };
     }
   });
 
@@ -508,17 +604,24 @@ export default function register(api) {
       if (!query) return { text: '请提供搜索查询' };
 
       const vector = await embeddings.embed(query);
-      const results = await db.search(vector, 5, SIMILARITY_THRESHOLDS.LOW);
+      let results = await chromaBridge.search(vector, 5, SIMILARITY_THRESHOLDS.LOW);
+      let mode = 'chromadb';
+      
+      if (results === null) {
+        const fallbackResults = memoryFallback.search(vector, 5, SIMILARITY_THRESHOLDS.LOW);
+        results = fallbackResults.map(r => ({ id: r.entry.id, text: r.entry.text, category: r.entry.category, score: r.score }));
+        mode = 'memory';
+      }
 
-      if (results.length === 0) {
+      if (!results || results.length === 0) {
         return { text: '未找到相关记忆' };
       }
 
       const text = results.map((r, i) =>
-        `${i + 1}. [${r.entry.category}] ${r.entry.text} (${(r.score * 100).toFixed(0)}%)`
+        `${i + 1}. [${r.category}] ${r.text} (${(r.score * 100).toFixed(0)}%)`
       ).join('\n');
 
-      return { text: `找到 ${results.length} 条记忆:\n\n${text}` };
+      return { text: `找到 ${results.length} 条记忆 [${mode}]:\n\n${text}` };
     }
   });
 
@@ -532,19 +635,20 @@ export default function register(api) {
 
       try {
         const vector = await embeddings.embed(event.prompt);
-        const results = await db.search(vector, 3, SIMILARITY_THRESHOLDS.LOW);
+        let results = await chromaBridge.search(vector, 3, SIMILARITY_THRESHOLDS.LOW);
+        
+        if (results === null) {
+          const fallbackResults = memoryFallback.search(vector, 3, SIMILARITY_THRESHOLDS.LOW);
+          results = fallbackResults.map(r => ({ category: r.entry.category, text: r.entry.text }));
+        }
 
-        if (results.length === 0) return;
-
-        api.logger.debug(`memory-qdrant: 注入 ${results.length} 条记忆`);
+        if (!results || results.length === 0) return;
 
         return {
-          prependContext: formatRelevantMemoriesContext(
-            results.map(r => ({ category: r.entry.category, text: r.entry.text }))
-          )
+          prependContext: formatRelevantMemoriesContext(results)
         };
       } catch (err) {
-        api.logger.warn(`memory-qdrant: recall 失败: ${err.message}`);
+        api.logger.debug(`memory-chroma: recall 失败：${err.message}`);
       }
     });
   }
@@ -576,42 +680,28 @@ export default function register(api) {
 
         for (const text of toCapture) {
           const vector = await embeddings.embed(text);
-          const existing = await db.search(vector, 1, SIMILARITY_THRESHOLDS.DUPLICATE);
-          if (existing.length > 0) continue;
-
           const category = detectCategory(text);
-          await db.store({ text, vector, category, importance: 0.7 });
-          api.logger.debug(`memory-qdrant: 捕获 [${category}] ${text.slice(0, 50)}...`);
+          
+          let result = await chromaBridge.store(randomUUID(), text, vector, category, 0.7);
+          if (!result) {
+            memoryFallback.store({ text, vector, category, importance: 0.7 });
+          }
+          
+          api.logger.debug(`memory-chroma: 捕获 [${category}] ${text.slice(0, 50)}...`);
         }
       } catch (err) {
-        api.logger.warn(`memory-qdrant: capture 失败: ${err.message}`);
+        api.logger.debug(`memory-chroma: capture 失败：${err.message}`);
       }
     });
   }
 
   // ==========================================================================
-  // CLI 命令
+  // 清理
   // ==========================================================================
 
-  api.registerCli(({ program }) => {
-    const memory = program.command('memory-qdrant').description('Qdrant 记忆插件命令');
-
-    memory.command('stats').description('显示统计').action(async () => {
-      const count = await db.count();
-      console.log(`总记忆数: ${count}`);
-    });
-
-    memory.command('search <query>').description('搜索记忆').action(async (query) => {
-      const vector = await embeddings.embed(query);
-      const results = await db.search(vector, 5, SIMILARITY_THRESHOLDS.LOW);
-      console.log(JSON.stringify(results.map(r => ({
-        id: r.entry.id,
-        text: r.entry.text,
-        category: r.entry.category,
-        score: r.score
-      })), null, 2));
-    });
-  }, { commands: ['memory-qdrant'] });
+  process.on('exit', () => {
+    chromaBridge.shutdown();
+  });
 };
 
 // 导出内部函数供测试使用

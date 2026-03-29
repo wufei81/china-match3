@@ -92,6 +92,22 @@
     "memory-setup": {
       "version": "1.0.0",
       "installedAt": 1774445585498
+    },
+    "skill-finder": {
+      "version": "1.1.5",
+      "installedAt": 1774670954969
+    },
+    "capability-evolver": {
+      "version": "1.40.0",
+      "installedAt": 1774671422208
+    },
+    "evolver": {
+      "version": "1.40.0",
+      "installedAt": 1774678142445
+    },
+    "feishu-evolver-wrapper": {
+      "version": "1.7.1",
+      "installedAt": 1774678146584
     }
   }
 }

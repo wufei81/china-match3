@@ -1,247 +1,213 @@
-# openclaw-memory-qdrant
+# openclaw-memory-chroma
 
-OpenClaw 本地语义记忆插件，基于 Qdrant 和 Transformers.js 实现零配置的语义搜索。
+OpenClaw 本地语义记忆插件，基于 **Python ChromaDB** + **Node.js 桥接** 实现持久化向量存储。
 
-**📦 ClawHub**: https://clawhub.ai/skills/memory-qdrant
+## 架构
+
+```
+┌─────────────┐     stdin/stdout      ┌──────────────────┐
+│  Node.js    │ ◄──────────────────► │  Python ChromaDB │
+│  插件桥接   │     JSON-RPC 风格     │  PersistentClient│
+└─────────────┘                       └──────────────────┘
+       │                                      │
+       ▼                                      ▼
+┌─────────────┐                       ┌──────────────────┐
+│ 内存模式    │                       │  SQLite 文件存储  │
+│ (自动降级)  │                       │ (~/.openclaw/    │
+└─────────────┘                       │  memory/chroma.db)│
+                                      └──────────────────┘
+```
 
 ## 特性
 
-- 🧠 **本地语义搜索** - 使用 Transformers.js 在本地生成 embeddings
-- 💾 **内存模式** - 零配置，无需外部服务
-- 🔄 **自动捕获** - 通过 lifecycle hooks 自动记录重要信息
-- 🎯 **智能召回** - 根据上下文自动检索相关记忆
+- 🧠 **本地语义搜索** - Transformers.js 本地生成 embeddings
+- 💾 **持久化存储** - ChromaDB SQLite 后端，重启数据不丢失
+- 🔄 **自动降级** - ChromaDB 不可用时自动切换到内存模式
+- ⚡ **异步桥接** - Node.js 非阻塞调用 Python 进程
+- 🎯 **智能召回** - 对话前自动注入相关记忆
 
 ## 安装
 
-### 通过 ClawHub（推荐）
+### 1. 安装 Python ChromaDB
 
 ```bash
-clawhub install memory-qdrant
+# Ubuntu/Debian
+pip3 install chromadb --break-system-packages
+
+# 或使用虚拟环境（推荐）
+python3 -m venv ~/.venvs/chroma
+source ~/.venvs/chroma/bin/activate
+pip install chromadb
 ```
 
-### 手动安装
+### 2. 安装 Node.js 依赖
 
 ```bash
-cd ~/.openclaw/plugins
-git clone https://github.com/zuiho/openclaw-memory-qdrant.git memory-qdrant
-cd memory-qdrant
+cd ~/.openclaw/workspace/main/skills/memory-qdrant
 npm install
 ```
 
-### 安装要求
+### 3. 配置 OpenClaw
 
-**首次运行准备：**
-
-1. **Node.js 版本**: 需要 Node.js ≥18.17
-   ```bash
-   node --version  # 检查版本
-   ```
-
-2. **构建工具**（用于编译原生依赖）:
-   - **Windows**: Visual Studio Build Tools
-     ```powershell
-     npm install --global windows-build-tools
-     ```
-   - **macOS**: Xcode Command Line Tools
-     ```bash
-     xcode-select --install
-     ```
-   - **Linux**: build-essential
-     ```bash
-     sudo apt-get install build-essential  # Debian/Ubuntu
-     sudo yum groupinstall "Development Tools"  # RHEL/CentOS
-     ```
-
-3. **网络访问**:
-   - 安装时需要访问 npmjs.com 下载依赖包
-   - 首次运行时会从 huggingface.co 下载 embedding 模型（约 25MB）
-   - 如果配置了外部 Qdrant 服务器，需要能访问该服务器
-
-4. **原生依赖**:
-   - `sharp`: 图像处理库（可能需要编译）
-   - `onnxruntime`: ML 推理引擎（可能需要编译）
-   - `undici`: HTTP 客户端（通过 @qdrant/js-client-rest 引入）
-
-### 推荐安装方式
-
-```bash
-# 使用 npm ci 确保可重现的安装（推荐用于生产环境）
-npm ci
-
-# 或者分步安装（用于调试）
-npm install --ignore-scripts  # 跳过 post-install 脚本
-npm rebuild                    # 然后重新构建原生模块
-```
-
-### 故障排除
-
-**问题: 原生模块编译失败**
-- 确保已安装对应平台的构建工具
-- 尝试清理缓存: `npm cache clean --force`
-- 删除 node_modules 重新安装: `rm -rf node_modules && npm install`
-
-**问题: 模型下载失败**
-- 检查网络连接和防火墙设置
-- 确保能访问 huggingface.co
-- 模型会缓存在 `~/.cache/huggingface/` 目录
-
-**问题: Node 版本不兼容**
-- 升级到 Node.js 18.17 或更高版本
-- 使用 nvm 管理多个 Node 版本: `nvm install 18 && nvm use 18`
-
-## 配置
-
-在 OpenClaw 配置文件中启用插件：
+在 `~/.openclaw/openclaw.json` 中启用插件：
 
 ```json
 {
   "plugins": {
-    "memory-qdrant": {
-      "enabled": true,
-      "autoCapture": false,  // 默认关闭，需要时手动开启
-      "autoRecall": true,
-      "captureMaxChars": 500
+    "entries": {
+      "memory-qdrant": {
+        "enabled": true,
+        "config": {
+          "persistPath": "~/.openclaw/memory/chroma.db",
+          "autoCapture": false,
+          "autoRecall": true,
+          "maxMemorySize": 999999
+        }
+      }
     }
   }
 }
 ```
 
-### 配置选项
+## 配置选项
 
-- **qdrantUrl** (可选): 外部 Qdrant 服务地址，留空使用内存模式
-- **autoCapture** (默认 false): 自动记录对话内容，开启前请注意隐私
-- **autoRecall** (默认 true): 自动注入相关记忆到对话
-- **captureMaxChars** (默认 500): 单条记忆最大字符数
-- **maxMemorySize** (默认 1000): 内存模式下的最大记忆条数
-  - 仅在内存模式下生效（未配置 qdrantUrl 时）
-  - 达到上限时自动删除最旧的记忆（LRU 淘汰策略）
-  - 范围：100-1000000 条
-  - 设置为 999999 表示无限制（不会自动删除旧记忆）
-  - ⚠️ 无限制模式可能导致内存耗尽，请谨慎使用
-  - 外部 Qdrant 模式不受此限制
-
-## 隐私与安全
-
-### 数据存储
-
-- **内存模式**（默认）: 数据仅在进程运行期间保存，重启后清空
-- **Qdrant 模式**: 如果配置了 `qdrantUrl`，数据会发送到该服务器
-  - ⚠️ 仅配置受信任的 Qdrant 服务器
-  - 建议使用本地 Qdrant 实例或专用服务账户
-
-### 网络访问
-
-- **首次运行**: Transformers.js 会从 Hugging Face 下载模型文件（约 25MB）
-- **运行时**: 内存模式无网络请求；Qdrant 模式会连接配置的服务器
-
-### 自动捕获
-
-- **autoCapture** 默认关闭，需要手动开启
-- 开启后会自动记录对话内容，可能包含敏感信息
-- 建议仅在个人环境使用，避免在共享或生产环境开启
-
-### 建议
-
-1. 首次使用时在隔离环境测试
-2. 审查 `index.js` 了解数据处理逻辑
-3. 敏感环境建议锁定依赖版本（`npm ci`）
-4. 定期检查存储的记忆内容
+| 选项 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| `persistPath` | string | `~/.openclaw/memory/chroma.db` | ChromaDB 持久化路径 |
+| `autoCapture` | boolean | `false` | 自动捕获对话内容 |
+| `autoRecall` | boolean | `true` | 对话前自动注入记忆 |
+| `captureMaxChars` | number | `500` | 单条记忆最大字符数 |
+| `maxMemorySize` | number | `1000` | 内存模式最大记忆数 |
 
 ## 使用
 
-插件提供三个工具：
+### AI 工具
 
-### memory_store
-保存重要信息到长期记忆：
+插件提供三个工具供智能体使用：
 
+**memory_store** - 保存记忆：
 ```javascript
 memory_store({
   text: "用户喜欢用 Opus 处理复杂任务",
   category: "preference",
   importance: 0.8
 })
+// 返回：{ success: true, id: "xxx", mode: "chromadb" }
 ```
 
-### memory_search
-搜索相关记忆：
-
+**memory_search** - 搜索记忆：
 ```javascript
 memory_search({
   query: "工作流程",
   limit: 5
 })
+// 返回：{ success: true, count: 3, memories: [...], mode: "chromadb" }
 ```
 
-### memory_forget
-删除特定记忆：
-
+**memory_forget** - 删除记忆：
 ```javascript
 memory_forget({
   memoryId: "uuid-here"
 })
-// 或通过搜索删除
+// 或
 memory_forget({
   query: "要删除的内容"
 })
 ```
 
-## 技术细节
-
-### 架构
-
-- **向量数据库**: Qdrant (内存模式)
-- **Embedding 模型**: Xenova/all-MiniLM-L6-v2 (本地运行)
-- **模块系统**: ES6 modules
-
-### 关键实现
-
-插件使用**工厂函数模式**导出工具，确保与 OpenClaw 的工具系统兼容：
-
-```javascript
-export default {
-  name: 'memory-qdrant',
-  version: '1.0.0',
-  tools: [
-    () => ({
-      name: 'memory_search',
-      description: '...',
-      parameters: { ... },
-      execute: async (params) => { ... }
-    })
-  ]
-}
-```
-
-### 常见问题
-
-**Q: 为什么要用工厂函数？**
-
-A: OpenClaw 的工具系统会调用 `tool.execute()`，直接导出对象会导致 `tool.execute is not a function` 错误。工厂函数确保每次调用都返回新的工具实例。
-
-**Q: 为什么要用 ES6 modules？**
-
-A: OpenClaw 的插件加载器期望 ES6 模块格式。需要在 `package.json` 中设置 `"type": "module"`。
-
-**Q: 数据存储在哪里？**
-
-A: 内存模式下数据仅在进程运行期间保存。重启后需要重新索引。未来版本会支持持久化存储。
-
-## 开发
+### 命令行
 
 ```bash
-# 安装依赖
-npm install
+# 保存记忆
+openclaw remember "吴飞喜欢喝美式咖啡"
 
-# 测试（需要 OpenClaw 环境）
-openclaw gateway restart
+# 搜索记忆
+openclaw recall "咖啡偏好"
+
+# 查看统计
+openclaw memory-qdrant stats
+
+# 搜索（JSON 输出）
+openclaw memory-qdrant search "工作流程"
 ```
+
+## 降级机制
+
+插件会自动检测 ChromaDB 可用性：
+
+1. **ChromaDB 可用** → 使用持久化存储
+2. **Python 进程启动失败** → 自动降级到内存模式
+3. **运行时错误** → 自动切换到内存模式
+4. **重启后** → 自动尝试重新连接 ChromaDB
+
+内存模式特点：
+- ✅ 无需外部依赖
+- ✅ 零配置
+- ⚠️ 重启后数据清空
+
+## 技术细节
+
+### 通信协议
+
+Node.js 与 Python 通过 stdin/stdout 进行 JSON-RPC 风格通信：
+
+```json
+// 请求
+{"id": 1, "action": "store", "params": {"id": "xxx", "text": "...", "vector": [...]}}
+
+// 响应
+{"id": 1, "success": true, "id": "xxx"}
+```
+
+### 支持的动作
+
+| Action | 参数 | 返回 |
+|--------|------|------|
+| `health` | - | `{ healthy: boolean, count: number }` |
+| `store` | `id, text, vector, category, importance` | `{ success: boolean, id: string }` |
+| `search` | `vector, limit, min_score` | `{ success: boolean, results: [...], count: number }` |
+| `delete` | `id` | `{ success: boolean }` |
+| `count` | - | `{ success: boolean, count: number }` |
+
+### 依赖
+
+- **Python**: chromadb >= 1.5.0
+- **Node.js**: @xenova/transformers >= 2.17.0
+- **系统**: Python 3.10+, Node.js 18+
+
+## 故障排除
+
+### Python 进程启动失败
+
+```bash
+# 检查 Python 版本
+python3 --version  # 需要 >= 3.10
+
+# 检查 ChromaDB 安装
+python3 -c "import chromadb; print(chromadb.__version__)"
+
+# 手动测试脚本
+echo '{"action":"health"}' | python3 chroma_server.py
+```
+
+### 内存占用过高
+
+- 调整 `maxMemorySize` 限制内存模式大小
+- 定期清理旧记忆：`memory_forget({ query: "..." })`
+
+### 搜索不准确
+
+- 检查 embedding 模型是否正确加载
+- 调整 `SIMILARITY_THRESHOLDS` 阈值
+- 确保文本经过 `sanitizeInput` 清理
+
+## 隐私与安全
+
+- ✅ 所有数据本地存储
+- ✅ 无需外部 API
+- ✅ 持久化文件可备份
+- ⚠️ `autoCapture` 可能记录敏感信息（默认关闭）
 
 ## 许可证
 
 MIT
-
-## 致谢
-
-- [Qdrant](https://qdrant.tech/) - 向量数据库
-- [Transformers.js](https://huggingface.co/docs/transformers.js) - 本地 ML 推理
-- [OpenClaw](https://openclaw.ai/) - AI 助手框架

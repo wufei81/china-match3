@@ -1,0 +1,46 @@
+{
+  "name": "opencli",
+  "version": "1.0.0",
+  "description": "AI 驱动的网站 CLI 工具，把 65+ 网站变成命令行。支持知乎、B 站、微博、小红书、抖音、京东、GitHub 等。",
+  "author": "mobile-agent",
+  "license": "MIT",
+  "keywords": ["cli", "web-scraping", "social-media", "automation", "opencli"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jackwener/opencli"
+  },
+  "scripts": {
+    "install": "bash scripts/install-opencli.sh",
+    "examples": "bash scripts/examples.sh"
+  },
+  "commands": [
+    "zhihu",
+    "bilibili",
+    "weibo",
+    "xiaohongshu",
+    "douyin",
+    "36kr",
+    "sinafinance",
+    "hackernews",
+    "stackoverflow",
+    "youtube",
+    "douban",
+    "jd",
+    "xueqiu",
+    "web",
+    "google",
+    "wikipedia"
+  ],
+  "capabilities": [
+    "搜索网站内容",
+    "获取热门榜单",
+    "抓取公开数据",
+    "导出为 Markdown/JSON",
+    "自动化网页交互"
+  ],
+  "requirements": [
+    "Node.js 18+",
+    "Chrome/Chromium 浏览器",
+    "Browser Bridge 扩展"
+  ]
+}
