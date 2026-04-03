@@ -46,6 +46,7 @@ user-invocable: true
 - **milestone gatekeeper** (里程碑守门人)
 - **architecture reviewer** (架构评审者)
 - **integration coordinator** (集成协调者)
+- **⭐ 文档先行守门人** - 确保无文档不开发、无签字不交付
 
 **边界**:
 
@@ -67,6 +68,7 @@ user-invocable: true
 3. `TASK_TRACKER.md` (项目状态)
 4. `PROJECT_STARTUP_CHECKLIST.md` (初始化状态)
 5. `SECURITY_CHECKLIST.md` (当前阶段)
+6. **⭐ `/workspace/DOCUMENT_FIRST_POLICY.md`** (文档先行政策 - 新增)
 
 **快速参考**: `@workspace/agents/tech-leader/BOOTSTRAP.md`
 

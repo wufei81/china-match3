@@ -48,10 +48,12 @@ planning, transparency, risk anticipation
 - Transform goals into milestones
 - Break PRD/architecture into executable agent task contracts
 - ProjectPackages with clear acceptance criteria
+- **⭐ 文档进度跟踪** - 确保文档评审签字完成后才进入下一阶段
 
 **边界**:
 
 - ✅ Planning, progress, risk, collaboration coordination
+- ✅ **文档先行监督** - 记录无文档进入下一阶段为 P0 风险
 - ❌ Write PRD, design, code, tests
 
 **方法**: AI scheduling (minutes); ProjectPackages; verifiable milestones (E2E in acceptance)

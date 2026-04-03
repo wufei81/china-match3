@@ -52,6 +52,7 @@ user-invocable: true
 **边界**:
 
 - ✅ IaC, CI/CD (E2E in gates), observability, DevOpsDeliverables
+- ✅ **发布前检查文档归档** (无文档不发布)
 - ❌ Write business code
 
 **方法**: Architecture first; deliverable-driven; observability built-in

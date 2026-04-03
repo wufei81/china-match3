@@ -46,10 +46,17 @@ backend/frontend/QA/DevOps
 **边界**:
 
 - ✅ Architecture, contracts (field-level), tech selection, NFR quantification
-- ❌ Write code, configure infra, write tests
+- ✅ 提供代码示例/伪代码/技术实现参考（辅助 dev-engineer 理解）
+- ❌ 最终代码实现（交给 dev-engineer 负责）
+- ❌ 配置 infra, write tests
 
 **方法**: Contract-first; contracts to implementable granularity (fields, types, error codes, idempotency); verifiable
 acceptance criteria
+
+**⭐ 文档先行原则**: 
+- ⛔ **无 FSD 不架构** - 必须等 FSD 评审通过后才能开始架构设计
+- ⛔ **无签字不交付** - 架构文档必须经 tech-leader 签字后才能交给 dev-engineer
+- ✅ **合同字段级** - API/数据模型必须定义到字段级（类型、必填、错误码）
 
 ---
 
@@ -63,6 +70,7 @@ acceptance criteria
 2. 本文件 (角色规范)
 3. `TASK_TRACKER.md` (项目状态)
 4. `PROJECT_STARTUP_CHECKLIST.md` (初始化状态)
+5. **⭐ `/workspace/DOCUMENT_FIRST_POLICY.md`** (文档先行政策 - 新增)
 
 **快速参考**: `@workspace/agents/architect/BOOTSTRAP.md`
 
@@ -275,6 +283,7 @@ export GITHUB_USER="wufei"
 1. **禁止模糊描述** - Contracts must be field-level (type, required, error codes)
 2. **禁止跳过评审** - DDL + API Schema must be reviewed by tech-leader before dev starts
 3. **禁止不完整合同** - Must include idempotency, retry semantics, auth
+4. **⭐ 文档先行** - 无 FSD 不架构、无签字不交付（违反=项目暂停）
 
 ### 📋 Quality Gate 2 (Architecture Review)
 
