@@ -425,3 +425,29 @@ tail -f /var/log/openclaw/memory.log
 > 📌 **本方案为产研智能体共享记忆配置标准，所有智能体必须严格遵守**
 > 
 > **版本**: 2.0 | **最后更新**: 2026-04-03 | **维护者**: ai-orchestrator + devops-engineer
+
+---
+
+## 🎉 最新更新 (2026-04-03)
+
+### 新增角色专属记忆集合 (18 个)
+
+| 角色 | 新增集合 | 数量 |
+|------|----------|------|
+| 研发系 (2 Dev) | `dev_shared_patterns`, `dev_shared_code_reviews`, `dev_shared_api_implementations` | 3 |
+| 设计系 (2 UI) | `ui_shared_design_tokens`, `ui_shared_prototypes`, `ui_shared_design_reviews` | 3 |
+| 架构 + 技术 | `arch_tech_shared_decisions`, `arch_tech_shared_security`, `arch_tech_shared_contracts` | 3 |
+| QA | `qa_shared_test_cases`, `qa_shared_bug_reports`, `qa_shared_quality_gates` | 3 |
+| DevOps | `devops_shared_infra`, `devops_shared_pipelines`, `devops_shared_monitoring` | 3 |
+| 项目经理 | `pm_mgr_shared_milestones`, `pm_mgr_shared_risks`, `pm_mgr_shared_stakeholders` | 3 |
+| **总计** | | **18 个** |
+
+### 完整集合列表 (27 个)
+
+| 类型 | 集合数 | 集合名称 |
+|------|--------|----------|
+| 全员共享 | 5 | `project_memory`, `decision_log`, `codebase_knowledge`, `collaboration_context`, `meeting_minutes` |
+| 角色专属 | 18 | `dev_shared_*`, `ui_shared_*`, `arch_tech_shared_*`, `qa_shared_*`, `devops_shared_*`, `pm_mgr_shared_*` |
+| PM 专属 | 3 | `pm_shared_decisions`, `pm_shared_research`, `pm_shared_prd_templates` |
+| 商业团队 | 1 | `claw-team-memos` |
+| **总计** | **27** | |
