@@ -1,0 +1,600 @@
+{
+  "timestamp": "2026-04-04T15:24:42.582078",
+  "total_docs": 171,
+  "healthy_docs": 169,
+  "outdated_docs": 2,
+  "critical_docs": 0,
+  "config_drifts": [
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/firecrawl-search/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/system-architect/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/log-analyzer/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/diagram/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/ui-ux-pro-max-plus/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/opencli/opencli.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/phy-prd-writer/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/claude-code-teams/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/claude-code-teams/package.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/superpowers/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/memory-tiering/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/document-pro/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/summarize/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/devops/_meta.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 version 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/firecrawl-search/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/system-architect/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/log-analyzer/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/diagram/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/ui-ux-pro-max-plus/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/phy-prd-writer/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/claude-code-teams/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/superpowers/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/memory-tiering/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/document-pro/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/summarize/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    },
+    {
+      "config_file": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/devops/.clawhub/origin.json",
+      "expected_value": "<实际版本号>",
+      "actual_value": "1.0.0",
+      "drift_type": "placeholder_version",
+      "severity": "low",
+      "suggestion": "更新 installedVersion 为实际版本号"
+    }
+  ],
+  "actions_taken": [
+    {
+      "timestamp": "2026-04-04T15:24:42.565305",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.566195",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/firecrawl-search/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.566892",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/system-architect/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.567583",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/log-analyzer/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.568243",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.568906",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/diagram/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.569435",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/ui-ux-pro-max-plus/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.570061",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/opencli/opencli.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.570651",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/phy-prd-writer/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.571251",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/claude-code-teams/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.571937",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/claude-code-teams/package.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.572496",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/superpowers/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.573118",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/memory-tiering/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.573760",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/document-pro/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.574479",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/summarize/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.575075",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/devops/_meta.json",
+        "priority": "low",
+        "actions": [
+          "更新 version 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.575776",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/firecrawl-search/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.576309",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/system-architect/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.576808",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/log-analyzer/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.577350",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/diagram/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.577906",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/ui-ux-pro-max-plus/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.578560",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/phy-prd-writer/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.579123",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/claude-code-teams/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.579748",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/superpowers/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.580293",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/memory-tiering/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.580848",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/document-pro/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.581424",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/summarize/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    },
+    {
+      "timestamp": "2026-04-04T15:24:42.581980",
+      "suggestion": {
+        "type": "config_fix",
+        "target": "/home/wufei/.openclaw/workspace/agents/main-agent/skills/devops/.clawhub/origin.json",
+        "priority": "low",
+        "actions": [
+          "更新 installedVersion 为实际版本号"
+        ],
+        "estimated_effort": "5-10 min"
+      },
+      "status": "completed"
+    }
+  ],
+  "summary": "扫描 171 个文档，发现 2 个需要关注的文档，28 处配置漂移"
+}

@@ -1,0 +1,48 @@
+{
+  "max_age_days": 90,
+  "check_interval_days": 7,
+  "auto_fix": false,
+  "backup_before_fix": true,
+  "ignored_patterns": [
+    "*.log",
+    "*.tmp",
+    "*.cache",
+    ".git/*",
+    "node_modules/*",
+    "__pycache__/*",
+    "*.pyc",
+    ".coverage",
+    "coverage.xml",
+    ".pytest_cache/*"
+  ],
+  "critical_paths": [
+    "docs/",
+    "config/",
+    "skills/",
+    "MEMORY.md",
+    "IDENTITY.md",
+    "SOUL.md",
+    "AGENTS.md",
+    "TOOLS.md"
+  ],
+  "entropy_thresholds": {
+    "low": 0.3,
+    "medium": 0.6,
+    "high": 0.8
+  },
+  "content_freshness": {
+    "min_update_ratio": 0.1,
+    "stale_keywords": [
+      "TODO",
+      "FIXME",
+      "XXX",
+      "deprecated",
+      "obsolete",
+      "WIP",
+      "placeholder"
+    ]
+  },
+  "cron_schedule": "0 9 * * 1",
+  "notification_channel": "webchat",
+  "report_retention_days": 30
+}
