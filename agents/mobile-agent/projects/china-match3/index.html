@@ -20,6 +20,7 @@
             height: 100%;
             overflow: hidden;
             font-size: 16px;
+            position: relative;
         }
         
         body {
@@ -51,14 +52,14 @@
         
         /* 漂浮花瓣效果 */
         .petals {
-            position: absolute;
-            top: 0;
+            position: fixed;
+            top: -100px;
             left: 0;
             width: 100%;
-            height: 100%;
+            height: calc(100% + 200px);
             pointer-events: none;
             z-index: 0;
-            overflow: hidden;
+            overflow: visible;
         }
         
         .petal {
@@ -72,10 +73,10 @@
         }
         
         @keyframes petalFall {
-            0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
             10% { opacity: 0.8; }
             90% { opacity: 0.8; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+            100% { transform: translateY(calc(100vh + 200px)) rotate(720deg); opacity: 0; }
         }
         
         @keyframes bgPulse {
@@ -93,15 +94,13 @@
                 0 0 80px rgba(255,255,255,0.1);
             text-align: center;
             width: min(90vw, 400px);
-            max-width: 100vw;
             height: min(90vh, 700px);
-            max-height: 100vh;
             display: flex;
             flex-direction: column;
             backdrop-filter: blur(30px);
             position: relative;
             overflow: hidden;
-            z-index: 1;
+            z-index: 10;
         }
         
         .game-container {
@@ -525,16 +524,16 @@
         /* 横屏适配 */
         @media (max-aspect-ratio: 1/1) {
             .main-menu, .game-container {
-                width: min(85vh, 600px);
-                height: min(85vw, 400px);
+                width: min(80vh, 500px);
+                height: min(80vw, 350px);
             }
         }
         
         /* 小屏幕手机适配 */
         @media (max-width: 375px) {
             .main-menu, .game-container {
-                width: min(95vw, 360px);
-                height: min(95vh, 600px);
+                width: min(92vw, 340px);
+                height: min(92vh, 580px);
                 padding: 15px;
             }
         }
